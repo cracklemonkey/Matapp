@@ -1,12 +1,67 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import LandingPage from '../views/LandingPage.vue'
+import LoggIn from '../views/LoggIn.vue'
+import SignUp from '../views/SignUp.vue'
+import Products from '../views/Products.vue'
+import ProductDetails from '../components/ProductDetails.vue'
+import OrderPage from '../views/OrderPage.vue'
+import Profile from '../views/Profile.vue'
+
 
 const routes = [
   {
     path: '/',
+    name: 'LandingPage',
+    component: LandingPage
+  },
+
+  {
+    path: '/home',
     name: 'Home',
     component: Home
   },
+
+  {
+    path: '/loggin',
+    name: 'LoggIn',
+    component: LoggIn
+  },
+
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+
+  {
+    path: '/products',
+    name: 'Products',
+    component: Products
+  },
+
+  {
+    path: '/products/:productid',
+    name: 'ProductDetails',
+    component: ProductDetails
+  },
+
+  {
+    path: '/order',
+    name: 'OrderPage',
+    component: OrderPage
+  },
+
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  },
+
+  
+
+
+
   {
     path: '/about',
     name: 'About',
