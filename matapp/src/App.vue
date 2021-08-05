@@ -1,8 +1,13 @@
 <template>
   <div id="nav">
-    <router-link to="/home">Home</router-link> |
-    <router-link to="/products">Products</router-link>|
-    <router-link to="/about">About</router-link>
+     <router-link to="/">Landingpage</router-link>|
+     <router-link to="/home">Home</router-link>|
+     <router-link to="/products">Products</router-link>|
+     <router-link to="/about">About</router-link>|
+     <router-link to="/loggin">Loggin</router-link>|
+     <router-link to="/signup">SignUp</router-link>|
+     <router-link to="/profile">Profile</router-link>|
+     <router-link to="/order">OrderPage</router-link>
   </div>
   <router-view/>
 </template>
