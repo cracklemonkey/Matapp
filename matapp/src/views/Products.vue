@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <h1>Products</h1>
     <AddProduct />
@@ -69,4 +70,5 @@ import AddProduct from "../components/AddProduct.vue";
 .annonser-image {
   width: 300px;
 }
+
 </style>
