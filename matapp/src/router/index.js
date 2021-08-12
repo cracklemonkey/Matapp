@@ -7,6 +7,9 @@ import Products from '../views/Products.vue'
 import ProductDetails from '../components/ProductDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
 import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
+import MyPosts from '../views/MyPosts.vue'
+import Historik from '../views/Historik.vue'
 
 
 const routes = [
@@ -35,13 +38,13 @@ const routes = [
   },
 
   {
-    path: '/products',
+    path: '/listing',
     name: 'Products',
     component: Products
   },
 
   {
-    path: '/products/:productid',
+    path: '/listing/:id',
     name: 'ProductDetails',
     component: ProductDetails
   },
@@ -57,8 +60,23 @@ const routes = [
     name: 'Profile',
     component: Profile
   },
+  {
+    path: '/profile/settings',
+    name: 'Settings',
+    component: Settings
+  },
+  {
+    path: '/profile/myposts',
+    name: 'MyPosts',
+    component: MyPosts
+  },
+  {
+    path: '/profile/historik',
+    name: 'Historik',
+    component: Historik
+  },
 
-  
+
 
 
 

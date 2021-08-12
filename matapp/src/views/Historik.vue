@@ -1,5 +1,5 @@
 <template>
-  <h1>Loggin</h1>
+  <h3>Historik</h3>
 </template>
 
 <script>

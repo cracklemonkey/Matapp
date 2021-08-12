@@ -1,0 +1,56 @@
+.background-landing {
+    background-image: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg");
+    height: 100vh;
+    background-size:cover;
+    position: relative;
+    
+   /*  width: 100%;
+    height: 100%;
+    min-height: 100vh; */
+  }
+
+  .landing-textarea {
+    left: 30%;
+    position:absolute;
+    text-align:center;
+    width:40%;
+    top:40%;
+    color:#fff;
+  }
+  
+  .landing-bubble {
+    font-size: 32px;
+  padding: 1px;
+    background: rgba(0, 0, 0, 0.7);
+  margin: 20px;
+    border-radius: 45px;
+    
+  }
+  
+  .landing-bubble:hover {
+    background: rgba(143, 34, 34, 0.7);
+  }
+  
+  .landing-bubble a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .landing-bubble a:hover {
+      color: black;
+  }
+
+  .about{
+    background-image: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg");
+    height: 100vh;
+    background-size:cover;
+    position: relative;
+  }
+
+  .text-about{
+      position: absolute;
+      background-color: rgba(150, 146, 146, .8);
+      font-size: 20px;
+      width: 80%;
+      margin: 5%
+  }
