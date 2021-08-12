@@ -38,13 +38,13 @@ const routes = [
   },
 
   {
-    path: '/products',
+    path: '/listing',
     name: 'Products',
     component: Products
   },
 
   {
-    path: '/products/:productid',
+    path: '/listing/:id',
     name: 'ProductDetails',
     component: ProductDetails
   },

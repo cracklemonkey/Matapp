@@ -11,7 +11,7 @@
       alt=""
     />
 
-    <p>Profil Navn</p>
+    <p>{{ users.username }}</p>
     <div class="rating">
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>
@@ -24,8 +24,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProfileBanner",
+  data() {
+    return {
+      users: [],
+    };
+  },
+  methods: {
+    ...mapActions(["fetchUsers", "deleteUser", "updateUser"]),
+  },
+  computed: mapGetters(["alleUsers"]),
 };
 </script>
 

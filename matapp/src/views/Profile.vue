@@ -27,7 +27,7 @@
             alt=""
           />
           <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
+            <h4><router-link :to="`/listing`">Title anonser</router-link></h4>
             <h4>Dato</h4>
           </div>
         </div>
@@ -47,7 +47,7 @@
             alt=""
           />
           <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
+            <h4><router-link :to="`listing`">Title anonser</router-link></h4>
             <h4>Dato</h4>
           </div>
         </div>
@@ -122,9 +122,14 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import ProfileBanner from "../components/layout/ProfileBanner.vue";
 export default {
   components: { ProfileBanner },
+  methods: {
+    ...mapActions(["fetchUsers", "deleteUser", "updateUser"]),
+  },
 };
 </script>
 
