@@ -1,14 +1,19 @@
 <template>
   <div>
-    <p>Add a new listing</p>
-    <form class="form-annonser" @submit.prevent="postAnnonser" method="post">
+    <p class="add-title">Add a new listing</p>
+    <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div>
         <label for="title">Title</label>
-        <input id="title" type="text" v-model="posts.title" />
+        <input
+          id="title"
+          type="text"
+          v-model="posts.title"
+          placeholder="name your listing"
+        />
       </div>
       <div>
         <label for="deadline">Deadline</label>
-        <input id="deadline" type="date" v-model="posts.deadlineDate" />
+        <input id="deadline" type="date" v-model="posts.deadline" />
       </div>
       <div>
         <label for="expiration">Expiration Date</label>
@@ -16,7 +21,11 @@
       </div>
       <div>
         <label for="typefood">Type of food</label>
-        <select id="typefood" v-model="posts.foodType">
+        <select
+          id="typefood"
+          v-model="posts.foodType"
+          placeholder="pick a category"
+        >
           <option value="vegetables">Vegetables</option>
           <option value="fruits">Fruits</option>
           <option value="dairy">Dairy</option>
@@ -43,25 +52,24 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  name: "AddListings",
   data() {
     return {
       posts: {
-        annonserid: this.annonserid,
         title: null,
-        deadLineDate: null,
+        deadline: null,
         expirationDate: null,
-        foodType: [],
+        foodType: null,
         description: null,
-
-        /* image: , */
       },
     };
   },
   methods: {
-    ...mapActions(["addAnnonser"]),
-    postAnnonser(e) {
-      this.addAnnonser(this.posts);
-      console.log(e);
+    ...mapActions(["addListing"]),
+
+    postListing() {
+      console.log(this.posts);
+      this.addListing(this.posts);
     },
   },
 };
@@ -75,6 +83,19 @@ export default {
   display: flex;
 }
  */
-.form-annonser {
+.add-title {
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+}
+
+.form-listing {
+  font-size: 18px;
+  width: 30%;
+  margin: auto;
+}
+
+.form-listing div {
+  display: flex;
+  flex-direction: column;
 }
 </style>

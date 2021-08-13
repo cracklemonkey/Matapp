@@ -1,24 +1,8 @@
-/* import axios from 'axios'; */
+import axios from 'axios';
 
 
 const state = {
-    users: [
-        {
-            id: 1,
-            username: "Jerry",
-            password: "1234",
-            email: "iamjerry@gmail.com",
-            number: "43215698",
-            street: "Torgata 45",
-            city: "Oslo",
-            country: "Norway",
-            zipcode: "0186",
-
-
-        },
-
-
-    ]
+    users: []
 };
 
 const getters = {
@@ -26,19 +10,19 @@ const getters = {
 };
 
 const actions = {
-    async fetchUsers(context) {
+    async getUsers(context) {
         const response = await state.users;
         context.commit('setUsers', response);
     },
-    /*  async deleteUser(context, id) {
-         await axios.delete(`http://link/${id}`);
-         context.commit('removeUser', id);
-     }, 
-     async updateUser(context, id){
-         const response = await axios.put(`http://link/profile/`);
-         context.commit('updateUser', id)
-     }
-     */
+    async deleteUser(context, id) {
+        await axios.delete(`https://localhost:5001/api/users/${id}`);
+        context.commit('removeUser', id);
+    },
+    async updateUser(context, updUser) {
+        const response = await axios.put(`https://localhost:5001/api/users/${updUser}`);
+        context.commit('updateUser', response.data)
+    }
+
 
 
 };
