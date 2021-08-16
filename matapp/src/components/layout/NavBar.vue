@@ -2,7 +2,7 @@
   <div id="nav">
     <router-link to="/">Landingpage</router-link>|
     <router-link to="/home">Home</router-link>|
-    <router-link to="/listing">Products</router-link>|
+    <router-link to="/listing">Listing</router-link>|
     <router-link to="/about">About</router-link>|
     <router-link to="/loggin">Loggin</router-link>|
     <router-link to="/signup">SignUp</router-link>|

@@ -1,27 +1,25 @@
 <template>
   <div>
-    <p>Add a new listing</p>
-    <form class="form-annonser" @submit.prevent="postAnnonser" method="post">
+    <p class="add-title">Add a new listing</p>
+    <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div>
         <label for="title">Title</label>
-        <input id="title" type="text" v-model="posts.title" />
+        <input
+          id="title"
+          type="text"
+          v-model="posts.title"
+          placeholder="name your listing"
+        />
       </div>
       <div>
         <label for="deadline">Deadline</label>
-        <input id="deadline" type="date" v-model="posts.deadlineDate" />
+        <input id="deadline" type="date" v-model="posts.deadline" />
       </div>
       <div>
         <label for="expiration">Expiration Date</label>
         <input id="expiration" type="date" v-model="posts.expirationDate" />
       </div>
-      <div>
-        <label for="typefood">Type of food</label>
-        <select id="typefood" v-model="posts.foodType">
-          <option value="vegetables">Vegetables</option>
-          <option value="fruits">Fruits</option>
-          <option value="dairy">Dairy</option>
-        </select>
-      </div>
+
       <div>
         <label for="description">Description</label>
         <textarea
@@ -43,25 +41,24 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  name: "AddListings",
   data() {
     return {
       posts: {
-        annonserid: this.annonserid,
         title: null,
-        deadLineDate: null,
-        expirationDate: null,
-        foodType: [],
-        description: null,
+        deadline: "0001-01-01",
+        expirationDate: "0001-01-01",
 
-        /* image: , */
+        description: null,
       },
     };
   },
   methods: {
-    ...mapActions(["addAnnonser"]),
-    postAnnonser(e) {
-      this.addAnnonser(this.posts);
-      console.log(e);
+    ...mapActions(["addListing"]),
+
+    postListing() {
+      console.log(this.posts);
+      this.addListing(this.posts);
     },
   },
 };
@@ -75,6 +72,19 @@ export default {
   display: flex;
 }
  */
-.form-annonser {
+.add-title {
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+}
+
+.form-listing {
+  font-size: 18px;
+  width: 30%;
+  margin: auto;
+}
+
+.form-listing div {
+  display: flex;
+  flex-direction: column;
 }
 </style>
