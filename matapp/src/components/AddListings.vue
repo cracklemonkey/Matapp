@@ -19,18 +19,7 @@
         <label for="expiration">Expiration Date</label>
         <input id="expiration" type="date" v-model="posts.expirationDate" />
       </div>
-      <div>
-        <label for="typefood">Type of food</label>
-        <select
-          id="typefood"
-          v-model="posts.foodType"
-          placeholder="pick a category"
-        >
-          <option value="vegetables">Vegetables</option>
-          <option value="fruits">Fruits</option>
-          <option value="dairy">Dairy</option>
-        </select>
-      </div>
+
       <div>
         <label for="description">Description</label>
         <textarea
@@ -57,9 +46,9 @@ export default {
     return {
       posts: {
         title: null,
-        deadline: null,
-        expirationDate: null,
-        foodType: null,
+        deadline: "0001-01-01",
+        expirationDate: "0001-01-01",
+
         description: null,
       },
     };
