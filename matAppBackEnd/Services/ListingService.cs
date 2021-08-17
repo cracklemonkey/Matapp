@@ -23,6 +23,9 @@ namespace matAppBackEnd.Services
         public Listing Get(string id) =>
             _listings.Find<Listing>(listing => listing.Id == id).FirstOrDefault();
 
+        public List<Listing> GetListingByUserOwner(string userowner) =>
+            
+            _listings.Find<Listing>(listing => listing.UserOwner == userowner).ToList();
         public Listing Create(Listing listing)
         {
             _listings.InsertOne(listing);
