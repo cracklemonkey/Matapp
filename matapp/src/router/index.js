@@ -3,10 +3,13 @@ import Home from '../views/Home.vue'
 import LandingPage from '../views/LandingPage.vue'
 import LoggIn from '../views/LoggIn.vue'
 import SignUp from '../views/SignUp.vue'
-import Products from '../views/Products.vue'
-import ProductDetails from '../components/ProductDetails.vue'
+import Listings from '../views/Listings.vue'
+import ListingDetails from '../components/ListingDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
 import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
+import MyPosts from '../views/MyPosts.vue'
+import Historik from '../views/Historik.vue'
 
 
 const routes = [
@@ -35,15 +38,15 @@ const routes = [
   },
 
   {
-    path: '/products',
-    name: 'Products',
-    component: Products
+    path: '/listing',
+    name: 'Listings',
+    component: Listings
   },
 
   {
-    path: '/products/:productid',
-    name: 'ProductDetails',
-    component: ProductDetails
+    path: '/listing/:id',
+    name: 'ListingDetails',
+    component: ListingDetails
   },
 
   {
@@ -57,8 +60,23 @@ const routes = [
     name: 'Profile',
     component: Profile
   },
+  {
+    path: '/profile/settings',
+    name: 'Settings',
+    component: Settings
+  },
+  {
+    path: '/profile/myposts',
+    name: 'MyPosts',
+    component: MyPosts
+  },
+  {
+    path: '/profile/historik',
+    name: 'Historik',
+    component: Historik
+  },
 
-  
+
 
 
 
