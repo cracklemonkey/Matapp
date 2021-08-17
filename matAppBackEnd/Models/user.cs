@@ -16,7 +16,7 @@ namespace matAppBackEnd.Models
     public string Username {get; set;}
 
     [BsonElement("password")]     
-    public string Passord {get; set;}
+    public string Password {get; set;}
 
     [BsonElement("email")]     
     public string EMail {get; set;}

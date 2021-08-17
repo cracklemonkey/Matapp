@@ -48,7 +48,33 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/listings/111111111111111111111111");
+            var httpResponse = await client.GetAsync("api/listings/222211111111111111111111");
+
+            // assert
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Fact]
+        public async Task GetListing_WithUserOwner_ShouldReturn_OKStatusCode()
+        {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.GetAsync("api/listings/userlistings/61124f728e6ee1726177c1ee");
+
+            // assert
+            httpResponse.IsSuccessStatusCode.Should().BeTrue();
+        }
+
+         [Fact]
+        public async Task GetListing_WithUserOwner_ShouldReturn_NotFound()
+        {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.GetAsync("pi/listings/userlistings/222211111111111111111111");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -87,7 +113,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/users/111111111111111111111111");
+            var httpResponse = await client.GetAsync("api/users/222211111111111111111111");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
