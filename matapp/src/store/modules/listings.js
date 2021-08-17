@@ -4,17 +4,20 @@ import axios from 'axios';
 const state = {
     listings: [],
     oneListing: "",
+    userListing: [],
 };
 
 const getters = {
     allListings: (state) => state.listings,
     oneListing: (state) => state.oneListing,
+    userListing: (state) => state.userListing
 
 };
 
 const actions = {
     async getListings(context) {
         const response = await axios.get("https://localhost:5001/api/listings");
+
         context.commit('setListings', response.data);
     },
     async addListing(context, posts) {
@@ -44,6 +47,12 @@ const actions = {
         context.commit('setListing', response.data)
 
     },
+    async getListingsByUser(context, userid) {
+        const response = await axios.get(`https://localhost:5001/api/listings?userOwner=${userid}`);
+        console.log(response.data)
+        context.commit('listingOwner', response.data)
+    }
+
 
 
 };
@@ -62,6 +71,7 @@ const mutations = {
 
     }),
     setListing: (state, oneListing) => (state.oneListing = oneListing),
+    listingOwner: (state, userListing) => state.userListing = state.listings.filter(listing => listing === userListing)
 };
 
 export default {

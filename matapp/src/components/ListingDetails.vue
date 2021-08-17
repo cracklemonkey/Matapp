@@ -8,10 +8,18 @@
     <p>{{ oneListing.foodType }}</p>
     <p>Expires: {{ oneListing.expirationDate }}</p>
     <p>Pick-up before: {{ oneListing.deadline }}</p>
-    <p v-if="allergies === null">Allergies{{ oneListing.allergies }}</p>
-    <button>edit</button>
+    <p>{{ oneListing.allergies }}</p>
+    <p>from {{ oneListing.userOwner }}</p>
+    <button>
+      <router-link :to="`/listing/${oneListing.id}/edit`"> Edit </router-link>
+    </button>
     <button>
       <router-link :to="`/listing`"> Back to Listing </router-link>
+    </button>
+    <button>
+      <router-link :to="`/listing/user/${oneListing.userOwner}`">
+        see all ads from user
+      </router-link>
     </button>
   </div>
 </template>

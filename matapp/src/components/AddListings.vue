@@ -19,7 +19,15 @@
         <label for="expiration">Expiration Date</label>
         <input id="expiration" type="date" v-model="posts.expirationDate" />
       </div>
-
+      <!-- <div>
+        <label for="foodType">Type of Food</label>
+        <input
+          id="foodType"
+          type="text"
+          v-model="posts.foodType"
+          placeholder="What type of food is it?"
+        />
+      </div> -->
       <div>
         <label for="description">Description</label>
         <textarea
@@ -46,9 +54,9 @@ export default {
     return {
       posts: {
         title: null,
-        deadline: "0001-01-01",
-        expirationDate: "0001-01-01",
-
+        deadline: Date.now(),
+        expirationDate: Date.now(),
+        /* foodType: [null], */
         description: null,
       },
     };
