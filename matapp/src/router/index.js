@@ -3,8 +3,8 @@ import Home from '../views/Home.vue'
 import LandingPage from '../views/LandingPage.vue'
 import LoggIn from '../views/LoggIn.vue'
 import SignUp from '../views/SignUp.vue'
-import Products from '../views/Products.vue'
-import ProductDetails from '../components/ProductDetails.vue'
+import Listings from '../views/Listings.vue'
+import ListingDetails from '../components/ListingDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
 import Profile from '../views/Profile.vue'
 import Settings from '../views/Settings.vue'
@@ -39,14 +39,14 @@ const routes = [
 
   {
     path: '/listing',
-    name: 'Products',
-    component: Products
+    name: 'Listings',
+    component: Listings
   },
 
   {
     path: '/listing/:id',
-    name: 'ProductDetails',
-    component: ProductDetails
+    name: 'ListingDetails',
+    component: ListingDetails
   },
 
   {
