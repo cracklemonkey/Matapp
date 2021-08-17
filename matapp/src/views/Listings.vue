@@ -22,6 +22,7 @@
  -->
       <p>Posted : {{ listing.creationDate }}</p>
       <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Expires : {{ listing.expirationDate }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
@@ -68,6 +69,7 @@ import AddListings from "../components/AddListings.vue";
     },
   },
   computed: mapGetters(["allListings"]),
+
   /* annonserWithImage(annonser) {
     return {
       ...this.annonser,

@@ -10,6 +10,8 @@ import Profile from '../views/Profile.vue'
 import Settings from '../views/Settings.vue'
 import MyPosts from '../views/MyPosts.vue'
 import Historik from '../views/Historik.vue'
+import ListingByUser from '../components/ListingByUser.vue'
+import EditListing from '../components/EditListing.vue'
 
 
 const routes = [
@@ -48,6 +50,13 @@ const routes = [
     name: 'ListingDetails',
     component: ListingDetails
   },
+  {
+    path: '/listing/:id/edit',
+    name: 'EditListing',
+    component: EditListing
+  },
+
+
 
   {
     path: '/order',
@@ -71,9 +80,19 @@ const routes = [
     component: MyPosts
   },
   {
+    path: `/profile/:id/listing`,
+    name: 'ListingByUser',
+    component: ListingByUser
+  },
+  {
     path: '/profile/historik',
     name: 'Historik',
     component: Historik
+  },
+  {
+    path: `/listing/user/:id`,
+    name: 'ListingByUser',
+    component: ListingByUser
   },
 
 
