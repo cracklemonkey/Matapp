@@ -34,8 +34,8 @@ const actions = {
         await axios.delete(`https://localhost:5001/api/listings/${id}`);
         context.commit('removeListing', id);
     },
-    async updateListing(context, updListing) {
-        const response = await axios.put(`https://localhost:5001/api/listings/${updListing.id}`, updListing);
+    async updateListing(context, oneListing) {
+        const response = await axios.put(`https://localhost:5001/api/listings/${oneListing.id}`, oneListing);
         context.commit('updateListing', response.data);
         console.log(response.data)
 
@@ -48,7 +48,7 @@ const actions = {
 
     },
     async getListingsByUser(context, userid) {
-        const response = await axios.get(`https://localhost:5001/api/listings?userOwner=${userid}`);
+        const response = await axios.get(`https://localhost:5001/api/listings/userlistings/${userid}`);
         console.log(response.data)
         context.commit('listingOwner', response.data)
     }
@@ -64,14 +64,14 @@ const mutations = {
 /*     removeAnnonser: (state, annons) => state.annonser = state.annonser.filter(annonsI => annonsI.id !== annons),
  */     removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
 
-    updateListing: (state, updListing) => state.listings.forEach(upd => {
-        if (upd.id == updListing.id) {
-            upd = updListing
+    updateListing: (state, oneListing) => state.listings.forEach(upd => {
+        if (upd.updListingId == oneListing.updListingId) {
+            upd = oneListing
         }
 
     }),
     setListing: (state, oneListing) => (state.oneListing = oneListing),
-    listingOwner: (state, userListing) => state.userListing = state.listings.filter(listing => listing === userListing)
+    listingOwner: (state, userListing) => (state.userListing = userListing),
 };
 
 export default {

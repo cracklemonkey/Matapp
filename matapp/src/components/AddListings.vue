@@ -21,12 +21,15 @@
       </div>
       <!-- <div>
         <label for="foodType">Type of Food</label>
-        <input
-          id="foodType"
-          type="text"
-          v-model="posts.foodType"
-          placeholder="What type of food is it?"
-        />
+        <select id="foodType"
+          v-model="value">
+          <option value="vegetables">vegetables</option>
+          <option value="dairy"> dairy</option>
+          <option value="fruits">fruits </option>
+          <option value="fish"> fish</option>
+          
+         
+        </select>
       </div> -->
       <div>
         <label for="description">Description</label>
@@ -56,9 +59,12 @@ export default {
         title: null,
         deadline: Date.now(),
         expirationDate: Date.now(),
-        /* foodType: [null], */
-        description: null,
+/*         foodType: [],
+ */        description: null,
+        userOwner: "61124f728e6ee1726177c1ee",
+        
       },
+      /* value: null, */
     };
   },
   methods: {
@@ -66,6 +72,9 @@ export default {
 
     postListing() {
       console.log(this.posts);
+     /*  addInArray(value){
+posts.foodType.push(value)
+      } */
       this.addListing(this.posts);
     },
   },
