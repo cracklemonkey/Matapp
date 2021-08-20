@@ -24,31 +24,36 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { requiresAuth: true }
   },
 
   {
     path: '/loggin',
     name: 'LoggIn',
-    component: LoggIn
+    component: LoggIn,
+    meta: { guest: true }
   },
 
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp
+    component: SignUp,
+    meta: { guest: true }
   },
 
   {
     path: '/listing',
     name: 'Listings',
-    component: Listings
+    component: Listings,
+    meta: { requiresAuth: true }
   },
 
   {
     path: '/listing/:id',
     name: 'ListingDetails',
-    component: ListingDetails
+    component: ListingDetails,
+    meta: { requiresAuth: true }
   },
   {
     path: '/listing/:id/edit',
@@ -61,18 +66,21 @@ const routes = [
   {
     path: '/order',
     name: 'OrderPage',
-    component: OrderPage
+    component: OrderPage,
+    meta: { requiresAuth: true }
   },
 
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: { requiresAuth: true }
   },
   {
     path: '/profile/settings',
     name: 'Settings',
-    component: Settings
+    component: Settings,
+    meta: { requiresAuth: true }
   },
   {
     path: '/profile/myposts',
@@ -95,10 +103,6 @@ const routes = [
     component: ListingByUser
   },
 
-
-
-
-
   {
     path: '/about',
     name: 'About',
@@ -113,5 +117,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router
