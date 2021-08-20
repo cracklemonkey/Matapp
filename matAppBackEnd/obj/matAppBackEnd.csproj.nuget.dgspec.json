@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
         "packagesPath": "C:\\Users\\UltraGamer\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\",
+=======
+    "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+        "projectName": "matAppBackEnd",
+        "projectPath": "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+        "packagesPath": "C:\\Users\\UltraGamer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\obj\\",
+>>>>>>> 3688d2afe7da901b3404d7f967c525cbd0213bcb
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\UltraGamer\\AppData\\Roaming\\NuGet\\NuGet.Config",

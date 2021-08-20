@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "A7AO3I5AgQpgQqY8s5aP7uareZHPnTttp5FQXayTjg85IL71gsgSWlKr3PZBmGlUXcU53KHyOGGbRiktKM+VNQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+=======
+  "dgSpecHash": "Y0esPpbh33pcW+bU1IJ+s0WZt8i+lGptEl0/X0OP+/cGK1v8oQfIgJGUMb5+9+4EOjHAR6XH24SZ6h9lPSkWBg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+>>>>>>> 3688d2afe7da901b3404d7f967c525cbd0213bcb
   "expectedPackageFiles": [
     "C:\\Users\\UltraGamer\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\UltraGamer\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
