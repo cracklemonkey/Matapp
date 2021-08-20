@@ -67,7 +67,7 @@ namespace matAppBackEnd.Test.TestServer
             {
                 Username = "UserTest",
 
-                Passord = "password",
+                Password = "password",
 
                 EMail = "aaa@bbb.com",
 
