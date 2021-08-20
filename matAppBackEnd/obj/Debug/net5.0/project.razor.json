@@ -10,9 +10,6 @@
     ]
   },
   "ProjectWorkspaceState": {
-<<<<<<< HEAD
-    "TagHelpers": [],
-=======
     "TagHelpers": [
       {
         "HashCode": 2085601310,
@@ -15617,7 +15614,6 @@
         }
       }
     ],
->>>>>>> f7f129f18e9e495cfbd5ed25ee97062386e1bad4
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "matAppBackEnd",

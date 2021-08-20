@@ -34,6 +34,12 @@ namespace ListingsApi.Controllers
             return listing;
         }
 
+        [HttpGet("userlistings/{userowner}", Name = "GetListingByUserOwner")]
+        public ActionResult<List<Listing>> GetListingByUserOwner(string userowner) =>
+            _listingService.GetListingByUserOwner(userowner);
+
+        
+
         [HttpPost]
         public ActionResult<Listing> Create(Listing listing)
         {

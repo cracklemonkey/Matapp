@@ -1,1 +1,3 @@
-matAppBackEnd/bin/Debug
+bin
+obj
+config
