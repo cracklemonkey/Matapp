@@ -13,12 +13,11 @@
       <AddListings />
     </div>
 
-    <!-- <div
+    <div
       class="listing-div"
-      v-for="(listing, index) in allListings"
+      v-for="(listing, index) in userListing"
       :key="listing + index"
-    > -->
-    <div v-if="userOwner === this.$route.params.id">
+    >
       <h3>{{ listing.title }}</h3>
 
       <p>Posted : {{ listing.creationDate }}</p>
@@ -32,6 +31,9 @@
         </router-link>
       </button>
       <button @click="deleteListing(listing.id)">Delete</button>
+      <button>
+        <router-link :to="`/listing`"> Back to Listing </router-link>
+      </button>
     </div>
   </div>
   <!-- </div> -->
@@ -52,12 +54,12 @@ export default {
        */
     };
   },
-  /* created() {
-    this.getListingsByUser();
-  }, */
   created() {
-    this.getListings();
+    this.getListingsByUser(this.$route.params.id);
   },
+  /* created() {
+    this.getListings();
+  }, */
   methods: {
     ...mapActions([
       "getListings",
