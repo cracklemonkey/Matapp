@@ -26,7 +26,7 @@ namespace matAppBackEnd.Test.TestServer{
             var createModel = new Listing
             {   
                 
-                
+                       
 
                 Title = "TestListing2",
 
@@ -79,7 +79,7 @@ namespace matAppBackEnd.Test.TestServer{
 
 
             // act
-            var httpResponse = await client.PutAsJsonAsync($"api/listings/{createModel.ListingId}",updateModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/listings/{123}",updateModel);
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
