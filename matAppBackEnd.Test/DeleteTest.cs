@@ -26,7 +26,7 @@ namespace matAppBackEnd.Test {
             var client = _factory.CreateClient();
             var createModel = new Listing
             {   
-                Id = "211111111111111111111111",
+                
 
                 Title = "TestListing3",
 
@@ -36,24 +36,24 @@ namespace matAppBackEnd.Test {
 
                 Deadline = new DateTime(2021, 9, 16),
 
-                Opened = new DateTime(2021, 8, 14),
+                IsOpened = true,
 
-                ExpirationDate = new DateTime(2021, 9, 16),
-
-                FoodType = new List<string>() { "Test", "Vegan", "C" },
+                /* FoodType = new List<string>() { "Test", "Vegan", "C" },
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
                 MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
 
                 // Image test
+                */
 
-                UserOwner = "61139a2857720adc17f600cc"
+
+                UserId = 2
             };
              await client.PostAsJsonAsync("api/listings", createModel);
 
              // act
-            var httpResponse = await client.DeleteAsync("api/listings/211111111111111111111111");
+            var httpResponse = await client.DeleteAsync($"api/listings/{createModel.ListingId}");
 
             // assert
              httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -66,7 +66,7 @@ namespace matAppBackEnd.Test {
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.DeleteAsync("api/listings/222211111111111111111111");
+            var httpResponse = await client.DeleteAsync($"api/listings/{2222}");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -78,16 +78,15 @@ namespace matAppBackEnd.Test {
             var client = _factory.CreateClient();
             var createModel = new User
             {   
-                Id = "211111111111111111111111",
-
+                
 
                 Username = "UserTest3",
 
                 Password = "password",
 
-                EMail = "aaa@bbb.com",
+                Email = "aaa@bbb.com",
 
-                PhoneNumber = "12345678",
+                Phone = "12345678",
 
                 Street = "BesteGata 32D",
 
@@ -100,7 +99,7 @@ namespace matAppBackEnd.Test {
              await client.PostAsJsonAsync("api/users", createModel);
 
              // act
-            var httpResponse = await client.DeleteAsync("api/users/211111111111111111111111");
+            var httpResponse = await client.DeleteAsync($"api/users/{createModel.UserId}");
 
             // assert
              httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -114,7 +113,7 @@ namespace matAppBackEnd.Test {
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.DeleteAsync("api/users/222211111111111111111111");
+            var httpResponse = await client.DeleteAsync($"api/users/{2222}");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);

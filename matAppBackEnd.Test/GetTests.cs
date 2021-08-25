@@ -35,7 +35,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/listings/611251288e6ee1726177c1ef");
+            var httpResponse = await client.GetAsync("api/listings/2");
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -48,7 +48,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/listings/222211111111111111111111");
+            var httpResponse = await client.GetAsync($"api/listingss/{2222}");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -61,7 +61,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/listings/userlistings/61124f728e6ee1726177c1ee");
+            var httpResponse = await client.GetAsync("api/listings/userlistings/6");
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -74,7 +74,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("pi/listings/userlistings/222211111111111111111111");
+            var httpResponse = await client.GetAsync($"api/listings/userlistings/{2222}");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -100,7 +100,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/users/61124f728e6ee1726177c1ee");
+            var httpResponse = await client.GetAsync("api/users/2");
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -113,7 +113,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/users/222211111111111111111111");
+            var httpResponse = await client.GetAsync($"api/users/{2222}");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);

@@ -2,6 +2,7 @@ using matAppBackEnd.Models;
 using matAppBackEnd.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System;
 
 namespace UsersApi.Controllers
 {
@@ -20,10 +21,12 @@ namespace UsersApi.Controllers
         public ActionResult<List<User>> Get() =>
             _userService.Get();
 
-         [HttpGet("{id}", Name = "GetUser")]
-        public ActionResult<User> Get(string id)
-        {
-            var user = _userService.Get(id);
+          
+
+         [HttpGet("{userid}", Name = "GetUser")]
+        public ActionResult<User> Get(int userid)
+        {   
+            var user = _userService.Get(userid);
 
             if (user == null)
             {
@@ -32,45 +35,48 @@ namespace UsersApi.Controllers
 
             return user;
         }
-
+        
+       
         [HttpPost]
         public ActionResult<User> Create(User user)
         {
             _userService.Create(user);
 
-            return CreatedAtRoute("GetUser", new { id = user.Id.ToString() }, user);
+            return CreatedAtRoute("GetUser", new { userid = user.UserId.ToString() }, user);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(string id, User userIn)
+        [HttpPut("{userid}")]
+        public IActionResult Update(int userid, [FromBody] User userIn)
         {
-            var user = _userService.Get(id);
+            var user = _userService.Get(userid);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            _userService.Update(id, userIn);
+            _userService.UpdateUser(userid, userIn);
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        [HttpDelete("{userid}")]
+        public IActionResult Delete(int userid)
         {
-            var user = _userService.Get(id);
+            var user = _userService.Get(userid);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            _userService.Remove(user.Id);
+            _userService.Delete(user.UserId);
 
             return NoContent();
-        }
 
+        }
+        
+        
     }
 
 }
