@@ -25,7 +25,8 @@ namespace matAppBackEnd.Test.TestServer{
             var client = _factory.CreateClient();
             var createModel = new Listing
             {   
-                Id = "111111111111111111111111",
+                
+                       
 
                 Title = "TestListing2",
 
@@ -35,51 +36,50 @@ namespace matAppBackEnd.Test.TestServer{
 
                 Deadline = new DateTime(2021, 9, 16),
 
-                Opened = new DateTime(2021, 8, 14),
+                IsOpened = true,
 
-                ExpirationDate = new DateTime(2021, 9, 16),
-
-                FoodType = new List<string>() { "Test", "Vegan", "C" },
+               /* FoodType = new List<string>() { "Test", "Vegan", "C" },
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
                 MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
 
                 // Image test
+                */
 
-                UserOwner = "61139a2857720adc17f600cc"
+                UserId = 2
             };
             var updateModel = new Listing
             {   
-                Id = "111111111111111111111111",
+                
 
                 Title = "aaaa",
 
-                Description = "asdasdasdasdas asd asd as as as dasd       asdasd  asd",
+                Description = "asdfghkj",
 
                 CreationDate = new DateTime(2021, 8, 16),
 
                 Deadline = new DateTime(2021, 9, 16),
 
-                Opened = new DateTime(2021, 8, 14),
+                IsOpened = true,
 
-                ExpirationDate = new DateTime(2021, 9, 16),
+               
 
-                FoodType = new List<string>() { "Test", "Vegan", "C" },
+               /* FoodType = new List<string>() { "Test", "Vegan", "C" },
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
                 MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
 
                 // Image test
-
-                UserOwner = "61139a2857720adc17f600cc"
+                */
+                UserId = 2
             };
             await client.PostAsJsonAsync("api/listings",createModel);
 
 
             // act
-            var httpResponse = await client.PutAsJsonAsync("api/listings/111111111111111111111111",updateModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/listings/{123}",updateModel);
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -93,7 +93,7 @@ namespace matAppBackEnd.Test.TestServer{
             var client = _factory.CreateClient();
             var createModel = new Listing
             {   
-                Id = "222211111111111111111111",
+                
 
                 Title = "TestListing2",
 
@@ -103,23 +103,22 @@ namespace matAppBackEnd.Test.TestServer{
 
                 Deadline = new DateTime(2021, 9, 16),
 
-                Opened = new DateTime(2021, 8, 14),
+                IsOpened = true,
 
-                ExpirationDate = new DateTime(2021, 9, 16),
-
-                FoodType = new List<string>() { "Test", "Vegan", "C" },
+                /* FoodType = new List<string>() { "Test", "Vegan", "C" },
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
                 MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
 
                 // Image test
+                */
 
-                UserOwner = "61139a2857720adc17f600cc"
+                UserId = 2
             };
 
                 // act
-            var httpResponse = await client.PutAsJsonAsync("api/listings/222211111111111111111111",createModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/listings/{2222}",createModel);
 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
@@ -131,15 +130,15 @@ namespace matAppBackEnd.Test.TestServer{
             var client = _factory.CreateClient();
             var createModel = new User
             {   
-                Id = "111111111111111111111111",
+                
 
                 Username = "UserTest2",
 
                 Password = "password",
 
-                EMail = "aaa@bbb.com",
+                Email = "aaa@bbb.com",
 
-                PhoneNumber = "12345678",
+                Phone = "12345678",
 
                 Street = "BesteGata 32D",
 
@@ -151,15 +150,15 @@ namespace matAppBackEnd.Test.TestServer{
             };
             var updateModel = new User
             {   
-                Id = "111111111111111111111111",
+                
 
                 Username = "aaaaaaa",
 
                 Password = "password",
 
-                EMail = "aaa@bbb.com",
+                Email = "aaa@bbb.com",
 
-                PhoneNumber = "12345678",
+                Phone = "12345678",
 
                 Street = "BesteGata 32D",
 
@@ -175,7 +174,7 @@ namespace matAppBackEnd.Test.TestServer{
 
 
             // act
-            var httpResponse = await client.PutAsJsonAsync("api/users/111111111111111111111111",updateModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/users/{createModel.UserId}",updateModel);
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -189,15 +188,15 @@ namespace matAppBackEnd.Test.TestServer{
             var client = _factory.CreateClient();
             var createModel = new User
             {   
-                Id = "222211111111111111111111",
+                
 
                 Username = "UserTest23",
 
                 Password = "password",
 
-                EMail = "aaa@bbb.com",
+                Email = "aaa@bbb.com",
 
-                PhoneNumber = "12345678",
+                Phone = "12345678",
 
                 Street = "BesteGata 32D",
 
@@ -210,7 +209,7 @@ namespace matAppBackEnd.Test.TestServer{
             };
 
                 // act
-            var httpResponse = await client.PutAsJsonAsync("api/Users/222211111111111111111111",createModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/users/{2222}",createModel);
 
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }

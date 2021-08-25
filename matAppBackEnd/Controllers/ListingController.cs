@@ -3,6 +3,7 @@ using matAppBackEnd.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace ListingsApi.Controllers
 {
@@ -21,10 +22,12 @@ namespace ListingsApi.Controllers
         public ActionResult<List<Listing>> Get() =>
             _listingService.Get();
 
-         [HttpGet("{id}", Name = "GetListing")]
-        public ActionResult<Listing> Get(string id)
+          
+
+         [HttpGet("{listingid}", Name = "GetListing")]
+        public ActionResult<Listing> Get(int listingid)
         {   
-            var listing = _listingService.Get(id);
+            var listing = _listingService.Get(listingid);
 
             if (listing == null)
             {
@@ -33,11 +36,21 @@ namespace ListingsApi.Controllers
 
             return listing;
         }
+        
+        [HttpGet("userlistings/{userid}", Name = "GetListingByUserOwner")]
 
-        [HttpGet("userlistings/{userowner}", Name = "GetListingByUserOwner")]
-        public ActionResult<List<Listing>> GetListingByUserOwner(string userowner) =>
-            _listingService.GetListingByUserOwner(userowner);
+        public ActionResult<List<Listing>> GetListingByUserId(int userid){
+            var userIdList = _listingService.GetListingByUserId(userid);
 
+              
+            bool isEmpty = !userIdList.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return userIdList;
+        }
         
 
         [HttpPost]
@@ -45,40 +58,41 @@ namespace ListingsApi.Controllers
         {
             _listingService.Create(listing);
 
-            return CreatedAtRoute("GetListing", new { id = listing.Id.ToString() }, listing);
+            return CreatedAtRoute("GetListing", new { listingid = listing.ListingId.ToString() }, listing);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(string id, Listing listingIn)
+        [HttpPut("{listingid}")]
+        public IActionResult Update(int listingid, [FromBody] Listing listingIn)
         {
-            var listing = _listingService.Get(id);
+            var listing = _listingService.Get(listingid);
 
             if (listing == null)
             {
                 return NotFound();
             }
 
-            _listingService.Update(id, listingIn);
+            _listingService.UpdateListing(listingid, listingIn);
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
+        [HttpDelete("{listingid}")]
+        public IActionResult Delete(int listingid)
         {
-            var listing = _listingService.Get(id);
+            var listing = _listingService.Get(listingid);
 
             if (listing == null)
             {
                 return NotFound();
             }
 
-            _listingService.Remove(listing.Id);
+            _listingService.Delete(listing.ListingId);
 
             return NoContent();
 
         }
-
+        
+        
     }
 
 }

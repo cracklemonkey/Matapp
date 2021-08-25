@@ -80,6 +80,40 @@ C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\ref\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.pdb
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.genruntimeconfig.cache
+<<<<<<< HEAD
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\EntityFramework.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.Data.Entity.Repository.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.Runtime.Caching.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+=======
 =======
 <<<<<<< HEAD
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\appsettings.Development.json
@@ -167,3 +201,4 @@ C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\obj\Debug\net5.0\matAppBack
 C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.genruntimeconfig.cache
 >>>>>>> 3688d2afe7da901b3404d7f967c525cbd0213bcb
 >>>>>>> mustafa
+>>>>>>> dev
