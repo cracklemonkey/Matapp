@@ -1,6 +1,11 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "M4rWHZ8t1a+Z0TkzmsHL2VXp4mraYPIvwBZrVh0cxteWYMnuGpPGq0FFXgebXM4DYK+VBc2hX4zexVT7wHttMA==",
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "eGgrMItc8Ox/RBl5UBh/kdsTIkBNl27yR0eh8tJznWPxYBR1tndNJaZjgG6C7BWnvCyZRz+Gx8/zylwv+5Xlsg==",
+>>>>>>> dev
   "success": true,
   "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
   "expectedPackageFiles": [
@@ -88,6 +93,7 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+<<<<<<< HEAD
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime.extensions\\4.3.0\\system.runtime.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime.handles\\4.3.0\\system.runtime.handles.4.3.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.runtime.interopservices\\4.3.0\\system.runtime.interopservices.4.3.0.nupkg.sha512",
@@ -114,6 +120,37 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+=======
+    "C:\\Users\\danie\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
+=======
+<<<<<<< HEAD
+  "dgSpecHash": "A7AO3I5AgQpgQqY8s5aP7uareZHPnTttp5FQXayTjg85IL71gsgSWlKr3PZBmGlUXcU53KHyOGGbRiktKM+VNQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+=======
+  "dgSpecHash": "Y0esPpbh33pcW+bU1IJ+s0WZt8i+lGptEl0/X0OP+/cGK1v8oQfIgJGUMb5+9+4EOjHAR6XH24SZ6h9lPSkWBg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\UltraGamer\\Desktop\\MAT\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+>>>>>>> 3688d2afe7da901b3404d7f967c525cbd0213bcb
+  "expectedPackageFiles": [
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\mongodb.bson\\2.13.1\\mongodb.bson.2.13.1.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\mongodb.driver\\2.13.1\\mongodb.driver.2.13.1.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\mongodb.driver.core\\2.13.1\\mongodb.driver.core.2.13.1.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\mongodb.libmongocrypt\\1.2.2\\mongodb.libmongocrypt.1.2.2.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\sharpcompress\\0.23.0\\sharpcompress.0.23.0.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\UltraGamer\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
+>>>>>>> mustafa
+>>>>>>> dev
   ],
   "logs": [
     {

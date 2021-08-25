@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title-page">All Listings</h1>
+    <h1 class="title-page">All Users</h1>
 
     <div>
       <button @click="togglePlus" class="plus-button">
@@ -8,21 +8,20 @@
       </button>
     </div>
     <div v-if="plusButton">
-      <AddListings />
+      <AddUsers />
     </div>
 
     <div
       class="listing-div"
-      v-for="(listing, index) in allListings"
-      :key="listing + index"
+      v-for="(user, index) in allusers"
+      :key="user + index"
     >
-      <h3>{{ listing.title }}</h3>
+
 
       <!--       <img :src="require(`${listing.image}`)" alt="" class="annonser-image" />
  -->
       <p>Posted : {{ listing.creationDate }}</p>
       <p>Pick-up before : {{ listing.deadline }}</p>
-      <p>Expires : {{ listing.expirationDate }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
@@ -69,7 +68,6 @@ import AddListings from "../components/AddListings.vue";
     },
   },
   computed: mapGetters(["allListings"]),
-
   /* annonserWithImage(annonser) {
     return {
       ...this.annonser,

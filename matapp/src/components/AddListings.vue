@@ -19,7 +19,18 @@
         <label for="expiration">Expiration Date</label>
         <input id="expiration" type="date" v-model="posts.expirationDate" />
       </div>
-
+      <!-- <div>
+        <label for="foodType">Type of Food</label>
+        <select id="foodType"
+          v-model="value">
+          <option value="vegetables">vegetables</option>
+          <option value="dairy"> dairy</option>
+          <option value="fruits">fruits </option>
+          <option value="fish"> fish</option>
+          
+         
+        </select>
+      </div> -->
       <div>
         <label for="description">Description</label>
         <textarea
@@ -46,11 +57,14 @@ export default {
     return {
       posts: {
         title: null,
-        deadline: "0001-01-01",
-        expirationDate: "0001-01-01",
-
-        description: null,
+        deadline: Date.now(),
+        expirationDate: Date.now(),
+/*         foodType: [],
+ */        description: null,
+        userOwner: "61124f728e6ee1726177c1ee",
+        
       },
+      /* value: null, */
     };
   },
   methods: {
@@ -58,6 +72,9 @@ export default {
 
     postListing() {
       console.log(this.posts);
+     /*  addInArray(value){
+posts.foodType.push(value)
+      } */
       this.addListing(this.posts);
     },
   },
