@@ -1,10 +1,8 @@
 <template>
   <div class="home">
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD -->
     <h1>home</h1>
-=======
-    <HelloWorld info="Welcome to Your Vue.js App"/>
->>>>>>> mustafa
+
   </div>
 </template>
 

@@ -13,7 +13,7 @@
               <div class="control-group">
               <input type="password" name="password" placeholder="password" v-model="form.password">
               </div>
-              <button type="submit" class="btn btn-primary btn-large btn-block" href="#" >Submit</button>
+              <button type="submit" class="btn btn-primary btn-large btn-block">Submit</button>
               </form>
 
               <p>Not a member? <a href="#" class="blue"></a><span class="fontawesome-arrow-right"></span>
