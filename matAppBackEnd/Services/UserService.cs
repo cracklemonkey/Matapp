@@ -1,43 +1,79 @@
 using matAppBackEnd.Models;
-using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+using System;
 
 namespace matAppBackEnd.Services
 {
     public class UserService
     {
-        private readonly IMongoCollection<User> _users;
+        private readonly UserDbContext _users;
 
-        public UserService(IMatbutikkDatabaseSettings settings)
+        public UserService(UserDbContext dbContext)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
 
-            _users = database.GetCollection<User>(settings.UsersCollectionName);
+            _users = dbContext;
         }
 
-        public List<User> Get() =>
-            _users.Find(user => true).ToList();
-
-        public User Get(string id) =>
-            _users.Find<User>(user => user.Id == id).FirstOrDefault();
-
-        public User Create(User user)
-        {
-            _users.InsertOne(user);
+        public List<User> Get(){
+            return _users.Users.ToList();
+        }
+        public User Get(int id){
+            var user = _users.Users.Find(id);
             return user;
         }
+      
+        public User Create(User user)
+        {   
+            _users.Users.Add(user);
+            _users.SaveChanges();
+            return user;
+            
+        }
 
-        public void Update(string id, User userIn) =>
-            _users.ReplaceOne(user => user.Id == id, userIn);
+        public void UpdateUser(int id, User userIn){
 
-        public void Remove(User userIn) =>
-            _users.DeleteOne(user => user.Id == userIn.Id);
+             var entity = _users.Users.FirstOrDefault(x => x.UserId == id);
 
-        public void Remove(string id) => 
-            _users.DeleteOne(user => user.Id == id);
+            entity.Username = userIn.Username;
+            entity.Password = userIn.Password;
+            entity.Email = userIn.Email;
+            entity.Phone= userIn.Phone;
+            entity.Street = userIn.Street;
+            entity.City = userIn.City;
+            entity.Country = userIn.Country;
+            entity.ZipCode = userIn.ZipCode;
+            
+            
+            _users.Users.Update(entity);
+            _users.SaveChanges();
 
-    }
+            
+        }
 
+        public void Delete(User userIn) {
+              
+            var entity = _users.Users.FirstOrDefault(x => x.UserId == userIn.UserId);
+            
+            
+            _users.Users.Remove(entity);
+            _users.SaveChanges();
+                
+
+        }
+
+
+        public void Delete(int id) {
+        
+        var entity = _users.Users.FirstOrDefault(x => x.UserId == id);
+
+
+         _users.Users.Remove(entity);
+         _users.SaveChanges();
+            
+
+        }
+
+}
 }
