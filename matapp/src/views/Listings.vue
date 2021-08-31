@@ -22,11 +22,10 @@
  -->
       <p>Posted : {{ listing.creationDate }}</p>
       <p>Pick-up before : {{ listing.deadline }}</p>
-      <p>Expires : {{ listing.expirationDate }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
-        <router-link :to="`/listing/${listing.id}`">
+        <router-link :to="`/listing/${listing.listingId}`">
           View more details
         </router-link>
       </button>

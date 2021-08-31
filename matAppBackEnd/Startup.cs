@@ -24,7 +24,7 @@ namespace matAppBackEnd
         {
             Configuration = configuration;
         }
-public string MyAllowSpecificOrigins {get;set;} = "MyAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -32,15 +32,12 @@ public string MyAllowSpecificOrigins {get;set;} = "MyAllowSpecificOrigins";
         {   
 
             services.AddCors(options =>
-        {  
-            options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
-            
-                builder.WithOrigins("http://localhost:8082")
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
                 //.AllowCredentials());
-            
-                
         });
 
             
@@ -67,7 +64,7 @@ public string MyAllowSpecificOrigins {get;set;} = "MyAllowSpecificOrigins";
 
             app.UseRouting();
 
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors("CorsPolicy");
             
             app.UseAuthorization();
 

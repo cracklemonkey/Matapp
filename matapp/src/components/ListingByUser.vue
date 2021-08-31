@@ -2,7 +2,7 @@
   <div>
     <h1>
       All listings from <br />
-      {{ this.$route.params.id }}
+      {{ routeId }}
     </h1>
     <div>
       <button @click="togglePlus" class="plus-button">
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       plusButton: false,
+      routeId: this.$route.params.id,
 
       /*       listingByUser: this.$route.params.userOwner,
        */
@@ -67,12 +68,27 @@ export default {
       "deleteListing",
       "getListingById",
       "getListingsByUser",
+      "getUserById",
+      "getUsers",
     ]),
     togglePlus() {
       this.plusButton = !this.plusButton;
     },
+    matchUser() {
+      const user = this.getUserById.find(
+        (user) => user.userId === this.routeId
+      );
+      console.log(user);
+      return user;
+    },
   },
-  computed: mapGetters(["oneListing", "allListings", "userListing"]),
+  computed: mapGetters([
+    "oneListing",
+    "allListings",
+    "userListing",
+    "allUsers",
+    "oneUser",
+  ]),
 };
 </script>
 
