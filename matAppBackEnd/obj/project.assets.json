@@ -6317,11 +6317,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\danie\\.nuget\\packages\\": {}
+=======
+    "/Users/arianecoriat/.nuget/packages/": {}
+>>>>>>> dev
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "projectName": "matAppBackEnd",
       "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
@@ -6330,6 +6335,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
+      "projectName": "matAppBackEnd",
+      "projectPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
+      "packagesPath": "/Users/arianecoriat/.nuget/packages/",
+      "outputPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/arianecoriat/.nuget/NuGet/NuGet.Config"
+>>>>>>> dev
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -6392,11 +6407,21 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
+>>>>>>> dev
       }
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

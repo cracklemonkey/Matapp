@@ -1,33 +1,29 @@
 import { createApp } from 'vue'
+import VueAuth0Plugin from 'vue-auth0-plugin'
+import { domain, client_id, redirect_uri } from '../auth_config.json'
 import App from './App.vue'
 import router from './router'
 import store from './store';
-import axios from 'axios'
-import './assets/css/style.css';
 
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'https://localhost:5001/api/users/'
+import './assets/css/style.css'
 
-axios.interceptors.response.use(undefined, function (error) {
-  if (error) {
-    const originalRequest = error.config
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true
-      store.dispatch('LogOut')
-      return router.push('/loggin')
-    }
-  }
-})
 
-/* 
-createApp(App).use(router).mount('#app')
-import { createApp } from 'vue'
-import App from './App.vue'
-import store from './store'
- */
 
 
 const app = createApp(App)
+app.use(VueAuth0Plugin, {
+    domain,
+    client_id,
+    redirect_uri,
+    onRedirectCallback: appState => {
+        router.push(
+            appState && appState.targetUrl
+                ? appState.targetUrl
+                : window.location.pathname
+        )
+    }
+
+});
 app.use(router);
 app.use(store);
 

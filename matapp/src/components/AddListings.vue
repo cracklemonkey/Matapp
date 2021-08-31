@@ -15,10 +15,7 @@
         <label for="deadline">Deadline</label>
         <input id="deadline" type="date" v-model="posts.deadline" />
       </div>
-      <div>
-        <label for="expiration">Expiration Date</label>
-        <input id="expiration" type="date" v-model="posts.expirationDate" />
-      </div>
+
       <!-- <div>
         <label for="foodType">Type of Food</label>
         <select id="foodType"
@@ -58,11 +55,11 @@ export default {
       posts: {
         title: null,
         deadline: Date.now(),
-        expirationDate: Date.now(),
-/*         foodType: [],
- */        description: null,
-        userOwner: "61124f728e6ee1726177c1ee",
-        
+
+        /*         foodType: [],
+         */ description: null,
+        /* userId: 9,
+        creationDate: Date.now(), */
       },
       /* value: null, */
     };
@@ -72,7 +69,7 @@ export default {
 
     postListing() {
       console.log(this.posts);
-     /*  addInArray(value){
+      /*  addInArray(value){
 posts.foodType.push(value)
       } */
       this.addListing(this.posts);

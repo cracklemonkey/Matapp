@@ -6,18 +6,19 @@
       {{ oneListing.description }}
     </p>
     <p>{{ oneListing.foodType }}</p>
-    <p>Expires: {{ oneListing.expirationDate }}</p>
     <p>Pick-up before: {{ oneListing.deadline }}</p>
     <p>{{ oneListing.allergies }}</p>
-    <p>from {{ oneListing.userOwner }}</p>
+    <p>from {{ oneListing.userId }}</p>
     <button>
-      <router-link :to="`/listing/${oneListing.id}/edit`"> Edit </router-link>
+      <router-link :to="`/listing/${oneListing.listingId}/edit`">
+        Edit
+      </router-link>
     </button>
     <button>
       <router-link :to="`/listing`"> Back to Listing </router-link>
     </button>
     <button>
-      <router-link :to="`/listing/user/${oneListing.userOwner}`">
+      <router-link :to="`/listing/user/${oneListing.userId}`">
         see all ads from user
       </router-link>
     </button>
@@ -39,7 +40,7 @@ export default {
       "getListingById",
     ]),
   },
-  computed: mapGetters(["oneListing"]),
+  computed: mapGetters(["oneListing", "allUsers"]),
 };
 </script>
 
