@@ -12,6 +12,10 @@
         Just log in!
       </h3>
     </button>
+
+    <div v-if="$auth.authenticated">
+      <h3>Welcome {{ $auth.user.nickname }}</h3>
+    </div>
   </div>
 </template>
 

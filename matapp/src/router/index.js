@@ -24,14 +24,14 @@ const routes = [
     path: '/listing',
     name: 'Listings',
     component: Listings,
-    meta: { requiresAuth: true }
+
   },
 
   {
     path: '/listing/:id',
     name: 'ListingDetails',
     component: ListingDetails,
-    meta: { requiresAuth: true }
+
   },
   {
     path: '/listing/:id/edit',
