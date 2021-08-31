@@ -1,38 +1,38 @@
 <template>
-  <!-- <div
-    class="background-landing"
-    :style="{ backgroundImage: 'url(' + img + ')' }"
-  > -->
   <div class="background-landing">
-    <section class="landing-textarea">
-      <div class="landing-bubble">
-        <router-link :to="`/signup`">
-          <h3>
-            Are You New? <br />
-            Sign Up!
-          </h3>
-        </router-link>
-      </div>
-
-      <div class="landing-bubble">
-        <router-link :to="`/loggin`">
-          <h3>
-            Already a Member? <br />
-            Log in here
-          </h3>
-        </router-link>
-      </div>
-    </section>
+    <button v-if="!$auth.loading" class="landing-bubble">
+      <h3 v-if="!$auth.authenticated" @click="login">
+        New to MatApp? <br />
+        Sign up here! <br />
+      </h3>
+    </button>
+    <button v-if="!$auth.loading" class="landing-bubble">
+      <h3 v-if="!$auth.authenticated" @click="login">
+        Already a member? <br />
+        Just log in!
+      </h3>
+    </button>
   </div>
 </template>
 
 <script>
-/* import TempBg from "../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg";
- */ export default {
+export default {
   data() {
-    return {
-      /* img: TempBg, */
-    };
+    return {};
+  },
+  methods: {
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect({
+        redirect_uri: "http://localhost:8080/listing",
+      });
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: "http://localhost:8080",
+      });
+    },
   },
 };
 </script>
