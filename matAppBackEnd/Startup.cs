@@ -47,10 +47,18 @@ public string MyAllowSpecificOrigins {get;set;} = "MyAllowSpecificOrigins";
             
              // requires using Microsoft.Extensions.Options
             services.AddDbContext<ListingDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            services.AddDbContext<UserDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            services.AddDbContext<AllergieDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            services.AddDbContext<FoodTypeDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            services.AddDbContext<ListingAllergieDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            services.AddDbContext<ListingFoodTypeDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            
 
             services.AddScoped<ListingService>();
-            services.AddScoped<UserService>();
+            services.AddScoped<AllergieService>();
+            services.AddScoped<FoodTypeService>();
+            services.AddScoped<ListingAllergieService>();
+            services.AddScoped<ListingFoodTypeService>();
+         
             
             
 

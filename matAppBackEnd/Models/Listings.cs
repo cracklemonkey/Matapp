@@ -31,7 +31,7 @@ namespace matAppBackEnd.Models
     public string Image {get; set;}
 
        
-    public int UserId {get; set;}
+    public string UserOwner {get; set;}
 
 
 

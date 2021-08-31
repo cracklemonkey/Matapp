@@ -80,7 +80,6 @@ C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\ref\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.pdb
 C:\Users\danie\Documents\Matapp\matAppBackEnd\obj\Debug\net5.0\matAppBackEnd.genruntimeconfig.cache
-<<<<<<< HEAD
 C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\EntityFramework.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
@@ -114,8 +113,6 @@ C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win-x86\
 C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\danie\Documents\Matapp\matAppBackEnd\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 =======
-=======
-<<<<<<< HEAD
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\appsettings.json
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\matAppBackEnd.exe
@@ -157,7 +154,6 @@ C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\obj\Debug\net5.0\matAppB
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\obj\Debug\net5.0\ref\matAppBackEnd.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.pdb
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.genruntimeconfig.cache
-=======
 C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\bin\Debug\net5.0\appsettings.json
 C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\bin\Debug\net5.0\matAppBackEnd.exe

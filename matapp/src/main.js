@@ -5,8 +5,6 @@ import store from './store';
 import axios from 'axios'
 import './assets/css/style.css';
 
-<<<<<<< HEAD
-=======
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'https://localhost:5001/api/users/'
 
@@ -20,7 +18,6 @@ axios.interceptors.response.use(undefined, function (error) {
     }
   }
 })
->>>>>>> mustafa
 
 /* 
 createApp(App).use(router).mount('#app')

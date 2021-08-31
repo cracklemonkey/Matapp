@@ -50,10 +50,11 @@ namespace matAppBackEnd.Test {
 
                 UserId = 2
             };
-             await client.PostAsJsonAsync("api/listings", createModel);
+             var response = await client.PostAsJsonAsync("api/listings", createModel);
+             var created =  await response.Content.ReadAsAsync<Listing>();
 
              // act
-            var httpResponse = await client.DeleteAsync($"api/listings/{createModel.ListingId}");
+            var httpResponse = await client.DeleteAsync($"api/listings/{created.ListingId}");
 
             // assert
              httpResponse.IsSuccessStatusCode.Should().BeTrue();
@@ -72,52 +73,7 @@ namespace matAppBackEnd.Test {
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
             }
 
-            [Fact]
-            public async Task Delete_Users_ShouldReturn_OKStatusCode(){
-        // arange
-            var client = _factory.CreateClient();
-            var createModel = new User
-            {   
-                
-
-                Username = "UserTest3",
-
-                Password = "password",
-
-                Email = "aaa@bbb.com",
-
-                Phone = "12345678",
-
-                Street = "BesteGata 32D",
-
-                City = "Oslo",
-
-                ZipCode = "0000",
-
-                Country = "Norway",
-            };
-             await client.PostAsJsonAsync("api/users", createModel);
-
-             // act
-            var httpResponse = await client.DeleteAsync($"api/users/{createModel.UserId}");
-
-            // assert
-             httpResponse.IsSuccessStatusCode.Should().BeTrue();
-
-            }
-
-            [Fact]
-            public async Task Delete_WithUsersNotExists_ShouldReturn_NotFound()
-            {
-            // arange
-            var client = _factory.CreateClient();
             
-            // act
-            var httpResponse = await client.DeleteAsync($"api/users/{2222}");
-
-            // assert
-            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
-            }
 
     }
 
