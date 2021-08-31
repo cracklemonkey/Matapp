@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { AuthenticationGuard } from 'vue-auth0-plugin';
+
 import LandingPage from '../views/LandingPage.vue'
-import LoggIn from '../views/LoggIn.vue'
-import SignUp from '../views/SignUp.vue'
 import Listings from '../views/Listings.vue'
 import ListingDetails from '../components/ListingDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
@@ -19,27 +18,6 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage
-  },
-
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-    meta: { requiresAuth: true }
-  },
-
-  {
-    path: '/loggin',
-    name: 'LoggIn',
-    component: LoggIn,
-    meta: { guest: true }
-  },
-
-  {
-    path: '/signup',
-    name: 'SignUp',
-    component: SignUp,
-    meta: { guest: true }
   },
 
   {
@@ -67,25 +45,26 @@ const routes = [
     path: '/order',
     name: 'OrderPage',
     component: OrderPage,
-    meta: { requiresAuth: true }
+    beforeEnter: AuthenticationGuard
   },
 
   {
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    meta: { requiresAuth: true }
+    beforeEnter: AuthenticationGuard
   },
   {
     path: '/profile/settings',
     name: 'Settings',
     component: Settings,
-    meta: { requiresAuth: true }
+    beforeEnter: AuthenticationGuard
   },
   {
     path: '/profile/myposts',
     name: 'MyPosts',
-    component: MyPosts
+    component: MyPosts,
+    beforeEnter: AuthenticationGuard
   },
   {
     path: `/profile/:id/listing`,
@@ -95,7 +74,8 @@ const routes = [
   {
     path: '/profile/historik',
     name: 'Historik',
-    component: Historik
+    component: Historik,
+    beforeEnter: AuthenticationGuard
   },
   {
     path: `/listing/user/:id`,

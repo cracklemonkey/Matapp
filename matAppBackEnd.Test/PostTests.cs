@@ -34,19 +34,18 @@ namespace matAppBackEnd.Test.TestServer
 
                 Deadline = new DateTime(2021, 9, 16),
 
-                Opened = new DateTime(2021, 8, 14),
+                IsOpened = true,
 
-                ExpirationDate = new DateTime(2021, 9, 16),
 
-                FoodType = new List<string>() { "Test", "Vegan", "C" },
+                /*FoodType = new List<string>() { "Test", "Vegan", "C" },
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
                 MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
 
                 // Image test
-
-                UserOwner = "61139a2857720adc17f600cc"
+                */
+                UserId = 2
                 
                 
             };
@@ -69,9 +68,9 @@ namespace matAppBackEnd.Test.TestServer
 
                 Password = "password",
 
-                EMail = "aaa@bbb.com",
+                Email = "aaa@bbb.com",
 
-                PhoneNumber = "12345678",
+                Phone = "12345678",
 
                 Street = "BesteGata 32D",
 

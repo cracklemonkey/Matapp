@@ -11,7 +11,7 @@ const getters = {
 
 const actions = {
     async LoggIn ({ commit }, user) {
-        await axios.post('loggin', user)
+        await axios.post('https://localhost:5001/api/users', user)
         await commit('setUser', user.get('username'))
       },
     
@@ -33,7 +33,7 @@ const actions = {
 
 
 const mutations = {
-    setuser (state, username) {
+    setUser (state, username) {
         state.user = username
       },
     

@@ -1,0 +1,5 @@
+{
+    "domain": "dev-v46fv9d2.eu.auth0.com",
+    "client_id": "VvzZUhsrev48KcsISWHaz3thmfcvboCg",
+    "redirect_uri": "http://localhost:8080/listing"
+}
