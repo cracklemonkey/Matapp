@@ -57,40 +57,7 @@ namespace matAppBackEnd.Test.TestServer
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
         }
 
-        [Fact]
-        public async Task Post_newUser_ShouldReturn_OKStatusCode()
-        {
-            // arange
-            var client = _factory.CreateClient();
-            var body = new User
-            {
-                Username = "UserTest",
-
-                Password = "password",
-
-                Email = "aaa@bbb.com",
-
-                Phone = "12345678",
-
-                Street = "BesteGata 32D",
-
-                City = "Oslo",
-
-                ZipCode = "0000",
-
-                Country = "Norway",
-
-
-                
-                
-            };
-
-            // act
-            var httpResponse = await client.PostAsJsonAsync("api/users",body);
-
-            // assert
-            httpResponse.IsSuccessStatusCode.Should().BeTrue();
-        }
+      
     }
 
 }

@@ -37,10 +37,10 @@ namespace ListingsApi.Controllers
             return listing;
         }
         
-        [HttpGet("userlistings/{userid}", Name = "GetListingByUserOwner")]
+        [HttpGet("userlistings/{userowner}", Name = "GetListingByUserOwner")]
 
-        public ActionResult<List<Listing>> GetListingByUserId(int userid){
-            var userIdList = _listingService.GetListingByUserId(userid);
+        public ActionResult<List<Listing>> GetListingByUserId(string userowner){
+            var userIdList = _listingService.GetListingByUserId(userowner);
 
               
             bool isEmpty = !userIdList.Any();

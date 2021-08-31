@@ -24,9 +24,9 @@ namespace matAppBackEnd.Services
             var listing = _listings.Listings.Find(id);
             return listing;
         }
-        public List<Listing> GetListingByUserId(int userid){
+        public List<Listing> GetListingByUserId(string userid){
             
-            return _listings.Listings.Where(x => x.UserId.Equals(userid)).ToList();
+            return _listings.Listings.Where(x => x.UserOwner.Equals(userid)).ToList();
            
        } 
         public Listing Create(Listing listing)
@@ -46,7 +46,7 @@ namespace matAppBackEnd.Services
             entity.CreationDate = listingIn.CreationDate;
             entity.Deadline= listingIn.Deadline;
             entity.IsOpened = listingIn.IsOpened;
-            entity.UserId = listingIn.UserId;
+            entity.UserOwner = listingIn.UserOwner;
             
             _listings.Listings.Update(entity);
             _listings.SaveChanges();

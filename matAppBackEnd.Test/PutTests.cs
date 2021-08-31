@@ -8,6 +8,7 @@ using System.Net.Http;
 using matAppBackEnd.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace matAppBackEnd.Test.TestServer{
     public class PutTests{
@@ -26,8 +27,8 @@ namespace matAppBackEnd.Test.TestServer{
             var createModel = new Listing
             {   
                 
-                       
-
+                
+                
                 Title = "TestListing2",
 
                 Description = "asdasdasdasdas asd asd as as as dasd       asdasd  asd",
@@ -42,7 +43,7 @@ namespace matAppBackEnd.Test.TestServer{
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
-                MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
+            
 
                 // Image test
                 */
@@ -69,18 +70,19 @@ namespace matAppBackEnd.Test.TestServer{
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
-                MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
+              
 
                 // Image test
                 */
                 UserId = 2
             };
-            await client.PostAsJsonAsync("api/listings",createModel);
-
+            var response = await client.PostAsJsonAsync("api/listings",createModel);
+            var created =  await response.Content.ReadAsAsync<Listing>();
 
             // act
-            var httpResponse = await client.PutAsJsonAsync($"api/listings/{123}",updateModel);
-
+            
+            var httpResponse = await client.PutAsJsonAsync($"api/listings/{created.ListingId}",updateModel);
+            
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
         }
@@ -109,7 +111,7 @@ namespace matAppBackEnd.Test.TestServer{
 
                 Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
 
-                MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
+               
 
                 // Image test
                 */
@@ -123,97 +125,7 @@ namespace matAppBackEnd.Test.TestServer{
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
 
-        [Fact]
-        public async Task Put_Users_ShouldReturn_OKStatusCode()
-        {
-            // arange
-            var client = _factory.CreateClient();
-            var createModel = new User
-            {   
-                
-
-                Username = "UserTest2",
-
-                Password = "password",
-
-                Email = "aaa@bbb.com",
-
-                Phone = "12345678",
-
-                Street = "BesteGata 32D",
-
-                City = "Oslo",
-
-                ZipCode = "0000",
-
-                Country = "Norway",
-            };
-            var updateModel = new User
-            {   
-                
-
-                Username = "aaaaaaa",
-
-                Password = "password",
-
-                Email = "aaa@bbb.com",
-
-                Phone = "12345678",
-
-                Street = "BesteGata 32D",
-
-                City = "Oslo",
-
-                ZipCode = "0000",
-
-                Country = "Norway",
-
-                
-            };
-            await client.PostAsJsonAsync("api/users",createModel);
-
-
-            // act
-            var httpResponse = await client.PutAsJsonAsync($"api/users/{createModel.UserId}",updateModel);
-
-            // assert
-            httpResponse.IsSuccessStatusCode.Should().BeTrue();
-        }
-
-        [Fact]
-
-        public async Task Put_Users_ShouldReturn_NotFound(){
-
-             // arange
-            var client = _factory.CreateClient();
-            var createModel = new User
-            {   
-                
-
-                Username = "UserTest23",
-
-                Password = "password",
-
-                Email = "aaa@bbb.com",
-
-                Phone = "12345678",
-
-                Street = "BesteGata 32D",
-
-                City = "Oslo",
-
-                ZipCode = "0000",
-
-                Country = "Norway",
-                
-            };
-
-                // act
-            var httpResponse = await client.PutAsJsonAsync($"api/users/{2222}",createModel);
-
-            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        }
-
+       
 
     }
 }
