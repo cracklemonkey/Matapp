@@ -1,7 +1,6 @@
 <template>
   <div id="nav">
     <router-link to="/">Landingpage</router-link>|
-    <router-link to="/home">Home</router-link>|
     <router-link to="/listing">Listing</router-link>|
     <router-link to="/about">About</router-link>|
     <router-link v-if="$auth.authenticated" to="/profile">Profile</router-link>|

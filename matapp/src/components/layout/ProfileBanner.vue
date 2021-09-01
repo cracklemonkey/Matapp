@@ -5,13 +5,9 @@
       src="../../assets/images/david-fartek-8xxW3z31k8A-unsplash2.jpeg"
       alt=""
     />
-    <img
-      class="profile-img"
-      src="../../assets/images/evi-radauscher-U_D5NWMmTTM-unsplash.jpeg"
-      alt=""
-    />
+    <img class="profile-img" :src="$auth.user.picture" alt="" />
 
-    <p>{{ users.username }}</p>
+    <p>{{ $auth.user.nickname }}</p>
     <div class="rating">
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>

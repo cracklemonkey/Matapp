@@ -8,7 +8,14 @@
         </router-link>
       </button>
     </div>
-    <div class="mine-anonser">
+    <div></div>
+    <div v-for="(listing, index) in userListing" :key="listing + index">
+      <h3>{{ listing.title }}</h3>
+      <p>Posted : {{ listing.creationDate }}</p>
+      <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Posted by : {{ listing.userOwner }}</p>
+    </div>
+    <!-- <div class="mine-anonser">
       <h3>Mine anonser</h3>
       <div class="anonser">
         <div class="anonser-card">
@@ -56,80 +63,41 @@
           <router-link :to="`/profile/myposts`"> ... </router-link>
         </button>
       </div>
-    </div>
-    <div class="mine-anonser">
-      <h3>Historisk</h3>
-      <div class="anonser">
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/profile`">Profil navn</router-link></h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/profile`">Profil navn</router-link></h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/profile`">Profil navn</router-link></h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/profile`">Profil navn</router-link></h4>
-          </div>
-        </div>
-
-        <button>
-          <router-link :to="`/profile/historik`"> ... </router-link>
-        </button>
-      </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import ProfileBanner from "../components/layout/ProfileBanner.vue";
 export default {
   components: { ProfileBanner },
-  methods: {
-    ...mapActions(["fetchUsers", "deleteUser", "updateUser"]),
+  data() {
+    return {
+      /* listings: [], */
+    };
   },
+  created() {
+    this.getListingsByUser(this.$auth.user.name);
+  },
+
+  methods: {
+    ...mapActions([
+      "getListings",
+      "getListingById",
+      "addListing",
+      "deleteListing",
+      "updateListing",
+      "getListingsByUser",
+    ]),
+    myOwnListings() {
+      return this.listings.filter(
+        (list) => list.userOwner === this.$auth.user.name
+      );
+    },
+  },
+  computed: mapGetters(["allListings", "userListing"]),
 };
 </script>
 

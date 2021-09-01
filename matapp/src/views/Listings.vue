@@ -29,7 +29,7 @@
           View more details
         </router-link>
       </button>
-      <button @click="deleteListing(listing.id)">Delete</button>
+      <button @click="deleteListing(listing.listingId)">Delete</button>
     </div>
   </div>
 </template>
@@ -58,7 +58,6 @@ import AddListings from "../components/AddListings.vue";
       "deleteListing",
       "updateListing",
       "getListingById",
-      "getUsers",
     ]),
     toggleModal() {
       this.confirmDel = !this.confirmDel;
