@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="add-title">Add a new listing {{ $auth.user.nickname }}</p>
+    <p class="add-title">Add a new listing {{ $auth.user.username }}</p>
     <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div>
         <label for="title">Title</label>
@@ -60,7 +60,7 @@ export default {
          */ description: null,
         userOwner: null,
 
-        /* creationDate: Date.now(), */
+        /* creationDate: */
       },
       /* value: null, */
     };
@@ -73,7 +73,8 @@ export default {
       /*  addInArray(value){
 posts.foodType.push(value)
       } */
-      this.posts.userOwner = this.$auth.user.nickname;
+      this.posts.userOwner = this.$auth.user.name;
+
       this.addListing(this.posts);
     },
   },

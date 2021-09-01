@@ -14,7 +14,7 @@
     </button>
 
     <div v-if="$auth.authenticated">
-      <h3>Welcome {{ $auth.user.nickname }}</h3>
+      <h3 class="welcome">Welcome {{ $auth.user.name }}</h3>
     </div>
   </div>
 </template>
@@ -42,4 +42,7 @@ export default {
 </script>
 
 <style>
+.welcome {
+  color: white;
+}
 </style>
