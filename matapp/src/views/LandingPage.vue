@@ -14,7 +14,12 @@
     </button>
 
     <div v-if="$auth.authenticated">
-      <h3 class="welcome">Welcome {{ $auth.user.preferred_username }}</h3>
+      <h3 class="welcome">
+        Welcome Back <br />
+        {{ $auth.user.preferred_username }}
+        <br />
+        <i class="far fa-heart"></i>
+      </h3>
     </div>
   </div>
 </template>
@@ -44,5 +49,6 @@ export default {
 <style>
 .welcome {
   color: white;
+  font-size: 2em;
 }
 </style>

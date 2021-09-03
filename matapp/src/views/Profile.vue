@@ -16,9 +16,12 @@
           v-for="(listing, index) in userListing"
           :key="listing + index"
         >
-          <h3>{{ listing.title }}</h3>
-          <p>Posted : {{ listing.creationDate }}</p>
-          <p>Pick-up before : {{ listing.deadline }}</p>
+          <router-link :to="`/listing/${listing.listingId}`">
+            <h3>{{ listing.title }}</h3>
+          </router-link>
+
+          <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
           <p>Posted by : {{ listing.userOwner }}</p>
         </div>
       </div>
@@ -30,6 +33,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 import ProfileBanner from "../components/layout/ProfileBanner.vue";
+import dayjs from "dayjs";
 export default {
   components: { ProfileBanner },
   data() {
@@ -50,10 +54,10 @@ export default {
       "updateListing",
       "getListingsByUser",
     ]),
-    myOwnListings() {
-      return this.listings.filter(
-        (list) => list.userOwner === this.$auth.user.name
-      );
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
     },
   },
   computed: mapGetters(["allListings", "userListing"]),
@@ -63,7 +67,7 @@ export default {
 <style>
 .my-listings {
   width: 80%;
-  margin: 2% auto;
+  margin: 1% auto;
 }
 
 .my-listings h2 {
@@ -114,6 +118,8 @@ export default {
 .btn-settings {
   font-size: 25px;
   border: none;
+  position: relative;
+  bottom: 20px;
 }
 .btn-settings a {
   text-decoration: none;

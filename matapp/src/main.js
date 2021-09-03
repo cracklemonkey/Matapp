@@ -4,6 +4,7 @@ import { domain, client_id, redirect_uri } from '../auth_config.json'
 import App from './App.vue'
 import router from './router'
 import store from './store';
+import dayjs from 'dayjs'
 
 import './assets/css/style.css'
 
@@ -27,6 +28,6 @@ app.use(VueAuth0Plugin, {
 app.use(router);
 app.use(store);
 
-
+app.config.globalProperties.$dayjs = dayjs
 
 app.mount('#app');

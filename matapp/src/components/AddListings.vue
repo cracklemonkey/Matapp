@@ -41,7 +41,7 @@
       <!--       <label for="image">Upload a picture</label>
       <input id="image" type="file" accept="image/png, image/jpeg" v-model="posts.image" /> -->
 
-      <button type="submit">Add</button>
+      <button class="add-btn" type="submit">Add</button>
     </form>
   </div>
 </template>
@@ -103,5 +103,18 @@ export default {
 .form-listing div {
   display: flex;
   flex-direction: column;
+}
+
+.add-btn {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 30px;
+  border: black 1px solid;
+}
+.add-btn:hover {
+  font-size: 18px;
+  color: #42b983;
 }
 </style>

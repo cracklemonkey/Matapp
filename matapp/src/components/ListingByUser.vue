@@ -5,7 +5,11 @@
       {{ routeId }}
     </h1>
     <div>
-      <button @click="togglePlus" class="plus-button">
+      <button
+        v-if="$auth.authenticated"
+        @click="togglePlus"
+        class="plus-button"
+      >
         <i class="far fa-plus-square"></i>
       </button>
     </div>
@@ -20,8 +24,8 @@
     >
       <h3>{{ listing.title }}</h3>
 
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
@@ -30,7 +34,10 @@
         </router-link>
       </button>
       <button
-        v-if="$auth.user.preferred_username === listing.userOwner"
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === listing.userOwner
+        "
         @click="deleteListing(listing.listingId)"
       >
         Delete
@@ -46,6 +53,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../components/AddListings.vue";
+import dayjs from "dayjs";
 
 export default {
   name: "ListingByUser",
@@ -77,6 +85,11 @@ export default {
     ]),
     togglePlus() {
       this.plusButton = !this.plusButton;
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
     },
   },
   computed: mapGetters([

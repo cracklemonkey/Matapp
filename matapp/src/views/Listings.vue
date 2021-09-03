@@ -23,10 +23,8 @@
     >
       <h3>{{ listing.title }}</h3>
 
-      <!--       <img :src="require(`${listing.image}`)" alt="" class="annonser-image" />
- -->
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
@@ -50,6 +48,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../components/AddListings.vue";
+import dayjs from "dayjs";
 /* import ConfirmDelete from "../components/modals/confirmDelModal.vue";
  */ export default {
   name: "Listings",
@@ -83,6 +82,11 @@ import AddListings from "../components/AddListings.vue";
           redirect_uri: "http://localhost:8080/listing",
         });
       } */
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
     },
   },
   computed: mapGetters(["allListings"]),
@@ -137,10 +141,16 @@ import AddListings from "../components/AddListings.vue";
 .listing-div button:hover {
   font-size: 18px;
 }
+.listing-div a:hover {
+  color: #42b983;
+}
 
 .plus-button {
   background: none;
   border: none;
   font-size: 30px;
+}
+.plus-button:hover {
+  color: #42b983;
 }
 </style>

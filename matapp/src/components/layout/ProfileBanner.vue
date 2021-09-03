@@ -5,17 +5,14 @@
       src="../../assets/images/david-fartek-8xxW3z31k8A-unsplash2.jpeg"
       alt=""
     />
+    <img
+      class="banner-img"
+      src="../../assets/images/david-fartek-8xxW3z31k8A-unsplash2.jpeg"
+      alt=""
+    />
     <img class="profile-img" :src="$auth.user.picture" alt="" />
 
     <p>{{ $auth.user.preferred_username }}</p>
-    <div class="rating">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star-half-alt"></i>
-      <span> 4.5/5</span>
-    </div>
   </div>
 </template>
 
@@ -37,24 +34,25 @@ export default {
 
 <style>
 .banner-img {
-  max-height: 35vh;
-  width: 100%;
+  max-height: 40vh;
+  width: 50%;
+
   position: relative;
 }
 
 .profile-img {
-  width: 200px;
+  width: 100px;
   border-radius: 50%;
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 44%;
-  bottom: 40%;
+  text-align: center;
+  bottom: 40px;
 }
 
 .profile-banner p {
   font-size: 40px;
   position: relative;
-  margin-top: 130px;
+  bottom: 40px;
 }
 
 .rating i {
