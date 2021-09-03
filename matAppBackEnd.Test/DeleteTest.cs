@@ -38,17 +38,13 @@ namespace matAppBackEnd.Test {
 
                 IsOpened = true,
 
-                /* FoodType = new List<string>() { "Test", "Vegan", "C" },
-
-                Allergies = new List<string>() { "Citrus", "Nuts", "Wheat" },
-
-                MealType = new List<string>() { "Snacks", "Lunsj", "Dessert" },
+            
 
                 // Image test
-                */
+                
 
 
-                UserId = 2
+                UserOwner = "aa"
             };
              var response = await client.PostAsJsonAsync("api/listings", createModel);
              var created =  await response.Content.ReadAsAsync<Listing>();
@@ -72,6 +68,147 @@ namespace matAppBackEnd.Test {
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
             }
+
+            [Fact]
+            public async Task Delete_Allergie_ShouldReturn_OKStatusCode(){
+            // arange
+            var client = _factory.CreateClient();
+            var createModel = new Allergie
+            {   
+                
+
+                Name = "TestAllergie3",
+
+              
+            };
+             var response = await client.PostAsJsonAsync("api/allergies", createModel);
+             var created =  await response.Content.ReadAsAsync<Allergie>();
+
+            // act
+            var httpResponse = await client.DeleteAsync($"api/allergies/{created.Name}");
+
+            // assert
+             httpResponse.IsSuccessStatusCode.Should().BeTrue();
+
+            }
+            [Fact]
+            public async Task Delete_WithAllergieNotExists_ShouldReturn_NotFound()
+            {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.DeleteAsync($"api/allergies/notaallergie");
+
+            // assert
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+
+            [Fact]
+            public async Task Delete_FoodType_ShouldReturn_OKStatusCode(){
+            // arange
+            var client = _factory.CreateClient();
+            var createModel = new FoodType
+            {   
+                
+
+                Name = "TestFoodtype3",
+
+              
+            };
+             var response = await client.PostAsJsonAsync("api/foodtypes", createModel);
+             var created =  await response.Content.ReadAsAsync<FoodType>();
+
+            // act
+            var httpResponse = await client.DeleteAsync($"api/foodtypes/{created.Name}");
+
+            // assert
+             httpResponse.IsSuccessStatusCode.Should().BeTrue();
+
+            }
+            [Fact]
+            public async Task Delete_WithFoodTypeNotExists_ShouldReturn_NotFound()
+            {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.DeleteAsync($"api/foodtypes/notafoodtype");
+
+            // assert
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+
+            [Fact]
+            public async Task Delete_ListingAllergie_ShouldReturn_OKStatusCode(){
+            // arange
+            var client = _factory.CreateClient();
+            var createModel = new ListingAllergie
+            {   
+                
+
+                ListingId = 100,
+                AllergieId = 100
+              
+            };
+             var response = await client.PostAsJsonAsync("api/listingallergies", createModel);
+             var created =  await response.Content.ReadAsAsync<ListingAllergie>();
+
+            // act
+            var httpResponse = await client.DeleteAsync($"api/listingallergies/{created.ListingAllergieId}");
+
+            // assert
+             httpResponse.IsSuccessStatusCode.Should().BeTrue();
+
+            }
+            [Fact]
+            public async Task Delete_WithListingAllergieNotExists_ShouldReturn_NotFound()
+            {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.DeleteAsync($"api/listingallergies/{2222}");
+
+            // assert
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+
+            [Fact]
+            public async Task Delete_ListingFoodType_ShouldReturn_OKStatusCode(){
+            // arange
+            var client = _factory.CreateClient();
+            var createModel = new ListingFoodType
+            {   
+                
+
+                ListingId = 100,
+                FoodTypeId = 100
+              
+            };
+             var response = await client.PostAsJsonAsync("api/listingfoodtypes", createModel);
+             var created =  await response.Content.ReadAsAsync<ListingFoodType>();
+
+            // act
+            var httpResponse = await client.DeleteAsync($"api/listingfoodtypes/{created.ListingFoodTypeId}");
+
+            // assert
+             httpResponse.IsSuccessStatusCode.Should().BeTrue();
+
+            }
+            [Fact]
+            public async Task Delete_WithListingFoodTypeNotExists_ShouldReturn_NotFound()
+            {
+            // arange
+            var client = _factory.CreateClient();
+            
+            // act
+            var httpResponse = await client.DeleteAsync($"api/listingfoodtypes/{2222}");
+
+            // assert
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+
 
             
 

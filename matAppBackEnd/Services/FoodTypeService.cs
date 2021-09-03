@@ -20,8 +20,8 @@ namespace matAppBackEnd.Services
         public List<FoodType> Get(){
             return _foodtypes.FoodType.ToList();
         }
-        public FoodType Get(int id){
-            var foodtype = _foodtypes.FoodType.Find(id);
+        public FoodType Get(string name){
+            var foodtype = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
             return foodtype;
         }
        
@@ -35,9 +35,9 @@ namespace matAppBackEnd.Services
             
         }
 
-        public void UpdateFoodType(int id, FoodType foodtypeIn){
+        public void UpdateFoodType(string name, FoodType foodtypeIn){
 
-             var entity = _foodtypes.FoodType.FirstOrDefault(x => x.FoodTypeId == id);
+             var entity = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
 
             entity.Name = foodtypeIn.Name;
             
@@ -59,9 +59,9 @@ namespace matAppBackEnd.Services
         }
 
 
-        public void Delete(int id) {
+        public void Delete(string name) {
         
-        var entity = _foodtypes.FoodType.FirstOrDefault(x => x.FoodTypeId == id);
+        var entity = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
 
 
          _foodtypes.FoodType.Remove(entity);

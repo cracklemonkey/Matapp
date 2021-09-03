@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "matAppBackEnd/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.9",
           "MongoDB.Driver": "2.13.1",
           "Swashbuckle.AspNetCore": "5.6.3",
