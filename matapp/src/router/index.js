@@ -36,7 +36,8 @@ const routes = [
   {
     path: '/listing/:id/edit',
     name: 'EditListing',
-    component: EditListing
+    component: EditListing,
+    beforeEnter: AuthenticationGuard
   },
 
 

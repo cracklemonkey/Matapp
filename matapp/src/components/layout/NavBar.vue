@@ -1,16 +1,28 @@
 <template>
   <div id="nav">
-    <router-link to="/">Landingpage</router-link>|
-    <router-link to="/listing">Listing</router-link>|
-    <router-link to="/about">About</router-link>|
-    <router-link v-if="$auth.authenticated" to="/profile">Profile</router-link>|
-    <router-link v-if="$auth.authenticated" to="/order">OrderPage</router-link>
-    <button v-if="!$auth.authenticated" @click="login" class="log-btn">
-      Log In
-    </button>
-    <button v-if="$auth.authenticated" @click="logout" class="log-btn">
-      Log Out
-    </button>
+    <div>
+      <router-link class="link brand" to="/"
+        >MatApp <i class="fas fa-cookie-bite"></i
+      ></router-link>
+    </div>
+    <div>
+      <router-link class="link" to="/listing">Listing</router-link>|
+      <router-link class="link" to="/about">About</router-link>|
+
+      <router-link class="link" v-if="$auth.authenticated" to="/order"
+        >OrderPage</router-link
+      >|
+      <router-link class="link" v-if="$auth.authenticated" to="/profile"
+        ><i class="far fa-user-circle profile-icon"></i
+      ></router-link>
+      |
+      <button v-if="!$auth.authenticated" @click="login" class="log-btn">
+        Log In
+      </button>
+      <button v-if="$auth.authenticated" @click="logout" class="log-btn">
+        Log Out
+      </button>
+    </div>
   </div>
 </template>
 
@@ -39,6 +51,8 @@ export default {
 <style>
 #nav {
   padding: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #nav a {
@@ -63,5 +77,17 @@ export default {
 .log-btn:hover {
   background: #42b983;
   color: white;
+}
+
+.profile-icon {
+  font-size: 1.5em;
+}
+
+.link {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.brand {
+  font-size: 1.5em;
 }
 </style>

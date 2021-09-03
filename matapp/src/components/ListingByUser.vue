@@ -1,11 +1,15 @@
 <template>
   <div>
     <h1>
-      All listings from <br />
+      All listings from user: <br />
       {{ routeId }}
     </h1>
     <div>
-      <button @click="togglePlus" class="plus-button">
+      <button
+        v-if="$auth.authenticated"
+        @click="togglePlus"
+        class="plus-button"
+      >
         <i class="far fa-plus-square"></i>
       </button>
     </div>
@@ -20,17 +24,24 @@
     >
       <h3>{{ listing.title }}</h3>
 
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
-      <p>Expires : {{ listing.expirationDate }}</p>
+      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
-        <router-link :to="`/listing/${listing.id}`">
+        <router-link :to="`/listing/${listing.listingId}`">
           View more details
         </router-link>
       </button>
-      <button @click="deleteListing(listing.id)">Delete</button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === listing.userOwner
+        "
+        @click="deleteListing(listing.listingId)"
+      >
+        Delete
+      </button>
       <button>
         <router-link :to="`/listing`"> Back to Listing </router-link>
       </button>
@@ -42,6 +53,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../components/AddListings.vue";
+import dayjs from "dayjs";
 
 export default {
   name: "ListingByUser",
@@ -74,12 +86,10 @@ export default {
     togglePlus() {
       this.plusButton = !this.plusButton;
     },
-    matchUser() {
-      const user = this.getUserById.find(
-        (user) => user.userId === this.routeId
-      );
-      console.log(user);
-      return user;
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
     },
   },
   computed: mapGetters([

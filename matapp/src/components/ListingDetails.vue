@@ -1,16 +1,23 @@
 <template>
   <div class="listing-div">
-    <h1>listing details</h1>
-    <p>{{ oneListing.title }}</p>
+    <h1>{{ oneListing.title }}</h1>
     <p>
+      Description: <br />
       {{ oneListing.description }}
     </p>
     <p>{{ oneListing.foodType }}</p>
-    <p>Pick-up before: {{ oneListing.deadline }}</p>
+    <p>Pick-up before: {{ formatDate(oneListing.deadline) }}</p>
     <p>{{ oneListing.allergies }}</p>
-    <p>from {{ oneListing.userId }}</p>
+    <p>from {{ oneListing.userOwner }}</p>
+    <p>Posted on: {{ formatDate(oneListing.creationDate) }}</p>
     <button>
-      <router-link :to="`/listing/${oneListing.listingId}/edit`">
+      <router-link
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === oneListing.userOwner
+        "
+        :to="`/listing/${oneListing.listingId}/edit`"
+      >
         Edit
       </router-link>
     </button>
@@ -26,6 +33,7 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
 import { mapGetters, mapActions } from "vuex";
 export default {
   created() {
@@ -39,6 +47,11 @@ export default {
       "deleteListing",
       "getListingById",
     ]),
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
+    },
   },
   computed: mapGetters(["oneListing", "allUsers"]),
 };

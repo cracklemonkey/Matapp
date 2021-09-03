@@ -8,62 +8,24 @@
         </router-link>
       </button>
     </div>
-    <div></div>
-    <div v-for="(listing, index) in userListing" :key="listing + index">
-      <h3>{{ listing.title }}</h3>
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
-      <p>Posted by : {{ listing.userOwner }}</p>
-    </div>
-    <!-- <div class="mine-anonser">
-      <h3>Mine anonser</h3>
-      <div class="anonser">
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/listing`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`/products`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-        </div>
-        <div class="anonser-card">
-          <img
-            src="../assets/images/artur-rutkowski-GdTLaWamFHw-unsplash1.jpeg"
-            alt=""
-          />
-          <div class="anonser-card-text">
-            <h4><router-link :to="`listing`">Title anonser</router-link></h4>
-            <h4>Dato</h4>
-          </div>
-        </div>
+    <div class="my-listings">
+      <h2>My Listings</h2>
+      <div class="oneListing">
+        <div
+          class="listing-card"
+          v-for="(listing, index) in userListing"
+          :key="listing + index"
+        >
+          <router-link :to="`/listing/${listing.listingId}`">
+            <h3>{{ listing.title }}</h3>
+          </router-link>
 
-        <button>
-          <router-link :to="`/profile/myposts`"> ... </router-link>
-        </button>
+          <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
+          <p>Posted by : {{ listing.userOwner }}</p>
+        </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -71,6 +33,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 import ProfileBanner from "../components/layout/ProfileBanner.vue";
+import dayjs from "dayjs";
 export default {
   components: { ProfileBanner },
   data() {
@@ -79,7 +42,7 @@ export default {
     };
   },
   created() {
-    this.getListingsByUser(this.$auth.user.name);
+    this.getListingsByUser(this.$auth.user.preferred_username);
   },
 
   methods: {
@@ -91,10 +54,10 @@ export default {
       "updateListing",
       "getListingsByUser",
     ]),
-    myOwnListings() {
-      return this.listings.filter(
-        (list) => list.userOwner === this.$auth.user.name
-      );
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
     },
   },
   computed: mapGetters(["allListings", "userListing"]),
@@ -102,41 +65,43 @@ export default {
 </script>
 
 <style>
-.mine-anonser {
+.my-listings {
   width: 80%;
-  margin: 2% auto;
+  margin: 1% auto;
 }
 
-.mine-anonser h3 {
+.my-listings h2 {
   text-align: start;
   font-size: 2em;
   padding-left: 20px;
   color: black;
 }
-.anonser {
+.oneListing {
   display: flex;
+  flex-direction: row;
 }
 
-.anonser-card {
+.listing-card {
   width: 20%;
   margin: 10px;
+  text-align: left;
 }
-.anonser-card img {
+.listing-card img {
   width: 100%;
   max-height: 300px;
 }
 
-.anonser-card-text {
+.listing-card-text {
   display: flex;
   justify-content: space-between;
   color: black;
 }
 
-.anonser-card-text a {
+.listing-card-text a {
   text-decoration: none;
   color: black;
 }
-.anonser button {
+.oneListing button {
   height: 30px;
   align-self: center;
   width: 5%;
@@ -144,7 +109,7 @@ export default {
   border-radius: 50px;
 }
 
-.anonser button a {
+.oneListing button a {
   text-decoration: none;
   color: black;
   font-weight: bold;
@@ -153,6 +118,8 @@ export default {
 .btn-settings {
   font-size: 25px;
   border: none;
+  position: relative;
+  bottom: 20px;
 }
 .btn-settings a {
   text-decoration: none;

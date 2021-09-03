@@ -3,10 +3,15 @@
     <h1 class="title-page">All Listings</h1>
 
     <div>
-      <button @click="togglePlus" class="plus-button">
+      <button
+        v-if="$auth.authenticated"
+        @click="togglePlus"
+        class="plus-button"
+      >
         <i class="far fa-plus-square"></i>
       </button>
     </div>
+
     <div v-if="plusButton">
       <AddListings />
     </div>
@@ -18,10 +23,8 @@
     >
       <h3>{{ listing.title }}</h3>
 
-      <!--       <img :src="require(`${listing.image}`)" alt="" class="annonser-image" />
- -->
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
@@ -29,7 +32,15 @@
           View more details
         </router-link>
       </button>
-      <button @click="deleteListing(listing.listingId)">Delete</button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === listing.userOwner
+        "
+        @click="deleteListing(listing.listingId)"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -37,6 +48,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../components/AddListings.vue";
+import dayjs from "dayjs";
 /* import ConfirmDelete from "../components/modals/confirmDelModal.vue";
  */ export default {
   name: "Listings",
@@ -63,7 +75,18 @@ import AddListings from "../components/AddListings.vue";
       this.confirmDel = !this.confirmDel;
     },
     togglePlus() {
-      this.plusButton = !this.plusButton;
+      if (this.$auth.authenticated) {
+        this.plusButton = !this.plusButton;
+      } /* else {
+        this.$auth.loginWithRedirect({
+          redirect_uri: "http://localhost:8080/listing",
+        });
+      } */
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
     },
   },
   computed: mapGetters(["allListings"]),
@@ -118,10 +141,16 @@ import AddListings from "../components/AddListings.vue";
 .listing-div button:hover {
   font-size: 18px;
 }
+.listing-div a:hover {
+  color: #42b983;
+}
 
 .plus-button {
   background: none;
   border: none;
   font-size: 30px;
+}
+.plus-button:hover {
+  color: #42b983;
 }
 </style>

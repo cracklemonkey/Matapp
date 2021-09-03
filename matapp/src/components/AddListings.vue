@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="add-title">Add a new listing {{ $auth.user.username }}</p>
+    <p class="add-title">Add a new listing</p>
     <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div>
         <label for="title">Title</label>
@@ -41,7 +41,7 @@
       <!--       <label for="image">Upload a picture</label>
       <input id="image" type="file" accept="image/png, image/jpeg" v-model="posts.image" /> -->
 
-      <button type="submit">Add</button>
+      <button class="add-btn" type="submit">Add</button>
     </form>
   </div>
 </template>
@@ -60,7 +60,7 @@ export default {
          */ description: null,
         userOwner: null,
 
-        /* creationDate: */
+        creationDate: new Date(),
       },
       /* value: null, */
     };
@@ -69,13 +69,13 @@ export default {
     ...mapActions(["addListing"]),
 
     postListing() {
-      console.log(this.posts);
-      /*  addInArray(value){
-posts.foodType.push(value)
-      } */
-      this.posts.userOwner = this.$auth.user.name;
+      if (this.$auth.authenticated) {
+        console.log(this.posts);
+        this.posts.userOwner = this.$auth.user.preferred_username;
 
-      this.addListing(this.posts);
+        this.addListing(this.posts);
+        event.target.reset();
+      }
     },
   },
 };
@@ -103,5 +103,18 @@ posts.foodType.push(value)
 .form-listing div {
   display: flex;
   flex-direction: column;
+}
+
+.add-btn {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 30px;
+  border: black 1px solid;
+}
+.add-btn:hover {
+  font-size: 18px;
+  color: #42b983;
 }
 </style>
