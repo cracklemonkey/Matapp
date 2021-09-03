@@ -12,6 +12,10 @@
         Just log in!
       </h3>
     </button>
+
+    <div v-if="$auth.authenticated">
+      <h3 class="welcome">Welcome {{ $auth.user.name }}</h3>
+    </div>
   </div>
 </template>
 
@@ -38,4 +42,7 @@ export default {
 </script>
 
 <style>
+.welcome {
+  color: white;
+}
 </style>

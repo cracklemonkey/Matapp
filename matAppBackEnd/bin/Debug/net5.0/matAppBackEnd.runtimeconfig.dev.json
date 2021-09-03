@@ -1,8 +1,13 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\danie\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\danie\\.nuget\\packages"
+=======
+      "/Users/arianecoriat/.dotnet/store/|arch|/|tfm|",
+      "/Users/arianecoriat/.nuget/packages"
+>>>>>>> origin/dev
     ]
   }
 }

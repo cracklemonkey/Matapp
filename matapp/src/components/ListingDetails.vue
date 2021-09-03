@@ -18,7 +18,7 @@
       <router-link :to="`/listing`"> Back to Listing </router-link>
     </button>
     <button>
-      <router-link :to="`/listing/user/${oneListing.userId}`">
+      <router-link :to="`/listing/user/${oneListing.userOwner}`">
         see all ads from user
       </router-link>
     </button>

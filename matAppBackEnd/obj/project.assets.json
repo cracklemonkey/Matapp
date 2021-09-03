@@ -6318,11 +6318,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\danie\\.nuget\\packages\\": {}
+=======
+    "/Users/arianecoriat/.nuget/packages/": {}
+>>>>>>> origin/dev
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
       "projectName": "matAppBackEnd",
       "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
@@ -6331,6 +6336,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
+      "projectName": "matAppBackEnd",
+      "projectPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
+      "packagesPath": "/Users/arianecoriat/.nuget/packages/",
+      "outputPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/arianecoriat/.nuget/NuGet/NuGet.Config"
+>>>>>>> origin/dev
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -6397,7 +6412,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
+>>>>>>> origin/dev
       }
     }
   },
