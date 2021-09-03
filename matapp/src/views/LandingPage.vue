@@ -14,7 +14,7 @@
     </button>
 
     <div v-if="$auth.authenticated">
-      <h3 class="welcome">Welcome {{ $auth.user.name }}</h3>
+      <h3 class="welcome">Welcome {{ $auth.user.preferred_username }}</h3>
     </div>
   </div>
 </template>

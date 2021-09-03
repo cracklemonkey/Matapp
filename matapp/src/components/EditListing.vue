@@ -6,23 +6,11 @@
         <label for="title">Title</label>
         <input id="title" type="text" v-model="updListing.title" />
       </div>
-        <div>
+      <div>
         <label for="deadline">Deadline</label>
         <input id="deadline" type="date" v-model="updListing.deadline" />
       </div>
-      <div>
-        <label for="expiration">Expiration Date</label>
-        <input
-          id="expiration"
-          type="date"
-          v-model="updListing.expirationDate"
-        />
-      </div> 
-      
- <div>
-        <label for="foodType">Food Type</label>
-        <input id="foodType" type="text" v-model="updListing.foodType" />
-      </div>
+
       <div>
         <label for="description">Description</label>
         <textarea
@@ -35,6 +23,7 @@
 
       <button type="submit">Update</button>
     </form>
+    <router-link :to="{ name: ListingDetails }"> back to details </router-link>
   </div>
 </template>
 
@@ -47,9 +36,9 @@ export default {
       updListing: {
         id: this.$route.params.id,
         title: null,
-         deadline: Date.parse(""),
+        deadline: Date.parse(""),
         expirationDate: Date.parse(""),
-        foodType: null,
+
         description: null,
       },
     };
@@ -64,6 +53,7 @@ export default {
     editListing() {
       console.log(this.updListing);
       this.updateListing(this.updListing);
+      this.$router.push({ name: "ListingDetails" });
     },
   },
   computed: mapGetters(["oneListing"]),

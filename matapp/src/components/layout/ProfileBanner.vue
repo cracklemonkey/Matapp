@@ -7,7 +7,7 @@
     />
     <img class="profile-img" :src="$auth.user.picture" alt="" />
 
-    <p>{{ $auth.user.nickname }}</p>
+    <p>{{ $auth.user.preferred_username }}</p>
     <div class="rating">
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>

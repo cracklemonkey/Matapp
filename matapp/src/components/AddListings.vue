@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="add-title">Add a new listing {{ $auth.user.username }}</p>
+    <p class="add-title">Add a new listing</p>
     <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div>
         <label for="title">Title</label>
@@ -60,7 +60,7 @@ export default {
          */ description: null,
         userOwner: null,
 
-        /* creationDate: */
+        creationDate: new Date(),
       },
       /* value: null, */
     };
@@ -69,13 +69,13 @@ export default {
     ...mapActions(["addListing"]),
 
     postListing() {
-      console.log(this.posts);
-      /*  addInArray(value){
-posts.foodType.push(value)
-      } */
-      this.posts.userOwner = this.$auth.user.name;
+      if (this.$auth.authenticated) {
+        console.log(this.posts);
+        this.posts.userOwner = this.$auth.user.preferred_username;
 
-      this.addListing(this.posts);
+        this.addListing(this.posts);
+        event.target.reset();
+      }
     },
   },
 };

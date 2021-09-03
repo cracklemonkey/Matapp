@@ -3,10 +3,15 @@
     <h1 class="title-page">All Listings</h1>
 
     <div>
-      <button @click="togglePlus" class="plus-button">
+      <button
+        v-if="$auth.authenticated"
+        @click="togglePlus"
+        class="plus-button"
+      >
         <i class="far fa-plus-square"></i>
       </button>
     </div>
+
     <div v-if="plusButton">
       <AddListings />
     </div>
@@ -29,7 +34,15 @@
           View more details
         </router-link>
       </button>
-      <button @click="deleteListing(listing.listingId)">Delete</button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === listing.userOwner
+        "
+        @click="deleteListing(listing.listingId)"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
@@ -63,7 +76,13 @@ import AddListings from "../components/AddListings.vue";
       this.confirmDel = !this.confirmDel;
     },
     togglePlus() {
-      this.plusButton = !this.plusButton;
+      if (this.$auth.authenticated) {
+        this.plusButton = !this.plusButton;
+      } /* else {
+        this.$auth.loginWithRedirect({
+          redirect_uri: "http://localhost:8080/listing",
+        });
+      } */
     },
   },
   computed: mapGetters(["allListings"]),
