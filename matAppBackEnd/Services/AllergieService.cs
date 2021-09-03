@@ -20,8 +20,8 @@ namespace matAppBackEnd.Services
         public List<Allergie> Get(){
             return _allergies.Allergies.ToList();
         }
-        public Allergie Get(int id){
-            var allergie = _allergies.Allergies.Find(id);
+        public Allergie Get(string name){
+            var allergie = _allergies.Allergies.FirstOrDefault(x => x.Name == name);
             return allergie;
         }
        
@@ -35,9 +35,9 @@ namespace matAppBackEnd.Services
             
         }
 
-        public void UpdateAllergie(int id, Allergie allergieIn){
+        public void UpdateAllergie(string name, Allergie allergieIn){
 
-             var entity = _allergies.Allergies.FirstOrDefault(x => x.AllergieId == id);
+             var entity = _allergies.Allergies.FirstOrDefault(x => x.Name == name);
 
             entity.Name = allergieIn.Name;
             
@@ -59,9 +59,9 @@ namespace matAppBackEnd.Services
         }
 
 
-        public void Delete(int id) {
+        public void Delete(string name) {
         
-        var entity = _allergies.Allergies.FirstOrDefault(x => x.AllergieId == id);
+        var entity = _allergies.Allergies.FirstOrDefault(x => x.Name == name);
 
 
          _allergies.Allergies.Remove(entity);

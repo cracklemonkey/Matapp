@@ -24,10 +24,10 @@ namespace FoodTypesApi.Controllers
 
           
 
-         [HttpGet("{foodTypeid}", Name = "GetFoodType")]
-        public ActionResult<FoodType> Get(int foodTypeid)
+         [HttpGet("{name}", Name = "GetFoodType")]
+        public ActionResult<FoodType> Get(string name)
         {   
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodType = _foodTypeService.Get(name);
 
             if (foodType == null)
             {
@@ -40,39 +40,39 @@ namespace FoodTypesApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<FoodType> Create(FoodType foodType)
+        public ActionResult<FoodType> Create(FoodType foodtype)
         {
-            _foodTypeService.Create(foodType);
+            _foodTypeService.Create(foodtype);
 
-            return CreatedAtRoute("GetFoodType", new { foodTypeid = foodType.FoodTypeId.ToString() }, foodType);
+            return CreatedAtRoute("GetFoodType", new { name = foodtype.Name.ToString() }, foodtype);
         }
 
-        [HttpPut("{foodTypeid}")]
-        public IActionResult Update(int foodTypeid, [FromBody] FoodType foodTypeIn)
+        [HttpPut("{name}")]
+        public IActionResult Update(string name, [FromBody] FoodType foodTypeIn)
         {
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodType = _foodTypeService.Get(name);
 
             if (foodType == null)
             {
                 return NotFound();
             }
 
-            _foodTypeService.UpdateFoodType(foodTypeid, foodTypeIn);
+            _foodTypeService.UpdateFoodType(name, foodTypeIn);
 
             return NoContent();
         }
 
-        [HttpDelete("{foodTypeid}")]
-        public IActionResult Delete(int foodTypeid)
+        [HttpDelete("{name}")]
+        public IActionResult Delete(string name)
         {
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodType = _foodTypeService.Get(name);
 
             if (foodType == null)
             {
                 return NotFound();
             }
 
-            _foodTypeService.Delete(foodType.FoodTypeId);
+            _foodTypeService.Delete(foodType.Name);
 
             return NoContent();
 

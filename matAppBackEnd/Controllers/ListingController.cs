@@ -51,6 +51,34 @@ namespace ListingsApi.Controllers
             
             return userIdList;
         }
+        [HttpGet("foodtypelistings/{id}", Name = "GetListingByFoodType")]
+        public ActionResult<List<Listing>> GetListingByFoodType(int id){
+            var List = _listingService.GetListingByFoodType(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+        [HttpGet("allergielistings/{id}", Name = "GetListingsThatDosentConatinAllergie")]
+        public ActionResult<List<Listing>> GetListingsThatDosentConatinAllergie(int id){
+            var List = _listingService.GetListingsThatDosentConatinAllergie(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+        
         
 
         [HttpPost]

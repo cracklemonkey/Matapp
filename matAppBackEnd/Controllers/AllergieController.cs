@@ -24,10 +24,10 @@ namespace AllergiesApi.Controllers
 
           
 
-         [HttpGet("{allergieid}", Name = "GetAllergie")]
-        public ActionResult<Allergie> Get(int allergieid)
+         [HttpGet("{name}", Name = "GetAllergie")]
+        public ActionResult<Allergie> Get(string name)
         {   
-            var allergie = _allergieService.Get(allergieid);
+            var allergie = _allergieService.Get(name);
 
             if (allergie == null)
             {
@@ -44,35 +44,35 @@ namespace AllergiesApi.Controllers
         {
             _allergieService.Create(allergie);
 
-            return CreatedAtRoute("GetAllergie", new { allergieid = allergie.AllergieId.ToString() }, allergie);
+            return CreatedAtRoute("GetAllergie", new { name = allergie.Name.ToString() }, allergie);
         }
 
-        [HttpPut("{allergieid}")]
-        public IActionResult Update(int allergieid, [FromBody] Allergie allergieIn)
+        [HttpPut("{name}")]
+        public IActionResult Update(string name, [FromBody] Allergie allergieIn)
         {
-            var allergie = _allergieService.Get(allergieid);
+            var allergie = _allergieService.Get(name);
 
             if (allergie == null)
             {
                 return NotFound();
             }
 
-            _allergieService.UpdateAllergie(allergieid, allergieIn);
+            _allergieService.UpdateAllergie(name, allergieIn);
 
             return NoContent();
         }
 
-        [HttpDelete("{allergieid}")]
-        public IActionResult Delete(int allergieid)
+        [HttpDelete("{name}")]
+        public IActionResult Delete(string name)
         {
-            var allergie = _allergieService.Get(allergieid);
+            var allergie = _allergieService.Get(name);
 
             if (allergie == null)
             {
                 return NotFound();
             }
 
-            _allergieService.Delete(allergie.AllergieId);
+            _allergieService.Delete(allergie.Name);
 
             return NoContent();
 
