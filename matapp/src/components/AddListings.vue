@@ -16,18 +16,6 @@
         <input id="deadline" type="date" v-model="posts.deadline" />
       </div>
 
-      <!-- <div>
-        <label for="foodType">Type of Food</label>
-        <select id="foodType"
-          v-model="value">
-          <option value="vegetables">vegetables</option>
-          <option value="dairy"> dairy</option>
-          <option value="fruits">fruits </option>
-          <option value="fish"> fish</option>
-          
-         
-        </select>
-      </div> -->
       <div>
         <label for="description">Description</label>
         <textarea
@@ -37,9 +25,6 @@
           v-model="posts.description"
         />
       </div>
-
-      <!--       <label for="image">Upload a picture</label>
-      <input id="image" type="file" accept="image/png, image/jpeg" v-model="posts.image" /> -->
 
       <button class="add-btn" type="submit">Add</button>
     </form>
@@ -55,14 +40,10 @@ export default {
       posts: {
         title: null,
         deadline: Date.now(),
-
-        /*         foodType: [],
-         */ description: null,
+        description: null,
         userOwner: null,
-
         creationDate: new Date(),
       },
-      /* value: null, */
     };
   },
   methods: {
@@ -82,13 +63,6 @@ export default {
 </script>
 
 <style>
-/* .form-annonser input,
-.form-annonser select,
-.form-annonser label,
-.form-annonser textarea {
-  display: flex;
-}
- */
 .add-title {
   font-size: 20px;
   font-family: "Oswald", sans-serif;

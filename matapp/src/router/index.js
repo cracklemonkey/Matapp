@@ -2,15 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { AuthenticationGuard } from 'vue-auth0-plugin';
 
 import LandingPage from '../views/LandingPage.vue'
-import Listings from '../views/Listings.vue'
-import ListingDetails from '../components/ListingDetails.vue'
-import OrderPage from '../views/OrderPage.vue'
-import Profile from '../views/Profile.vue'
-import Settings from '../views/Settings.vue'
-import MyPosts from '../views/MyPosts.vue'
-import Historik from '../views/Historik.vue'
-import ListingByUser from '../components/ListingByUser.vue'
-import EditListing from '../components/EditListing.vue'
+import Listings from '../views/listings/Listings.vue'
+import ListingDetails from '../views/listings/ListingDetails.vue'
+import Profile from '../views/profile/Profile.vue'
+import Settings from '../views/profile/Settings.vue'
+import MyPosts from '../views/profile/MyPosts.vue'
+import Historik from '../views/profile/Historik.vue'
+import ListingByUser from '../views/listings/ListingByUser.vue'
+import EditListing from '../views/listings/EditListing.vue'
 
 
 const routes = [
@@ -37,15 +36,6 @@ const routes = [
     path: '/listing/:id/edit',
     name: 'EditListing',
     component: EditListing,
-    beforeEnter: AuthenticationGuard
-  },
-
-
-
-  {
-    path: '/order',
-    name: 'OrderPage',
-    component: OrderPage,
     beforeEnter: AuthenticationGuard
   },
 

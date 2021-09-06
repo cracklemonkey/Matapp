@@ -1,54 +1,71 @@
 <template>
   <div>
-    <h1 class="title-page">All Users</h1>
+    <h1 class="title-page">All Listings</h1>
 
     <div>
-      <button @click="togglePlus" class="plus-button">
+      <button
+        v-if="$auth.authenticated"
+        @click="togglePlus"
+        class="plus-button"
+      >
         <i class="far fa-plus-square"></i>
       </button>
     </div>
+
     <div v-if="plusButton">
-      <AddUsers />
+      <AddListings />
     </div>
 
     <div
       class="listing-div"
-      v-for="(user, index) in allusers"
-      :key="user + index"
+      v-for="(listing, index) in allListings"
+      :key="listing + index"
     >
+      <h3>{{ listing.title }}</h3>
 
-
-      <!--       <img :src="require(`${listing.image}`)" alt="" class="annonser-image" />
- -->
-      <p>Posted : {{ listing.creationDate }}</p>
-      <p>Pick-up before : {{ listing.deadline }}</p>
+      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
       <p>{{ listing.foodType }}</p>
       <p>Posted by : {{ listing.userOwner }}</p>
       <button>
-        <router-link :to="`/listing/${listing.id}`">
+        <router-link :to="`/listing/${listing.listingId}`">
           View more details
         </router-link>
       </button>
-      <button @click="deleteListing(listing.id)">Delete</button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username === listing.userOwner
+        "
+        @click="deleteListing(listing.listingId)"
+      >
+        Delete
+      </button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username != listing.userOwner
+        "
+      >
+        Order
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddListings from "../components/AddListings.vue";
-/* import ConfirmDelete from "../components/modals/confirmDelModal.vue";
- */ export default {
+import AddListings from "../../components/AddListings.vue";
+import dayjs from "dayjs";
+export default {
   name: "Listings",
   components: { AddListings },
   data() {
     return {
-      /* confirmDel: false, */
       plusButton: false,
     };
   },
-  /*   components: { ConfirmDelete },
-   */ created() {
+  created() {
     this.getListings();
   },
   methods: {
@@ -58,30 +75,27 @@ import AddListings from "../components/AddListings.vue";
       "deleteListing",
       "updateListing",
       "getListingById",
-      "getUsers",
     ]),
     toggleModal() {
       this.confirmDel = !this.confirmDel;
     },
     togglePlus() {
-      this.plusButton = !this.plusButton;
+      if (this.$auth.authenticated) {
+        this.plusButton = !this.plusButton;
+      }
+    },
+    formatDate(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("dddd D of MMMM, YYYY");
     },
   },
   computed: mapGetters(["allListings"]),
-  /* annonserWithImage(annonser) {
-    return {
-      ...this.annonser,
-      image:
-        this.annonser.image && require(`../assets/images/${annonser.image}`),
-    };
-  }, */
 };
 </script>
 
+
 <style>
-/* .annonser-image {
-  width: 300px;
-} */
 .title-page {
   font-family: "Oswald", sans-serif;
   padding: 10px;
@@ -118,10 +132,16 @@ import AddListings from "../components/AddListings.vue";
 .listing-div button:hover {
   font-size: 18px;
 }
+.listing-div a:hover {
+  color: #42b983;
+}
 
 .plus-button {
   background: none;
   border: none;
   font-size: 30px;
+}
+.plus-button:hover {
+  color: #42b983;
 }
 </style>
