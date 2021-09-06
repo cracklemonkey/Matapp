@@ -9,9 +9,6 @@
       <router-link class="link" to="/listing">Listing</router-link>|
       <router-link class="link" to="/about">About</router-link>|
 
-      <router-link class="link" v-if="$auth.authenticated" to="/order"
-        >OrderPage</router-link
-      >|
       <router-link class="link" v-if="$auth.authenticated" to="/profile"
         ><i class="far fa-user-circle profile-icon"></i
       ></router-link>

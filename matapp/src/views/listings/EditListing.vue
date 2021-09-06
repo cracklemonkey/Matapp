@@ -23,7 +23,9 @@
 
       <button type="submit">Update</button>
     </form>
-    <router-link :to="{ name: ListingDetails }"> back to details </router-link>
+    <router-link :to="`/listing/${oneListing.listingId}`">
+      back to details
+    </router-link>
   </div>
 </template>
 
@@ -37,8 +39,6 @@ export default {
         id: this.$route.params.id,
         title: null,
         deadline: Date.parse(""),
-        expirationDate: Date.parse(""),
-
         description: null,
       },
     };
