@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AllergiesApi.Controllers
 {
@@ -19,15 +20,15 @@ namespace AllergiesApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Allergie>> Get() =>
-            _allergieService.Get();
+        public async Task <ActionResult<List<Allergie>>> Get() =>
+            await _allergieService.Get();
 
           
 
          [HttpGet("{name}", Name = "GetAllergie")]
-        public ActionResult<Allergie> Get(string name)
+        public async Task <ActionResult<Allergie>> Get(string name)
         {   
-            var allergie = _allergieService.Get(name);
+            var allergie = await _allergieService.Get(name);
 
             if (allergie == null)
             {
@@ -40,41 +41,41 @@ namespace AllergiesApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<Allergie> Create(Allergie allergie)
+        public async Task <ActionResult<Allergie>> Create(Allergie allergie)
         {
-            _allergieService.Create(allergie);
+            await _allergieService.Create(allergie);
 
             return CreatedAtRoute("GetAllergie", new { name = allergie.Name.ToString() }, allergie);
         }
 
         [HttpPut("{name}")]
-        public IActionResult Update(string name, [FromBody] Allergie allergieIn)
+        public async Task <ActionResult<Allergie>> Update(string name, [FromBody] Allergie allergieIn)
         {
-            var allergie = _allergieService.Get(name);
+            var allergie = await _allergieService.Get(name);
 
             if (allergie == null)
             {
                 return NotFound();
             }
 
-            _allergieService.UpdateAllergie(name, allergieIn);
+            var updated = await _allergieService.UpdateAllergie(name, allergieIn);
 
-            return NoContent();
+            return updated;
         }
 
         [HttpDelete("{name}")]
-        public IActionResult Delete(string name)
+        public async Task <ActionResult<Allergie>> Delete(string name)
         {
-            var allergie = _allergieService.Get(name);
+            var allergie = await _allergieService.Get(name);
 
             if (allergie == null)
             {
                 return NotFound();
             }
 
-            _allergieService.Delete(allergie.Name);
+            var deleted = await _allergieService.Delete(allergie.Name);
 
-            return NoContent();
+            return deleted;
 
         }
         

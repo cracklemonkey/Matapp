@@ -43,13 +43,8 @@ namespace matAppBackEnd
             
             
              // requires using Microsoft.Extensions.Options
-            services.AddDbContext<ListingDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            services.AddDbContext<AllergieDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            services.AddDbContext<FoodTypeDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            services.AddDbContext<ListingAllergieDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            services.AddDbContext<ListingFoodTypeDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
+            services.AddDbContext<MatAppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
             
-
             services.AddScoped<ListingService>();
             services.AddScoped<AllergieService>();
             services.AddScoped<FoodTypeService>();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ListingFoodTypesApi.Controllers
 {
@@ -19,15 +20,15 @@ namespace ListingFoodTypesApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ListingFoodType>> Get() =>
-            _listingfoodtypeService.Get();
+        public async Task <ActionResult<List<ListingFoodType>>> Get() =>
+            await _listingfoodtypeService.Get();
 
           
 
          [HttpGet("{listingfoodtypeid}", Name = "GetListingFoodType")]
-        public ActionResult<ListingFoodType> Get(int listingfoodtypeid)
+        public async Task <ActionResult<ListingFoodType>> Get(int listingfoodtypeid)
         {   
-            var listingfoodtype = _listingfoodtypeService.Get(listingfoodtypeid);
+            var listingfoodtype = await _listingfoodtypeService.Get(listingfoodtypeid);
 
             if (listingfoodtype == null)
             {
@@ -40,41 +41,41 @@ namespace ListingFoodTypesApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<ListingFoodType> Create(ListingFoodType listingfoodtype)
+        public async Task< ActionResult<ListingFoodType>> Create(ListingFoodType listingfoodtype)
         {
-            _listingfoodtypeService.Create(listingfoodtype);
+            await _listingfoodtypeService.Create(listingfoodtype);
 
             return CreatedAtRoute("GetListingFoodType", new { listingfoodtypeid = listingfoodtype.ListingFoodTypeId.ToString() }, listingfoodtype);
         }
 
         [HttpPut("{listingfoodtypeid}")]
-        public IActionResult Update(int listingfoodtypeid, [FromBody] ListingFoodType listingfoodtypeIn)
+        public async Task <ActionResult<ListingFoodType>> Update(int listingfoodtypeid, [FromBody] ListingFoodType listingfoodtypeIn)
         {
-            var listingfoodtype = _listingfoodtypeService.Get(listingfoodtypeid);
+            var listingfoodtype = await _listingfoodtypeService.Get(listingfoodtypeid);
 
             if (listingfoodtype == null)
             {
                 return NotFound();
             }
 
-            _listingfoodtypeService.UpdateListingFoodType(listingfoodtypeid, listingfoodtypeIn);
+            var updated = await _listingfoodtypeService.UpdateListingFoodType(listingfoodtypeid, listingfoodtypeIn);
 
-            return NoContent();
+            return updated;
         }
 
         [HttpDelete("{listingfoodtypeid}")]
-        public IActionResult Delete(int listingfoodtypeid)
+        public async Task <ActionResult<ListingFoodType>> Delete(int listingfoodtypeid)
         {
-            var listingfoodtype = _listingfoodtypeService.Get(listingfoodtypeid);
+            var listingfoodtype = await _listingfoodtypeService.Get(listingfoodtypeid);
 
             if (listingfoodtype == null)
             {
                 return NotFound();
             }
 
-            _listingfoodtypeService.Delete(listingfoodtype.ListingFoodTypeId);
+            var deleted = await _listingfoodtypeService.Delete(listingfoodtype.ListingFoodTypeId);
 
-            return NoContent();
+            return deleted;
 
         }
         

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ListingAllergiesApi.Controllers
 {
@@ -19,15 +20,15 @@ namespace ListingAllergiesApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ListingAllergie>> Get() =>
-            _listingallergieService.Get();
+        public async Task <ActionResult<List<ListingAllergie>>> Get() =>
+            await _listingallergieService.Get();
 
           
 
          [HttpGet("{listingallergieid}", Name = "GetListingAllergie")]
-        public ActionResult<ListingAllergie> Get(int listingallergieid)
+        public async Task <ActionResult<ListingAllergie>> Get(int listingallergieid)
         {   
-            var listingallergie = _listingallergieService.Get(listingallergieid);
+            var listingallergie = await _listingallergieService.Get(listingallergieid);
 
             if (listingallergie == null)
             {
@@ -40,41 +41,43 @@ namespace ListingAllergiesApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<ListingAllergie> Create(ListingAllergie listingallergie)
+        public async Task <ActionResult<ListingAllergie>> Create(ListingAllergie listingallergie)
         {
-            _listingallergieService.Create(listingallergie);
+            await _listingallergieService.Create(listingallergie);
 
             return CreatedAtRoute("GetListingAllergie", new { listingallergieid = listingallergie.ListingAllergieId.ToString() }, listingallergie);
         }
 
         [HttpPut("{listingallergieid}")]
-        public IActionResult Update(int listingallergieid, [FromBody] ListingAllergie listingallergieIn)
+        public async Task <ActionResult<ListingAllergie>> Update(int listingallergieid, [FromBody] ListingAllergie listingallergieIn)
         {
-            var listingallergie = _listingallergieService.Get(listingallergieid);
+            var listingallergie =  await _listingallergieService.Get(listingallergieid);
 
             if (listingallergie == null)
             {
                 return NotFound();
             }
 
-            _listingallergieService.UpdateListingAllergie(listingallergieid, listingallergieIn);
+            var updated = await _listingallergieService.UpdateListingAllergie(listingallergieid, listingallergieIn);
 
-            return NoContent();
+            return updated;
+
+            
         }
 
         [HttpDelete("{listingallergieid}")]
-        public IActionResult Delete(int listingallergieid)
+        public async Task <ActionResult<ListingAllergie>> Delete(int listingallergieid)
         {
-            var listingallergie = _listingallergieService.Get(listingallergieid);
+            var listingallergie = await _listingallergieService.Get(listingallergieid);
 
             if (listingallergie == null)
             {
                 return NotFound();
             }
 
-            _listingallergieService.Delete(listingallergie.ListingAllergieId);
+            var deleted = await  _listingallergieService.Delete(listingallergie.ListingAllergieId);
 
-            return NoContent();
+            return deleted;
 
         }
         
