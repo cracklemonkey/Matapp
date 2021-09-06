@@ -1,12 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { AuthenticationGuard } from 'vue-auth0-plugin';
+
 import LandingPage from '../views/LandingPage.vue'
-import LoggIn from '../views/LoggIn.vue'
-import SignUp from '../views/SignUp.vue'
-import Products from '../views/Products.vue'
-import ProductDetails from '../components/ProductDetails.vue'
+import Listings from '../views/Listings.vue'
+import ListingDetails from '../components/ListingDetails.vue'
 import OrderPage from '../views/OrderPage.vue'
 import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
+import MyPosts from '../views/MyPosts.vue'
+import Historik from '../views/Historik.vue'
+import ListingByUser from '../components/ListingByUser.vue'
+import EditListing from '../components/EditListing.vue'
 
 
 const routes = [
@@ -17,50 +21,68 @@ const routes = [
   },
 
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/listing',
+    name: 'Listings',
+    component: Listings,
+
   },
 
   {
-    path: '/loggin',
-    name: 'LoggIn',
-    component: LoggIn
+    path: '/listing/:id',
+    name: 'ListingDetails',
+    component: ListingDetails,
+
+  },
+  {
+    path: '/listing/:id/edit',
+    name: 'EditListing',
+    component: EditListing,
+    beforeEnter: AuthenticationGuard
   },
 
-  {
-    path: '/signup',
-    name: 'SignUp',
-    component: SignUp
-  },
 
-  {
-    path: '/products',
-    name: 'Products',
-    component: Products
-  },
-
-  {
-    path: '/products/:productid',
-    name: 'ProductDetails',
-    component: ProductDetails
-  },
 
   {
     path: '/order',
     name: 'OrderPage',
-    component: OrderPage
+    component: OrderPage,
+    beforeEnter: AuthenticationGuard
   },
 
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    beforeEnter: AuthenticationGuard
   },
-
-  
-
-
+  {
+    path: '/profile/settings',
+    name: 'Settings',
+    component: Settings,
+    beforeEnter: AuthenticationGuard
+  },
+  {
+    path: '/profile/myposts',
+    name: 'MyPosts',
+    component: MyPosts,
+    beforeEnter: AuthenticationGuard
+  },
+  {
+    path: `/profile/:id/listing`,
+    name: 'ListingByUser',
+    component: ListingByUser
+  },
+  {
+    path: '/profile/historik',
+    name: 'Historik',
+    component: Historik,
+    beforeEnter: AuthenticationGuard
+  },
+  {
+    path: `/listing/user/:id`,
+    name: 'ListingByUser',
+    component: ListingByUser
+  },
 
   {
     path: '/about',
@@ -76,5 +98,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
 
 export default router
