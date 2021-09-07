@@ -1,29 +1,31 @@
 <template>
   <div>
-    <ProfileBanner />
-    <div>
-      <button class="btn-settings">
-        <router-link :to="`/profile/settings`">
-          <i class="fas fa-user-cog"></i>
-        </router-link>
-      </button>
-    </div>
-    <div class="my-listings">
-      <h2>My Listings</h2>
-      <div class="oneListing">
-        <div
-          class="listing-card"
-          v-for="(listing, index) in userListing"
-          :key="listing + index"
-        >
-          <router-link :to="`/listing/${listing.listingId}`">
-            <h3>{{ listing.title }}</h3>
-          </router-link>
+    <div class="my-listings-page">
+      <h2>All My Listings</h2>
+      <router-link :to="`/listing`"><p>Back to Listing</p></router-link>
+      <router-link :to="`/profile`"><p>Back to Profile</p></router-link>
+      <div
+        class="listing-div"
+        v-for="(listing, index) in userListing"
+        :key="listing + index"
+      >
+        <h3>{{ listing.title }}</h3>
 
-          <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-          <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-          <p>Posted by : {{ listing.userOwner }}</p>
-        </div>
+        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
+        <p>{{ listing.foodType }}</p>
+        <p>Posted by : {{ listing.userOwner }}</p>
+        <button>
+          <router-link :to="`/listing/${listing.listingId}`">
+            View details
+          </router-link>
+        </button>
+        <button>
+          <router-link :to="`/listing/${listing.listingId}/edit`">
+            Edit
+          </router-link>
+        </button>
+        <button @click="deleteListing(listing.listingId)">Delete</button>
       </div>
     </div>
   </div>
@@ -32,14 +34,10 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 
-import ProfileBanner from "../components/layout/ProfileBanner.vue";
 import dayjs from "dayjs";
 export default {
-  components: { ProfileBanner },
   data() {
-    return {
-      /* listings: [], */
-    };
+    return {};
   },
   created() {
     this.getListingsByUser(this.$auth.user.preferred_username);
@@ -64,27 +62,27 @@ export default {
 };
 </script>
 
-<style>
-.my-listings {
+<style scoped>
+.my-listings-page {
   width: 80%;
   margin: 1% auto;
 }
 
-.my-listings h2 {
-  text-align: start;
-  font-size: 2em;
+.my-listings-page h2 {
+  text-align: center;
+  font-size: 2.5em;
   padding-left: 20px;
   color: black;
 }
 .oneListing {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .listing-card {
-  width: 20%;
-  margin: 10px;
-  text-align: left;
+  width: 70%;
+  margin: 30px auto;
+  text-align: center;
 }
 .listing-card img {
   width: 100%;

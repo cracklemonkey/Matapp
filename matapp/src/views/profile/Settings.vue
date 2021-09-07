@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import ProfileBanner from "../components/layout/ProfileBanner.vue";
+import ProfileBanner from "../../components/layout/ProfileBanner.vue";
 export default {
   components: { ProfileBanner },
 };

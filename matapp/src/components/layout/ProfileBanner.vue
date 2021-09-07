@@ -17,18 +17,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProfileBanner",
   data() {
-    return {
-      users: [],
-    };
+    return {};
   },
-  methods: {
-    ...mapActions(["fetchUsers", "deleteUser", "updateUser"]),
-  },
-  computed: mapGetters(["alleUsers"]),
+  methods: {},
 };
 </script>
 

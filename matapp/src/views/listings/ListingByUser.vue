@@ -42,17 +42,24 @@
       >
         Delete
       </button>
+      <button
+        v-if="
+          $auth.authenticated &&
+          $auth.user.preferred_username != listing.userOwner
+        "
+      >
+        Order
+      </button>
       <button>
         <router-link :to="`/listing`"> Back to Listing </router-link>
       </button>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddListings from "../components/AddListings.vue";
+import AddListings from "../../components/AddListings.vue";
 import dayjs from "dayjs";
 
 export default {
@@ -62,17 +69,12 @@ export default {
     return {
       plusButton: false,
       routeId: this.$route.params.id,
-
-      /*       listingByUser: this.$route.params.userOwner,
-       */
     };
   },
   created() {
     this.getListingsByUser(this.$route.params.id);
   },
-  /* created() {
-    this.getListings();
-  }, */
+
   methods: {
     ...mapActions([
       "getListings",
@@ -80,8 +82,6 @@ export default {
       "deleteListing",
       "getListingById",
       "getListingsByUser",
-      "getUserById",
-      "getUsers",
     ]),
     togglePlus() {
       this.plusButton = !this.plusButton;
@@ -92,13 +92,7 @@ export default {
       return date.format("dddd D of MMMM, YYYY");
     },
   },
-  computed: mapGetters([
-    "oneListing",
-    "allListings",
-    "userListing",
-    "allUsers",
-    "oneUser",
-  ]),
+  computed: mapGetters(["oneListing", "allListings", "userListing"]),
 };
 </script>
 

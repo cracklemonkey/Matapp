@@ -10,24 +10,44 @@
     <p>{{ oneListing.allergies }}</p>
     <p>from {{ oneListing.userOwner }}</p>
     <p>Posted on: {{ formatDate(oneListing.creationDate) }}</p>
-    <button>
-      <router-link
-        v-if="
-          $auth.authenticated &&
-          $auth.user.preferred_username === oneListing.userOwner
-        "
-        :to="`/listing/${oneListing.listingId}/edit`"
-      >
+    <button
+      v-if="
+        $auth.authenticated &&
+        $auth.user.preferred_username === oneListing.userOwner
+      "
+    >
+      <router-link :to="`/listing/${oneListing.listingId}/edit`">
         Edit
       </router-link>
+    </button>
+    <button
+      v-if="
+        $auth.authenticated &&
+        $auth.user.preferred_username != oneListing.userOwner
+      "
+    >
+      Order
     </button>
     <button>
       <router-link :to="`/listing`"> Back to Listing </router-link>
     </button>
-    <button>
+    <button
+      v-if="
+        $auth.authenticated &&
+        $auth.user.preferred_username != oneListing.userOwner
+      "
+    >
       <router-link :to="`/listing/user/${oneListing.userOwner}`">
-        see all ads from user
+        see all listings from user
       </router-link>
+    </button>
+    <button
+      v-if="
+        $auth.authenticated &&
+        $auth.user.preferred_username === oneListing.userOwner
+      "
+    >
+      <router-link :to="`/profile/myposts`"> see all my listings </router-link>
     </button>
   </div>
 </template>
@@ -53,7 +73,7 @@ export default {
       return date.format("dddd D of MMMM, YYYY");
     },
   },
-  computed: mapGetters(["oneListing", "allUsers"]),
+  computed: mapGetters(["oneListing"]),
 };
 </script>
 

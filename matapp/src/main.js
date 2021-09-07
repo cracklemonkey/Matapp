@@ -8,9 +8,6 @@ import dayjs from 'dayjs'
 
 import './assets/css/style.css'
 
-
-
-
 const app = createApp(App)
 app.use(VueAuth0Plugin, {
     domain,
