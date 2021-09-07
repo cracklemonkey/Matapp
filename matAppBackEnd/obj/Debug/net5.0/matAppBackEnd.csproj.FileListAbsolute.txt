@@ -197,6 +197,10 @@ C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBack
 C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBackEnd.genruntimeconfig.cache
 >>>>>>> 9d1893db4385ed45362007cfd8d540309cdd93d6
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> origin/dev
+>>>>>>> Stashed changes
 =======
 >>>>>>> origin/dev
 >>>>>>> Stashed changes
