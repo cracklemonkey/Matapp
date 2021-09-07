@@ -9,14 +9,8 @@ namespace matAppBackEnd.Models
     {
         [Key]
         public int ListingAllergieId {get; set;}
-
         public int ListingId {get; set;}
-
         public int AllergieId {get; set;}
-
-
-
-
     }
 
 }
