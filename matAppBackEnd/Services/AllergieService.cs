@@ -46,9 +46,7 @@ namespace matAppBackEnd.Services
             await _allergies.SaveChangesAsync();
 
             return entity;
-
-
-            
+  
         }
 
         public void Delete(Allergie allergieIn) {
@@ -73,8 +71,6 @@ namespace matAppBackEnd.Services
 
          return entity;
             
-
         }
-
-}
+    }
 }

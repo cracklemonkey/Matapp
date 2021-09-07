@@ -8,7 +8,6 @@ namespace matAppBackEnd.Models
             : base(options)
         {
         }
-
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Allergie> Allergies { get; set; }
         public DbSet<FoodType> FoodType { get; set; }

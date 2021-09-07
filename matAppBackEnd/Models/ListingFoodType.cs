@@ -9,14 +9,8 @@ namespace matAppBackEnd.Models
     {
         [Key]
         public int ListingFoodTypeId {get; set;}
-
         public int ListingId {get; set;}
-
         public int FoodTypeId {get; set;}
-
-
-
-
     }
 
 }

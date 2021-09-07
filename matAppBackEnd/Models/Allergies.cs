@@ -9,12 +9,7 @@ namespace matAppBackEnd.Models
     {
         [Key]
         public int AllergieId {get; set;}
-
         public string Name {get; set;}
-
-
-
-
     }
 
 }
