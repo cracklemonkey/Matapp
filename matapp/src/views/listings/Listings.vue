@@ -22,6 +22,7 @@
       :key="listing + index"
     >
       <h3>{{ listing.title }}</h3>
+      <img :src="`https://localhost:5001/api/image/${listing.image}`" alt="" />
 
       <p>Posted : {{ formatDate(listing.creationDate) }}</p>
       <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
@@ -75,10 +76,8 @@ export default {
       "deleteListing",
       "updateListing",
       "getListingById",
+      "getImage",
     ]),
-    toggleModal() {
-      this.confirmDel = !this.confirmDel;
-    },
     togglePlus() {
       if (this.$auth.authenticated) {
         this.plusButton = !this.plusButton;
@@ -90,7 +89,7 @@ export default {
       return date.format("dddd D of MMMM, YYYY");
     },
   },
-  computed: mapGetters(["allListings"]),
+  computed: mapGetters(["allListings", "oneImage"]),
 };
 </script>
 
