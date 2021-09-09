@@ -37,11 +37,11 @@ const actions = {
     },
 
     async addImage(context, fd) {
-
         const response = await axios.post(`https://localhost:5001/api/image`, fd)
-
+        console.log("response", response.data);
         console.log(fd);
         context.commit('newImage', response.data);
+
     },
 
     async addListing(context, posts) {

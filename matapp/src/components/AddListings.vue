@@ -29,6 +29,7 @@
         <input
           type="file"
           accept="image/jpg, image/png, image/jpeg"
+          ref="file"
           @change="onImageSelected"
         />
       </div>
@@ -58,16 +59,18 @@ export default {
   methods: {
     ...mapActions(["addListing", "addImage"]),
     onImageSelected(e) {
+      /* const img = e.target.files[0];
+      this.posts.image = URL.toString(img); */
       this.posts.image = e.target.files[0];
     },
-
     postListing(event) {
       if (this.$auth.authenticated) {
+        console.log(this.posts);
         this.posts.userOwner = this.$auth.user.preferred_username;
         const fd = new FormData();
         fd.append("file", this.posts.image);
-        this.addImage(fd);
-        this.posts.image = this.posts.image.name;
+        this.addImage(fd); 
+        this.posts.image = this.posts.image.name
         this.addListing(this.posts);
         event.target.reset();
       }
@@ -81,18 +84,15 @@ export default {
   font-size: 20px;
   font-family: "Oswald", sans-serif;
 }
-
 .form-listing {
   font-size: 18px;
   width: 30%;
   margin: auto;
 }
-
 .form-listing div {
   display: flex;
   flex-direction: column;
 }
-
 .add-btn {
   font-family: inherit;
   font-size: 15px;

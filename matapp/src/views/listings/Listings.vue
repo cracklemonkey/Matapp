@@ -145,13 +145,6 @@ export default {
   color: black;
 }
 
-.listing-div button:hover {
-  font-size: 18px;
-}
-.listing-div a:hover {
-  color: #42b983;
-}
-
 .listing-img {
   padding: 20px;
   height: 100px;
