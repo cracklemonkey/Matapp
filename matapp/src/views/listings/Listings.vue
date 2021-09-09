@@ -21,35 +21,44 @@
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
-      <h3>{{ listing.title }}</h3>
-      <img :src="`https://localhost:5001/api/image/${listing.image}`" alt="" />
+      <div v-if="!listing.isOpened">
+        <h3>{{ listing.title }}</h3>
+        <img
+          class="listing-img"
+          :src="`https://localhost:5001/api/image/${listing.image}`"
+          alt=""
+        />
 
-      <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-      <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-      <p>{{ listing.foodType }}</p>
-      <p>Posted by : {{ listing.userOwner }}</p>
-      <button>
-        <router-link :to="`/listing/${listing.listingId}`">
-          View more details
-        </router-link>
-      </button>
-      <button
-        v-if="
-          $auth.authenticated &&
-          $auth.user.preferred_username === listing.userOwner
-        "
-        @click="deleteListing(listing.listingId)"
-      >
-        Delete
-      </button>
-      <button
-        v-if="
-          $auth.authenticated &&
-          $auth.user.preferred_username != listing.userOwner
-        "
-      >
-        Order
-      </button>
+        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
+        <p>{{ listing.foodType }}</p>
+        <p>Posted by : {{ listing.userOwner }}</p>
+        <button>
+          <router-link :to="`/listing/${listing.listingId}`">
+            View more details
+          </router-link>
+        </button>
+        <button
+          v-if="
+            $auth.authenticated &&
+            $auth.user.preferred_username === listing.userOwner
+          "
+          @click="deleteListing(listing.listingId)"
+        >
+          Delete
+        </button>
+        <form @submit.prevent="orderListing" method="PUT">
+          <button
+            v-if="
+              $auth.authenticated &&
+              $auth.user.preferred_username != listing.userOwner
+            "
+            @click="orderListing"
+          >
+            Order
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +73,9 @@ export default {
   data() {
     return {
       plusButton: false,
+      /* update: {
+        isOpened: false,
+      }, */
     };
   },
   created() {
@@ -87,6 +99,11 @@ export default {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
+    },
+    orderListing() {
+      this.listing.isOpened = !this.listing.isOpened;
+      this.updateListing(this.listing);
+      console.log(this.listing);
     },
   },
   computed: mapGetters(["allListings", "oneImage"]),
@@ -133,6 +150,11 @@ export default {
 }
 .listing-div a:hover {
   color: #42b983;
+}
+
+.listing-img {
+  padding: 20px;
+  height: 200px;
 }
 
 .plus-button {

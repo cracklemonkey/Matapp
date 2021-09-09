@@ -84,6 +84,23 @@ namespace matAppBackEnd.Services
 
             
         }
+        /*  */
+        /*  public async Task<Listing> UpdateIsOpened(int id, Listing listingIn){
+
+             var entity = _listings.Listings.FirstOrDefault(x => x.ListingId == id);
+
+            
+            entity.IsOpened = listingIn.IsOpened;
+            
+            
+            _listings.Listings.Update(entity.IsOpened);
+            await _listings.SaveChangesAsync();
+            
+            return entity;
+
+            
+        } */
+        /*  */
 
         public void Delete(Listing listingIn) {
               

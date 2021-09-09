@@ -106,6 +106,24 @@ namespace ListingsApi.Controllers
             return updated;
         }
 
+
+/* put action for isopened */
+
+        /* [HttpPut("{listingid}")]
+        public async Task <ActionResult<Listing>> Update(int listingid, [FromBody] Listing listingIn)
+        {
+            var listing = await _listingService.Get(listingid);
+
+            if (listing == null)
+            {
+                return NotFound();
+            }
+
+            var updated = await _listingService.UpdateIsOpened(listingid, listingIn.IsOpened);
+
+            return updated;
+        } */
+/* put action of isopenend */
         [HttpDelete("{listingid}")]
         public async Task <ActionResult<Listing>> Delete(int listingid)
         {

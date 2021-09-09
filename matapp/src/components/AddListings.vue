@@ -25,6 +25,14 @@
           v-model="posts.description"
         />
       </div>
+      <div>
+        <input
+          type="file"
+          accept="image/jpg, image/png, image/jpeg"
+          ref="file"
+          @change="onImageSelected"
+        />
+      </div>
 
       <button class="add-btn" type="submit">Add</button>
     </form>
@@ -41,19 +49,29 @@ export default {
         title: null,
         deadline: Date.now(),
         description: null,
+        image: null,
         userOwner: null,
         creationDate: new Date(),
       },
     };
   },
   methods: {
-    ...mapActions(["addListing"]),
+    ...mapActions(["addListing", "addImage"]),
+    onImageSelected(e) {
+      /* const img = e.target.files[0];
+      this.posts.image = URL.toString(img); */
+      this.posts.image = e.target.files[0];
+    },
 
-    postListing() {
+    postListing(event) {
       if (this.$auth.authenticated) {
         console.log(this.posts);
+        console.log(this.posts.image);
         this.posts.userOwner = this.$auth.user.preferred_username;
-
+        /* const fd = new FormData();
+        fd.append("image", this.posts.image, this.posts.image.name);
+        this.addImage(fd); */
+        this.addImage(this.posts.image);
         this.addListing(this.posts);
         event.target.reset();
       }
