@@ -50,9 +50,8 @@ namespace ImageApi.Controllers
 
         var blobName = await _imageService.CreateBlobAsync(file);
 
-      
 
-        return Ok();
+        return Ok(blobName);
 
  
         }
