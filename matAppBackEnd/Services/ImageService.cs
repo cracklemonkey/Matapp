@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 
 namespace matAppBackEnd.Services
 {
-    public class ImageService
+    public class ImageService 
     {
         private readonly BlobServiceClient _blobServiceClient;
 
@@ -46,18 +47,23 @@ namespace matAppBackEnd.Services
            return items;
         }
 
-        public async Task UploadeFileBlobAsync(FileModel model)
+        public async Task<string> CreateBlobAsync(IFormFile file)
         {
-            var containerClient = _blobServiceClient.GetBlobContainerClient("foodimages"); 
-            var blobClient = containerClient.GetBlobClient(model.MyFile.FileName);
-            await blobClient.UploadAsync(model.MyFile.OpenReadStream());
-        }
+      
+        var containerClient = _blobServiceClient.GetBlobContainerClient("foodimages");
+        var blobClient = containerClient.GetBlobClient(file.FileName.ToString());
+        await blobClient.UploadAsync(file.OpenReadStream());
+        return file.FileName.ToString();
+
+ 
+}
 
         public async Task DeleteBlobAsync(string imageName)
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient("foodimages");
             var blobClient = containerClient.GetBlobClient(imageName);
             await blobClient.DeleteIfExistsAsync();
+            
         }
     }
 }

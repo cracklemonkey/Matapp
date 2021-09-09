@@ -1,10 +1,10 @@
 using matAppBackEnd.Models;
 using matAppBackEnd.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Azure.Storage.Blobs;
 
 namespace ImageApi.Controllers
 {
@@ -24,7 +24,7 @@ namespace ImageApi.Controllers
         public async Task<IActionResult> GetImage(string imageName)
         {
             var data = await _imageService.GetBlobAsync(imageName);
-            return File(data, "image/jpg");
+            return File(data, "image/jpeg");
         }
 
         [HttpGet]
@@ -35,15 +35,26 @@ namespace ImageApi.Controllers
         }
 
 
-        [HttpPost("{uploade}")]
+        
+       
+        
+        
+        [HttpPost]
 
-        public async Task<IActionResult> UploadeFileBlobAsync([FromForm] FileModel model)
+ 
+        public async Task<IActionResult> CreateAsync([FromForm] IFormFile file)
+
         {
-            if (model.MyFile != null)
-            {
-               await _imageService.UploadeFileBlobAsync(model);
-            }
-            return Ok();
+
+        if (!ModelState.IsValid) return BadRequest("Invalid model state");
+
+        var blobName = await _imageService.CreateBlobAsync(file);
+
+      
+
+        return Ok();
+
+ 
         }
 
         [HttpDelete("{imageName}")]
