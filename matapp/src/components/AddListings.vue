@@ -29,7 +29,6 @@
         <input
           type="file"
           accept="image/jpg, image/png, image/jpeg"
-          ref="file"
           @change="onImageSelected"
         />
       </div>
@@ -40,7 +39,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AddListings",
   data() {
@@ -55,23 +54,20 @@ export default {
       },
     };
   },
+  computed: mapGetters(["oneImage"]),
   methods: {
     ...mapActions(["addListing", "addImage"]),
     onImageSelected(e) {
-      /* const img = e.target.files[0];
-      this.posts.image = URL.toString(img); */
       this.posts.image = e.target.files[0];
     },
 
     postListing(event) {
       if (this.$auth.authenticated) {
-        console.log(this.posts);
-        console.log(this.posts.image);
         this.posts.userOwner = this.$auth.user.preferred_username;
-        /* const fd = new FormData();
-        fd.append("image", this.posts.image, this.posts.image.name);
-        this.addImage(fd); */
-        this.addImage(this.posts.image);
+        const fd = new FormData();
+        fd.append("file", this.posts.image);
+        this.addImage(fd);
+        this.posts.image = this.posts.image.name;
         this.addListing(this.posts);
         event.target.reset();
       }
