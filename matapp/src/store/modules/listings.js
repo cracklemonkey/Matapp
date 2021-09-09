@@ -5,12 +5,16 @@ const state = {
     listings: [],
     oneListing: "",
     userListing: [],
+    images: [],
+    oneImage: ""
 };
 
 const getters = {
     allListings: (state) => state.listings,
+
     oneListing: (state) => state.oneListing,
-    userListing: (state) => state.userListing
+    userListing: (state) => state.userListing,
+    oneImage: (state) => state.oneImage
 
 };
 
@@ -20,6 +24,26 @@ const actions = {
 
         context.commit('setListings', response.data);
     },
+
+    async getImages(context) {
+        const response = await axios.get(`https://localhost:5001/api/image`);
+        console.log(response)
+        context.commit('setImages', response.data)
+    },
+
+    async getImage(context, name) {
+        const response = await axios.get(`https://localhost:5001/api/image/${name}`);
+        context.commit('setImage', response.data)
+    },
+
+    async addImage(context, fd) {
+        const response = await axios.post(`https://localhost:5001/api/image`, fd)
+        console.log("response", response.data);
+        console.log(fd);
+        context.commit('newImage', response.data);
+        
+    },
+
     async addListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/listings`, posts)
         console.log(response);
@@ -54,41 +78,25 @@ const actions = {
 };
 
 
-const mutations = {
-    setListings: (state, listings) => (state.listings = listings),
-    newListing: (state, oneListing) => state.listings.unshift(oneListing),
-    removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
-    /* removeListing: (state, id) => {
-        if (this.$auth.authenticated &&
-            this.$auth.user.preferred_username === this.listing.userOwner) {
-            state.listings = state.listings.filter(listing => listing.id !== id)
-        }
-    }, */
+    const mutations = {
+        setListings: (state, listings) => (state.listings = listings),
+        setImages: (state, images) => (state.images = images),
+        newListing: (state, oneListing) => state.listings.unshift(oneListing),
+        newImage: (state, oneImage) => state.images.push(oneImage),
+        removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
+        updateListing: (state, oneListing) => state.listings.forEach(upd => {
+            if (upd.updListingId == oneListing.updListingId) {
+                upd = oneListing
+            }
+        }),
+        setImage: (state, oneImage) => (state.oneImage = oneImage),
+        setListing: (state, oneListing) => (state.oneListing = oneListing),
+        listingOwner: (state, userListing) => (state.userListing = userListing),
+    };
 
-    updateListing: (state, oneListing) => state.listings.forEach(upd => {
-        if (upd.updListingId == oneListing.updListingId) {
-            upd = oneListing
-        }
-    }),
-
-    /* updateListing: (state, oneListing) => {
-        if (this.$auth.authenticated &&
-            this.$auth.user.preferred_username === this.listing.userOwner) {
-            state.listings.forEach(upd => {
-                if (upd.updListingId == oneListing.updListingId) {
-                    upd = oneListing
-                }
-            })
-        }
-
-    }, */
-    setListing: (state, oneListing) => (state.oneListing = oneListing),
-    listingOwner: (state, userListing) => (state.userListing = userListing),
-};
-
-export default {
-    state,
-    getters,
-    actions,
-    mutations
-};
+    export default {
+        state,
+        getters,
+        actions,
+        mutations
+    };
