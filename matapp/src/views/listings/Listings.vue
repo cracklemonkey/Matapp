@@ -32,6 +32,9 @@
 =======
       <h3>{{ listing.title }}</h3>
       <img :src="`https://localhost:5001/api/image/${listing.image}`" alt="" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>

@@ -6,7 +6,10 @@ const state = {
     oneListing: "",
     userListing: [],
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     images: [],
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     oneImage: ""
@@ -28,6 +31,7 @@ const actions = {
         context.commit('setListings', response.data);
     },
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     async getImages(context) {
         const response = await axios.get(`https://localhost:5001/api/image`);
         console.log(response)
@@ -35,10 +39,13 @@ const actions = {
     },
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     async getImage(context, name) {
         const response = await axios.get(`https://localhost:5001/api/image/${name}`);
         context.commit('setImage', response.data)
     },
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     async addImage(context, fd) {
         const response = await axios.post(`https://localhost:5001/api/image/uploade`, fd)
@@ -46,6 +53,8 @@ const actions = {
         console.log(fd);
         context.commit('newImage', response.data);
     },
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     async addListing(context, posts) {
