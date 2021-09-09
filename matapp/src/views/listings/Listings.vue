@@ -21,6 +21,7 @@
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
+<<<<<<< Updated upstream
       <div v-if="!listing.isOpened">
         <h3>{{ listing.title }}</h3>
         <img
@@ -28,6 +29,10 @@
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
         />
+=======
+      <h3>{{ listing.title }}</h3>
+      <img :src="`https://localhost:5001/api/image/${listing.image}`" alt="" />
+>>>>>>> Stashed changes
 
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>
         <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
