@@ -93,6 +93,7 @@ export default {
 };
 </script>
 
+
 <style>
 .title-page {
   font-family: "Oswald", sans-serif;

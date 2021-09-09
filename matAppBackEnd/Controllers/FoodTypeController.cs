@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FoodTypesApi.Controllers
 {
@@ -11,70 +12,70 @@ namespace FoodTypesApi.Controllers
     [ApiController]
     public class FoodTypesController : ControllerBase
     {
-        private readonly FoodTypeService _foodTypeService;
+        private readonly FoodTypeService _foodtypeService;
 
-        public FoodTypesController(FoodTypeService foodTypeService)
+        public FoodTypesController(FoodTypeService foodtypeService)
         {
-            _foodTypeService = foodTypeService;
+            _foodtypeService = foodtypeService;
         }
 
         [HttpGet]
-        public ActionResult<List<FoodType>> Get() =>
-            _foodTypeService.Get();
+        public async Task <ActionResult<List<FoodType>>> Get() =>
+            await _foodtypeService.Get();
 
           
 
-         [HttpGet("{foodTypeid}", Name = "GetFoodType")]
-        public ActionResult<FoodType> Get(int foodTypeid)
+         [HttpGet("{name}", Name = "GetFoodType")]
+        public async Task <ActionResult<FoodType>> Get(string name)
         {   
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodtype = await _foodtypeService.Get(name);
 
-            if (foodType == null)
+            if (foodtype == null)
             {
                 return NotFound();
             }
 
-            return foodType;
+            return foodtype;
         }
         
 
 
         [HttpPost]
-        public ActionResult<FoodType> Create(FoodType foodType)
+        public async Task <ActionResult<FoodType>> Create(FoodType foodtype)
         {
-            _foodTypeService.Create(foodType);
+            await _foodtypeService.Create(foodtype);
 
-            return CreatedAtRoute("GetFoodType", new { foodTypeid = foodType.FoodTypeId.ToString() }, foodType);
+            return CreatedAtRoute("GetFoodType", new { name = foodtype.Name.ToString() }, foodtype);
         }
 
-        [HttpPut("{foodTypeid}")]
-        public IActionResult Update(int foodTypeid, [FromBody] FoodType foodTypeIn)
+        [HttpPut("{name}")]
+        public async Task <ActionResult<FoodType>> Update(string name, [FromBody] FoodType foodtypeIn)
         {
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodtype = await _foodtypeService.Get(name);
 
-            if (foodType == null)
+            if (foodtype == null)
             {
                 return NotFound();
             }
 
-            _foodTypeService.UpdateFoodType(foodTypeid, foodTypeIn);
+            var updated = await _foodtypeService.UpdateFoodType(name, foodtypeIn);
 
-            return NoContent();
+            return updated;
         }
 
-        [HttpDelete("{foodTypeid}")]
-        public IActionResult Delete(int foodTypeid)
+        [HttpDelete("{name}")]
+        public async Task <ActionResult<FoodType>> Delete(string name)
         {
-            var foodType = _foodTypeService.Get(foodTypeid);
+            var foodtype = await _foodtypeService.Get(name);
 
-            if (foodType == null)
+            if (foodtype == null)
             {
                 return NotFound();
             }
 
-            _foodTypeService.Delete(foodType.FoodTypeId);
+            var deleted = await _foodtypeService.Delete(foodtype.Name);
 
-            return NoContent();
+            return deleted;
 
         }
         

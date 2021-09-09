@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace ListingsApi.Controllers
 {
@@ -19,15 +21,15 @@ namespace ListingsApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Listing>> Get() =>
-            _listingService.Get();
+        public async Task <ActionResult<List<Listing>>> Get() =>
+            await _listingService.Get();
 
           
 
          [HttpGet("{listingid}", Name = "GetListing")]
-        public ActionResult<Listing> Get(int listingid)
+        public async Task <ActionResult<Listing>> Get(int listingid)
         {   
-            var listing = _listingService.Get(listingid);
+            var listing = await _listingService.Get(listingid);
 
             if (listing == null)
             {
@@ -39,8 +41,8 @@ namespace ListingsApi.Controllers
         
         [HttpGet("userlistings/{userowner}", Name = "GetListingByUserOwner")]
 
-        public ActionResult<List<Listing>> GetListingByUserId(string userowner){
-            var userIdList = _listingService.GetListingByUserId(userowner);
+        public async Task <ActionResult<List<Listing>>> GetListingByUserId(string userowner){
+            var userIdList = await _listingService.GetListingByUserId(userowner);
 
               
             bool isEmpty = !userIdList.Any();
@@ -51,44 +53,72 @@ namespace ListingsApi.Controllers
             
             return userIdList;
         }
+        [HttpGet("foodtypelistings/{id}", Name = "GetListingByFoodType")]
+        public async Task<ActionResult<List<Listing>>> GetListingByFoodType(int id){
+            var List = await _listingService.GetListingByFoodType(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+        [HttpGet("allergielistings/{id}", Name = "GetListingsThatDosentConatinAllergie")]
+        public async Task <ActionResult<List<Listing>>> GetListingsThatDosentConatinAllergie(int id){
+            var List = await _listingService.GetListingsThatDosentConatinAllergie(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+        
         
 
         [HttpPost]
-        public ActionResult<Listing> Create(Listing listing)
+        public async Task <ActionResult<Listing>> Create(Listing listing)
         {
-            _listingService.Create(listing);
+            await _listingService.Create(listing);
 
             return CreatedAtRoute("GetListing", new { listingid = listing.ListingId.ToString() }, listing);
         }
 
         [HttpPut("{listingid}")]
-        public IActionResult Update(int listingid, [FromBody] Listing listingIn)
+        public async Task <ActionResult<Listing>> Update(int listingid, [FromBody] Listing listingIn)
         {
-            var listing = _listingService.Get(listingid);
+            var listing = await _listingService.Get(listingid);
 
             if (listing == null)
             {
                 return NotFound();
             }
 
-            _listingService.UpdateListing(listingid, listingIn);
+            var updated = await _listingService.UpdateListing(listingid, listingIn);
 
-            return NoContent();
+            return updated;
         }
 
         [HttpDelete("{listingid}")]
-        public IActionResult Delete(int listingid)
+        public async Task <ActionResult<Listing>> Delete(int listingid)
         {
-            var listing = _listingService.Get(listingid);
+            var listing = await _listingService.Get(listingid);
 
             if (listing == null)
             {
                 return NotFound();
             }
 
-            _listingService.Delete(listing.ListingId);
+            var deleted = await _listingService.Delete(listing.ListingId);
 
-            return NoContent();
+            return deleted;
 
         }
         

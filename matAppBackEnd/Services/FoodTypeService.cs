@@ -4,45 +4,48 @@ using System.Linq;
 using System.Data.Entity;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace matAppBackEnd.Services
 {
     public class FoodTypeService
     {
-        private readonly FoodTypeDbContext _foodtypes;
+        private readonly MatAppDbContext _foodtypes;
 
-        public FoodTypeService(FoodTypeDbContext dbContext)
+        public FoodTypeService(MatAppDbContext dbContext)
         {
 
             _foodtypes = dbContext;
         }
 
-        public List<FoodType> Get(){
+        public async Task <List<FoodType>> Get(){
             return _foodtypes.FoodType.ToList();
         }
-        public FoodType Get(int id){
-            var foodtype = _foodtypes.FoodType.Find(id);
+        public async Task <FoodType> Get(string name){
+            var foodtype = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
             return foodtype;
         }
        
            
        
-        public FoodType Create(FoodType foodtype)
+        public async Task <FoodType> Create(FoodType foodtype)
         {   
             _foodtypes.FoodType.Add(foodtype);
-            _foodtypes.SaveChanges();
+            await _foodtypes.SaveChangesAsync();
             return foodtype;
             
         }
 
-        public void UpdateFoodType(int id, FoodType foodtypeIn){
+        public async Task <FoodType> UpdateFoodType(string name, FoodType foodtypeIn){
 
-             var entity = _foodtypes.FoodType.FirstOrDefault(x => x.FoodTypeId == id);
+             var entity = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
 
             entity.Name = foodtypeIn.Name;
             
             _foodtypes.FoodType.Update(entity);
-            _foodtypes.SaveChanges();
+            await _foodtypes.SaveChangesAsync();
+
+            return entity;
 
             
         }
@@ -59,16 +62,16 @@ namespace matAppBackEnd.Services
         }
 
 
-        public void Delete(int id) {
+        public async Task <FoodType> Delete(string name) {
         
-        var entity = _foodtypes.FoodType.FirstOrDefault(x => x.FoodTypeId == id);
+        var entity = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
 
 
          _foodtypes.FoodType.Remove(entity);
-         _foodtypes.SaveChanges();
+         await _foodtypes.SaveChangesAsync();
+
+         return entity;
             
-
         }
-
-}
+    }
 }

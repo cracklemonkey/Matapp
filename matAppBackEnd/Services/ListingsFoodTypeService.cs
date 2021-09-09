@@ -4,38 +4,39 @@ using System.Linq;
 using System.Data.Entity;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace matAppBackEnd.Services
 {
     public class ListingFoodTypeService
     {
-        private readonly ListingFoodTypeDbContext _listingfoodtypes;
+        private readonly MatAppDbContext _listingfoodtypes;
 
-        public ListingFoodTypeService(ListingFoodTypeDbContext dbContext)
+        public ListingFoodTypeService(MatAppDbContext dbContext)
         {
 
             _listingfoodtypes = dbContext;
         }
 
-        public List<ListingFoodType> Get(){
+        public async Task <List<ListingFoodType>> Get(){
             return _listingfoodtypes.ListingFoodType.ToList();
         }
-        public ListingFoodType Get(int id){
+        public async Task <ListingFoodType> Get(int id){
             var listingfoodtype = _listingfoodtypes.ListingFoodType.Find(id);
             return listingfoodtype;
         }
        
            
        
-        public ListingFoodType Create(ListingFoodType listingfoodtype)
+        public async Task <ListingFoodType> Create(ListingFoodType listingfoodtype)
         {   
             _listingfoodtypes.ListingFoodType.Add(listingfoodtype);
-            _listingfoodtypes.SaveChanges();
+            await _listingfoodtypes.SaveChangesAsync();
             return listingfoodtype;
             
         }
 
-        public void UpdateListingFoodType(int id, ListingFoodType listingfoodtypeIn){
+        public async Task <ListingFoodType> UpdateListingFoodType(int id, ListingFoodType listingfoodtypeIn){
 
              var entity = _listingfoodtypes.ListingFoodType.FirstOrDefault(x => x.ListingFoodTypeId == id);
 
@@ -43,7 +44,9 @@ namespace matAppBackEnd.Services
             entity.FoodTypeId = listingfoodtypeIn.FoodTypeId;
             
             _listingfoodtypes.ListingFoodType.Update(entity);
-            _listingfoodtypes.SaveChanges();
+            await _listingfoodtypes.SaveChangesAsync();
+
+            return entity;
 
             
         }
@@ -60,16 +63,16 @@ namespace matAppBackEnd.Services
         }
 
 
-        public void Delete(int id) {
+        public async Task <ListingFoodType> Delete(int id) {
         
         var entity = _listingfoodtypes.ListingFoodType.FirstOrDefault(x => x.ListingFoodTypeId == id);
 
 
          _listingfoodtypes.ListingFoodType.Remove(entity);
-         _listingfoodtypes.SaveChanges();
-            
+         await _listingfoodtypes.SaveChangesAsync();
+
+         return entity;
 
         }
     }
-
 }

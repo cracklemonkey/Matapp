@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qBxq22xHBsQ4N5wr7b9wFYQEkEPNr+++lUL4sUI+ox6rWN6px5/7qu/0nSxdVYbaVjT9H6RnsqWcNHlQhoZMcQ==",
+  "dgSpecHash": "QQNGM4Qq4Udu0FHIiCqSRoywkOZ/hUdCl+UdLiAKYfOUa0NoSdTiBIkvPVeWITnTPkuby/HOyBRT1MsX5nloPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd.test\\matAppBackEnd.Test.csproj",
+  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend.test\\matAppBackEnd.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
