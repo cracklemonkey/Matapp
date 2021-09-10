@@ -52,13 +52,17 @@
         <button
           v-if="
             $auth.authenticated &&
-            $auth.user.preferred_username != listing.userOwner
+            $auth.user.preferred_username != listing.userOwner &&
+            !showConfirm
           "
-          @click="orderListing(listing.listingId)"
+          @click="toggleConfirm"
         >
           Order
         </button>
-        <ConfirmOrder />
+        <div v-if="showConfirm">
+          <ConfirmOrder :listing="listing" @close="toggleConfirm" />
+        </div>
+        <!-- @click="orderListing(listing.listingId)" -->
       </div>
     </div>
   </div>
@@ -75,6 +79,7 @@ export default {
   data() {
     return {
       plusButton: false,
+      showConfirm: false,
       postOrder: {
         userName: null,
         orderDate: new Date(),
@@ -100,6 +105,10 @@ export default {
         this.plusButton = !this.plusButton;
       }
     },
+    toggleConfirm() {
+      this.showConfirm = !this.showConfirm;
+    },
+
     formatDate(dateString) {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
