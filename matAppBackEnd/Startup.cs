@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using matAppBackEnd.Models;
 using matAppBackEnd.Services;
+using Azure.Storage.Blobs;
 
 namespace matAppBackEnd
 {
@@ -44,12 +45,18 @@ namespace matAppBackEnd
             
              // requires using Microsoft.Extensions.Options
             services.AddDbContext<MatAppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("MatAppDB")));
-            
+            services.AddScoped(x => new BlobServiceClient(Configuration.GetConnectionString("MatAppBlob")));
+
             services.AddScoped<ListingService>();
             services.AddScoped<AllergieService>();
             services.AddScoped<FoodTypeService>();
             services.AddScoped<ListingAllergieService>();
             services.AddScoped<ListingFoodTypeService>();
+            services.AddScoped<OrderListingService>();
+             services.AddScoped<OrderedListingService>();
+          
+            services.AddScoped<ImageService>();
+
          
             
             
