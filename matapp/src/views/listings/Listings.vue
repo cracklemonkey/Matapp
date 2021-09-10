@@ -58,6 +58,7 @@
         >
           Order
         </button>
+        <ConfirmOrder />
       </div>
     </div>
   </div>
@@ -66,10 +67,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
+import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
 import dayjs from "dayjs";
 export default {
   name: "Listings",
-  components: { AddListings },
+  components: { AddListings, ConfirmOrder },
   data() {
     return {
       plusButton: false,

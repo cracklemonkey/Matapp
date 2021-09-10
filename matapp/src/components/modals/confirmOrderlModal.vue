@@ -1,8 +1,8 @@
 <template>
   <div class="modal">
-    <p>Are you sure you want order it?</p>
+    <!--  <p>Are you sure you want order it?</p>
     <button>Yes</button>
-    <button>No</button>
+    <button>No</button> -->
   </div>
 </template>
 
