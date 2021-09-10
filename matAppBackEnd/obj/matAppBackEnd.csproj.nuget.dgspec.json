@@ -2,9 +2,12 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj": {}
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> dev
     "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj": {}
   },
   "projects": {
@@ -16,6 +19,7 @@
         "projectPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
         "packagesPath": "C:\\Users\\UltraGamer\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\",
+<<<<<<< HEAD
 =======
     "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj": {}
 >>>>>>> 7148758598a454424e701e3e636bef3d858e066e
@@ -38,6 +42,8 @@
         "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\",
 >>>>>>> origin/dev
+=======
+>>>>>>> dev
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\UltraGamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
