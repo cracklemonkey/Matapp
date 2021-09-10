@@ -24,6 +24,7 @@
       <div v-if="!listing.isOpened">
         <h3>{{ listing.title }}</h3>
         <img
+          v-if="listing.image != null"
           class="listing-img"
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
@@ -47,17 +48,16 @@
         >
           Delete
         </button>
-        <form @submit.prevent="orderListing" method="PUT">
-          <button
-            v-if="
-              $auth.authenticated &&
-              $auth.user.preferred_username != listing.userOwner
-            "
-            @click="orderListing"
-          >
-            Order
-          </button>
-        </form>
+
+        <button
+          v-if="
+            $auth.authenticated &&
+            $auth.user.preferred_username != listing.userOwner
+          "
+          @click="orderListing(listing.listingId)"
+        >
+          Order
+        </button>
       </div>
     </div>
   </div>
@@ -73,9 +73,11 @@ export default {
   data() {
     return {
       plusButton: false,
-      /* update: {
-        isOpened: false,
-      }, */
+      postOrder: {
+        userName: null,
+        orderDate: new Date(),
+        listingId: null,
+      },
     };
   },
   created() {
@@ -89,6 +91,7 @@ export default {
       "updateListing",
       "getListingById",
       "getImage",
+      "updateOrder",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
@@ -100,13 +103,15 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
-    orderListing() {
-      this.listing.isOpened = !this.listing.isOpened;
-      this.updateListing(this.listing);
-      console.log(this.listing);
+    orderListing(id) {
+      this.postOrder.listingId = id;
+      this.postOrder.username = this.$auth.user.preferred_username;
+      /* this.updateOrder(this.postOrder); */
+      /* this.moveListing(id); */
+      console.log(this.postOrder);
     },
   },
-  computed: mapGetters(["allListings", "oneImage"]),
+  computed: mapGetters(["allListings", "oneImage", "oneListing"]),
 };
 </script>
 

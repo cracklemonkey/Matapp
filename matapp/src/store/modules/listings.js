@@ -1,6 +1,5 @@
 import axios from 'axios';
-/* import users from './users';
- */
+
 const state = {
     listings: [],
     oneListing: "",
@@ -60,6 +59,7 @@ const actions = {
         console.log(response.data)
 
     },
+
     async getListingById(context, listingid) {
         const response = await axios.get(`https://localhost:5001/api/listings/${listingid}`);
 
