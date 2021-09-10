@@ -59,19 +59,23 @@ export default {
   methods: {
     ...mapActions(["addListing", "addImage"]),
     onImageSelected(e) {
-      /* const img = e.target.files[0];
-      this.posts.image = URL.toString(img); */
       this.posts.image = e.target.files[0];
     },
     postListing(event) {
       if (this.$auth.authenticated) {
         console.log(this.posts);
-        this.posts.userOwner = this.$auth.user.preferred_username;
-        const fd = new FormData();
-        fd.append("file", this.posts.image);
-        this.addImage(fd); 
-        this.posts.image = this.posts.image.name
-        this.addListing(this.posts);
+
+        if (this.posts.image != null) {
+          this.posts.userOwner = this.$auth.user.preferred_username;
+          const fd = new FormData();
+          fd.append("file", this.posts.image);
+          this.addImage(fd);
+          this.posts.image = this.posts.image.name;
+          this.addListing(this.posts);
+        } else {
+          this.posts.userOwner = this.$auth.user.preferred_username;
+          this.addListing(this.posts);
+        }
         event.target.reset();
       }
     },
