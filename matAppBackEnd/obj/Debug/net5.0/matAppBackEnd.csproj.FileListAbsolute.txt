@@ -273,7 +273,6 @@ C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBack
 /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/bin/Debug/net5.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.pdb
 /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
 /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
-<<<<<<< HEAD
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\EntityFramework.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
@@ -306,10 +305,13 @@ C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\runtime
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-=======
 C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\Azure.Core.dll
 C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\Azure.Storage.Blobs.dll
 C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\Azure.Storage.Common.dll
 C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\System.Memory.Data.dll
->>>>>>> origin/dev
+C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Azure.Storage.Common.dll
+C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\System.Memory.Data.dll

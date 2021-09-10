@@ -6651,19 +6651,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "projectName": "matAppBackEnd",
       "projectPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "packagesPath": "C:\\Users\\UltraGamer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
-      "projectName": "matAppBackEnd",
-      "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
-      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\",
->>>>>>> origin/dev
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\UltraGamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6744,6 +6736,12 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

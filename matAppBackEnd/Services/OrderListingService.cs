@@ -41,22 +41,22 @@ namespace matAppBackEnd.Services
             return orderlisting;
             
         }
-/*
-         public async Task<Listing> CreateOrderByListingId(int id){
 
-             var listing = _orderlistings.Listings.FirstOrDefault(x => x.ListingId == id);
-             var orderlisting = _orderlistings.OrderListings.FirstOrDefault(x => x.ListingId == id);
 
-            _orderlistings.OrderListings.Add(orderlisting);
-            await _orderlistings.SaveChangesAsync();
+public async Task<OrderListing> UpdateOrderListing(int id, OrderListing listingIn){
 
-            _orderlistings.Listings.Remove(listing);
-            _orderlistings.SaveChanges();
+             var entity =  _orderlistings.OrderListings.FirstOrDefault(x => x.OrderId == id);
+
+            entity.UserName = listingIn.UserName;
+            entity.OrderDate = listingIn.OrderDate;
+            entity.ListingId = listingIn.ListingId;
             
-            return orderlisting;
+             _orderlistings.OrderListings.Update(entity);
+            await _orderlistings.SaveChangesAsync();
+            
+            return entity;
 
-        }*/
-
+        }
 
         public async Task<OrderListing> Delete(int id) {
         
