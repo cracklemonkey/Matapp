@@ -43,6 +43,11 @@ const actions = {
         context.commit('newImage', response.data);
         
     },
+    async deleteImage(context, name) {
+        console.log("inside del", name)
+        await axios.delete(`https://localhost:5001/api/image/${name}`);
+        context.commit('removeImage', name);
+    },
 
     async addListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/listings`, posts)
@@ -84,6 +89,7 @@ const actions = {
         newListing: (state, oneListing) => state.listings.unshift(oneListing),
         newImage: (state, oneImage) => state.images.push(oneImage),
         removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
+        removeImage: (state, name) => state.images = state.images.filter(image => image.name !== name),
         updateListing: (state, oneListing) => state.listings.forEach(upd => {
             if (upd.updListingId == oneListing.updListingId) {
                 upd = oneListing

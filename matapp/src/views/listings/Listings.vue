@@ -45,7 +45,7 @@
             $auth.authenticated &&
             $auth.user.preferred_username === listing.userOwner
           "
-          @click="deleteListing(listing.listingId)"
+          @click="remove(listing.listingId, listing.image)"
         >
           Delete
         </button>
@@ -91,6 +91,7 @@
               "updateListing",
               "getListingById",
               "getImage",
+              "deleteImage",
             ]),
             togglePlus() {
               if (this.$auth.authenticated) {
@@ -107,6 +108,15 @@
               this.updateListing(this.listing);
               console.log(this.listing);
             },
+
+            remove(id, image){
+              console.log(image)
+              this.deleteListing(id)
+              this.deleteImage(image)
+              window.location.reload()
+
+            }
+
           },
           computed: mapGetters(["allListings", "oneImage"]),
         };

@@ -69,12 +69,15 @@ export default {
         this.posts.userOwner = this.$auth.user.preferred_username;
         const fd = new FormData();
         fd.append("file", this.posts.image);
+        console.log(fd.values().name)
         this.addImage(fd); 
         this.posts.image = this.posts.image.name
         this.addListing(this.posts);
         event.target.reset();
       }
+      
     },
+    
   },
 };
 </script>
