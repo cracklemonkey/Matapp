@@ -91,6 +91,23 @@ namespace ListingsApi.Controllers
             return CreatedAtRoute("GetListing", new { listingid = listing.ListingId.ToString() }, listing);
         }
 
+        [HttpPost("{listingid}")]
+        public async Task <ActionResult<Listing>> CreateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)
+        {
+            var listing = await _listingService.Get(listingid);
+
+            if (listing == null)
+            {
+                return NotFound();
+            }
+
+            var orderedlisting = await _listingService.CreateOrderedListing(listingid, listingIn);
+
+            return orderedlisting;
+        }
+
+
+
         [HttpPut("{listingid}")]
         public async Task <ActionResult<Listing>> Update(int listingid, [FromBody] Listing listingIn)
         {
