@@ -50,6 +50,10 @@ namespace matAppBackEnd
             services.AddScoped<FoodTypeService>();
             services.AddScoped<ListingAllergieService>();
             services.AddScoped<ListingFoodTypeService>();
+            services.AddScoped<OrderListingService>();
+             services.AddScoped<OrderedListingService>();
+          
+
          
             
             
