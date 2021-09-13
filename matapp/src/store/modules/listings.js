@@ -38,9 +38,10 @@ const actions = {
 
     async addImage(context, fd) {
         const response = await axios.post(`https://localhost:5001/api/image`, fd)
-        console.log("response", response.data);
-        console.log(fd);
+        
+        console.log(response.data);
         context.commit('newImage', response.data);
+        return response.data;
         
     },
     async deleteImage(context, name) {
@@ -51,7 +52,7 @@ const actions = {
 
     async addListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/listings`, posts)
-        console.log(response);
+        console.log(response.data);
         console.log(posts)
         context.commit('newListing', response.data);
     },
@@ -68,7 +69,7 @@ const actions = {
     async getListingById(context, listingid) {
         const response = await axios.get(`https://localhost:5001/api/listings/${listingid}`);
 
-        console.log(response.data)
+        console.log(response)
         context.commit('setListing', response.data)
 
     },

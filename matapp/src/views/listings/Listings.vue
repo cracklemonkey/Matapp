@@ -49,17 +49,7 @@
         >
           Delete
         </button>
-        <form @submit.prevent="orderListing" method="PUT">
-          <button
-            v-if="
-              $auth.authenticated &&
-              $auth.user.preferred_username != listing.userOwner
-            "
-            @click="orderListing"
-          >
-            Order
-          </button>
-        </form>
+        <order-listing :listing="listing"/>
       </div>
     </div>
   </div>
@@ -69,9 +59,10 @@
         import { mapGetters, mapActions } from "vuex";
         import AddListings from "../../components/AddListings.vue";
         import dayjs from "dayjs";
+        import OrderListing from '../../components/OrderListing.vue';
         export default {
           name: "Listings",
-          components: { AddListings },
+          components: { AddListings, OrderListing },
           data() {
             return {
               plusButton: false,

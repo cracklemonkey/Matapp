@@ -63,15 +63,16 @@ export default {
       this.posts.image = URL.toString(img); */
       this.posts.image = e.target.files[0];
     },
-    postListing(event) {
+    async postListing(event) {
       if (this.$auth.authenticated) {
-        console.log(this.posts);
         this.posts.userOwner = this.$auth.user.preferred_username;
         const fd = new FormData();
         fd.append("file", this.posts.image);
         console.log(fd.values().name)
-        this.addImage(fd); 
-        this.posts.image = this.posts.image.name
+        this.posts.image = await this.addImage(fd); 
+        console.log('AAA', this.posts.image)
+        
+        console.log(this.posts);
         this.addListing(this.posts);
         event.target.reset();
       }
