@@ -59,21 +59,28 @@ export default {
   methods: {
     ...mapActions(["addListing", "addImage"]),
     onImageSelected(e) {
-      /* const img = e.target.files[0];
-      this.posts.image = URL.toString(img); */
       this.posts.image = e.target.files[0];
     },
     async postListing(event) {
       if (this.$auth.authenticated) {
-        this.posts.userOwner = this.$auth.user.preferred_username;
-        const fd = new FormData();
-        fd.append("file", this.posts.image);
-        console.log(fd.values().name)
-        this.posts.image = await this.addImage(fd); 
-        console.log('AAA', this.posts.image)
-        
+
         console.log(this.posts);
-        this.addListing(this.posts);
+
+        if (this.posts.image != null) {
+          this.posts.userOwner = this.$auth.user.preferred_username;
+          const fd = new FormData();
+          fd.append("file", this.posts.image);
+          console.log(fd.values().name)
+          this.posts.image = await this.addImage(fd); 
+          console.log('AAA', this.posts.image)
+        
+          console.log(this.posts);
+          this.addListing(this.posts);
+        } else {
+          this.posts.userOwner = this.$auth.user.preferred_username;
+          this.addListing(this.posts);
+        }
+
         event.target.reset();
       }
       

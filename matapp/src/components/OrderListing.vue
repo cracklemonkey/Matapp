@@ -41,7 +41,7 @@ export default {
             
             await this.addOrderListing(this.posts)
             await this.addOrderedListing(listing)
-            alert(`You hav orderd: ${listing.title}`)
+            alert(`You have orderd: ${listing.title}`)
             window.location.reload()
         }
     },

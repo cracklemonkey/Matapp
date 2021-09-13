@@ -1,12 +1,13 @@
 import axios from 'axios';
-/* import users from './users';
- */
+
 const state = {
     listings: [],
     oneListing: "",
     userListing: [],
     images: [],
-    oneImage: ""
+    oneImage: "",
+    foodTypes: [],
+    oneFoodType: ""
 };
 
 const getters = {
@@ -41,8 +42,12 @@ const actions = {
         
         console.log(response.data);
         context.commit('newImage', response.data);
+<<<<<<< HEAD
         return response.data;
         
+=======
+
+>>>>>>> origin/dev
     },
     async deleteImage(context, name) {
         console.log("inside del", name)
@@ -56,6 +61,12 @@ const actions = {
         console.log(posts)
         context.commit('newListing', response.data);
     },
+    /* async addFoodType(context, foodType) {
+        const response = await axios.post(`https://localhost:5001/api/foodtypes`, foodType)
+        console.log(response);
+        console.log(foodType)
+        context.commit('newFoodType', response.data);
+    }, */
     async deleteListing(context, id) {
         await axios.delete(`https://localhost:5001/api/listings/${id}`);
         context.commit('removeListing', id);
@@ -66,6 +77,7 @@ const actions = {
         console.log(response.data)
 
     },
+
     async getListingById(context, listingid) {
         const response = await axios.get(`https://localhost:5001/api/listings/${listingid}`);
 
@@ -84,6 +96,7 @@ const actions = {
 };
 
 
+<<<<<<< HEAD
     const mutations = {
         setListings: (state, listings) => (state.listings = listings),
         setImages: (state, images) => (state.images = images),
@@ -107,3 +120,28 @@ const actions = {
         actions,
         mutations
     };
+=======
+const mutations = {
+    setListings: (state, listings) => (state.listings = listings),
+    setImages: (state, images) => (state.images = images),
+    newListing: (state, oneListing) => state.listings.unshift(oneListing),
+/*     newFoodType: (state, oneFoodType) => state.foodTypes.push(oneFoodType),
+ */    newImage: (state, oneImage) => state.images.push(oneImage),
+    removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
+    updateListing: (state, oneListing) => state.listings.forEach(upd => {
+        if (upd.updListingId == oneListing.updListingId) {
+            upd = oneListing
+        }
+    }),
+    setImage: (state, oneImage) => (state.oneImage = oneImage),
+    setListing: (state, oneListing) => (state.oneListing = oneListing),
+    listingOwner: (state, userListing) => (state.userListing = userListing),
+};
+
+export default {
+    state,
+    getters,
+    actions,
+    mutations
+};
+>>>>>>> origin/dev

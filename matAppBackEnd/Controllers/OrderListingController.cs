@@ -48,6 +48,21 @@ namespace OrderListingsApi.Controllers
         }
 
 
+        [HttpPut("{listingid}")]
+        public async Task <ActionResult<OrderListing>> UpdateOrderListing(int orderid, [FromBody] OrderListing listingIn)
+        {
+            var listing = await _orderlistingService.Get(orderid);
+
+            if (listing == null)
+            {
+                return NotFound();
+            }
+
+            var updated = await _orderlistingService.UpdateOrderListing(orderid, listingIn);
+
+            return updated;
+        }
+        
 
            [HttpDelete("{orderid}")]
         public async Task <ActionResult<OrderListing>> Delete(int orderid)

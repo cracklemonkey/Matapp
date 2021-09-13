@@ -1,8 +1,13 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\danie\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\danie\\.nuget\\packages"
+<<<<<<< HEAD
+      "/Users/arianecoriat/.dotnet/store/|arch|/|tfm|",
+      "/Users/arianecoriat/.nuget/packages"
+=======
+      "C:\\Users\\UltraGamer\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\UltraGamer\\.nuget\\packages"
+>>>>>>> 7148758598a454424e701e3e636bef3d858e066e
     ]
   }
 }

@@ -30,8 +30,8 @@ namespace matAppBackEnd.Services
             return orderedlisting;
         }
        
-     /*
-        public async Task <OrderedListing> Create(OrderedListing orderedlisting)
+
+             public async Task <OrderedListing> Create(OrderedListing orderedlisting)
         {   
             
             _orderedlistings.OrderedListings.Add(orderedlisting);
@@ -41,7 +41,6 @@ namespace matAppBackEnd.Services
             return orderedlisting;
             
         }
-    */
 
           public async Task<OrderedListing> CreateOrderedListing(int id, OrderedListing listingIn){
 
@@ -65,6 +64,26 @@ namespace matAppBackEnd.Services
             return listingIn;
 
         }
+
+
+    public async Task<OrderedListing> UpdateOrderedListing(int id, OrderedListing listingIn){
+
+             var entity =  _orderedlistings.OrderedListings.FirstOrDefault(x => x.ListingId == id);
+
+            entity.Title = listingIn.Title;
+            entity.Description = listingIn.Description;
+            entity.CreationDate = listingIn.CreationDate;
+            entity.Deadline= listingIn.Deadline;
+            entity.IsOpened = listingIn.IsOpened;
+            entity.UserOwner = listingIn.UserOwner;
+            
+             _orderedlistings.OrderedListings.Update(entity);
+            await _orderedlistings.SaveChangesAsync();
+            
+            return entity;
+
+        }
+
 
         public async Task<OrderedListing> Delete(int id) {
         
