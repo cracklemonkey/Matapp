@@ -62,6 +62,12 @@ namespace matAppBackEnd
             
 
             services.AddControllers();
+
+            services.AddSpaStaticFiles(c=>
+            {
+
+                c.RootPath="../matapp/dist";
+            });
             
         }
 
@@ -70,6 +76,7 @@ namespace matAppBackEnd
         {
             
 
+            app.UseSpaStaticFiles();
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -82,7 +89,14 @@ namespace matAppBackEnd
             {
                 endpoints.MapControllers();
             });
-
+            app.UseSpa(config=>
+            {
+                config.Options.SourcePath="../matapp";
+                if(env.isDevelopment())
+                {
+                    config.UseProxyToSpaDevelopmentServer("http://localhost:8080/")
+                }
+            });
         }
     }
 }
