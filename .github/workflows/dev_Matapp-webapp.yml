@@ -21,6 +21,10 @@ jobs:
       with:
         dotnet-version: '5.0.x'
         include-prerelease: true
+    
+    - name: Install dependencies
+      run: dotnet restore
+      working-directory: matappbackend    
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
