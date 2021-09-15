@@ -20,18 +20,24 @@ namespace matAppBackEnd.Services
             _listings = dbContext;
         }
 
+
         public async Task <List<Listing>>  Get(){
             return _listings.Listings.ToList();
         }
+
+
         public async Task <Listing> Get(int id){
             var listing = _listings.Listings.Find(id);
             return listing;
         }
+
+
         public async Task <List<Listing>> GetListingByUserId(string userid){
             
             return _listings.Listings.Where(x => x.UserOwner.Equals(userid)).ToList();
            
        } 
+
 
        public async Task <List<Listing>> GetListingByFoodType(int id){
            
@@ -39,6 +45,7 @@ namespace matAppBackEnd.Services
             
             return list;
        }
+
 
        public async Task <List<Listing>> GetListingsThatDosentConatinAllergie(int id){
 
@@ -55,6 +62,16 @@ namespace matAppBackEnd.Services
             
             return list;
        }
+
+   public async Task <List<AllColumns>> GetAllColumns(){
+           
+            var list =  _listings.AllColumns.FromSqlRaw($"select  l.ListingId, l.Title, l.Description, l.CreationDate, l.Deadline, l.IsOpened, l.Image, l.UserOwner, lf.ListingFoodTypeId, lf.FoodTypeId, la.ListingAllergieId, la.AllergieId, a.Name as AllergieName, ft.Name as FoodTypeName FROM dbo.Listings AS l JOIN dbo.ListingFoodType AS lf ON l.ListingId = lf.ListingId JOIN dbo.ListingAllergie AS la ON l.ListingId = la.ListingId JOIN dbo.Allergies AS a ON la.AllergieId = a.AllergieId JOIN dbo.FoodType AS ft ON lf.FoodTypeId = ft.FoodTypeId").ToList();
+            
+            return list;
+       }
+
+
+
         public async Task <Listing> Create(Listing listing)
         {   
             
@@ -65,6 +82,7 @@ namespace matAppBackEnd.Services
             return listing;
             
         }
+
 
          public async Task<Listing> CreateOrderedListing(int id, OrderedListing listingIn){
 
