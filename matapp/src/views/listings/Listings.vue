@@ -44,10 +44,11 @@
             $auth.authenticated &&
             $auth.user.preferred_username === listing.userOwner
           "
-          @click="deleteListing(listing.listingId)"
+          @click="remove(listing.listingId, listing.image)"
         >
           Delete
         </button>
+        <order-listing :listing="listing" />
 
         <button
           v-if="
@@ -73,9 +74,10 @@ import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
 import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
 import dayjs from "dayjs";
+import OrderListing from '../../components/OrderListing.vue';
 export default {
   name: "Listings",
-  components: { AddListings, ConfirmOrder },
+  components: { AddListings, ConfirmOrder, OrderListing },
   data() {
     return {
       plusButton: false,

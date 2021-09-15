@@ -53,15 +53,25 @@ const actions = {
 
     async addImage(context, fd) {
         const response = await axios.post(`https://localhost:5001/api/image`, fd)
-        console.log("response", response.data);
-        console.log(fd);
+        
+        console.log(response.data);
         context.commit('newImage', response.data);
+<<<<<<< HEAD
+        return response.data;
+        
+=======
 
+>>>>>>> origin/dev
+    },
+    async deleteImage(context, name) {
+        console.log("inside del", name)
+        await axios.delete(`https://localhost:5001/api/image/${name}`);
+        context.commit('removeImage', name);
     },
 
     async addListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/listings`, posts)
-        console.log(response);
+        console.log(response.data);
         console.log(posts)
         context.commit('newListing', response.data);
         return response.data
@@ -92,7 +102,7 @@ const actions = {
     async getListingById(context, listingid) {
         const response = await axios.get(`https://localhost:5001/api/listings/${listingid}`);
 
-        console.log(response.data)
+        console.log(response)
         context.commit('setListing', response.data)
 
     },
@@ -107,6 +117,31 @@ const actions = {
 };
 
 
+<<<<<<< HEAD
+    const mutations = {
+        setListings: (state, listings) => (state.listings = listings),
+        setImages: (state, images) => (state.images = images),
+        newListing: (state, oneListing) => state.listings.unshift(oneListing),
+        newImage: (state, oneImage) => state.images.push(oneImage),
+        removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
+        removeImage: (state, name) => state.images = state.images.filter(image => image.name !== name),
+        updateListing: (state, oneListing) => state.listings.forEach(upd => {
+            if (upd.updListingId == oneListing.updListingId) {
+                upd = oneListing
+            }
+        }),
+        setImage: (state, oneImage) => (state.oneImage = oneImage),
+        setListing: (state, oneListing) => (state.oneListing = oneListing),
+        listingOwner: (state, userListing) => (state.userListing = userListing),
+    };
+
+    export default {
+        state,
+        getters,
+        actions,
+        mutations
+    };
+=======
 const mutations = {
     setListings: (state, listings) => (state.listings = listings),
     setFoodTypes: (state, foodTypes) => (state.foodTypes = foodTypes),
@@ -133,3 +168,4 @@ export default {
     actions,
     mutations
 };
+>>>>>>> origin/dev
