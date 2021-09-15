@@ -315,7 +315,7 @@ namespace matAppBackEnd.Test.TestServer{
             };
 
                 // act
-            var httpResponse = await client.PutAsJsonAsync($"api/listingfoodtype/{2222}",createModel);
+            var httpResponse = await client.PutAsJsonAsync($"api/listingfoodtypes/{2222}",createModel);
                 //assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
