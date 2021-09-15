@@ -122,8 +122,8 @@ export default {
           this.posts.userOwner = this.$auth.user.preferred_username;
           const fd = new FormData();
           fd.append("file", this.posts.image);
-          this.addImage(fd);
-          this.posts.image = this.posts.image.name;
+
+          this.posts.image = await this.addImage(fd);
 
           const data = await this.addListing(this.posts);
           console.log("here is the data", data);
