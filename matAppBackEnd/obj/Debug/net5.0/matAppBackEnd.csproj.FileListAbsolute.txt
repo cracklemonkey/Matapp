@@ -362,3 +362,4 @@ C:\Users\danie\Documents\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matappbackend\obj\Debug\net5.0\ref\matAppBackEnd.dll
 C:\Users\danie\Documents\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.pdb
 C:\Users\danie\Documents\Matapp\matappbackend\obj\Debug\net5.0\matAppBackEnd.genruntimeconfig.cache
+C:\Users\danie\Documents\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
