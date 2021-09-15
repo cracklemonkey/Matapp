@@ -28,9 +28,15 @@ jobs:
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
+      working-directory: matappbackend   
+      
+    - name: Test with dotnet
+      run: dotnet test --configuration Release
+      working-directory: matappbackend.test
 
     - name: dotnet publish
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      working-directory: matappbackend
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
