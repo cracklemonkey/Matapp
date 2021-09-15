@@ -21,7 +21,7 @@
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
-      <div v-if="!listing.isOpened">
+      <div>
         <h3>{{ listing.title }}</h3>
         <img
           v-if="listing.image != null"
@@ -55,7 +55,7 @@
             $auth.user.preferred_username != listing.userOwner &&
             !showConfirm
           "
-          @click="toggleConfirm"
+          @click="toggleConfirm()"
         >
           Order
         </button>
