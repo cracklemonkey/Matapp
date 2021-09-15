@@ -94,7 +94,7 @@ namespace matAppBackEnd
                 config.Options.SourcePath="../matapp";
                 if(env.isDevelopment())
                 {
-                    config.UseProxyToSpaDevelopmentServer("http://localhost:8080/")
+                    config.UseProxyToSpaDevelopmentServer("http://localhost:8080/");
                 }
             });
         }
