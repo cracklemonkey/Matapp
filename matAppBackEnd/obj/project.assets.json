@@ -6646,45 +6646,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "/Users/arianecoriat/.nuget/packages/": {}
-=======
-    "C:\\Users\\UltraGamer\\.nuget\\packages\\": {}
->>>>>>> 7148758598a454424e701e3e636bef3d858e066e
+    "C:\\Users\\danie\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "projectUniqueName": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "projectName": "matAppBackEnd",
-      "projectPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/matAppBackEnd.csproj",
-      "packagesPath": "/Users/arianecoriat/.nuget/packages/",
-      "outputPath": "/Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/",
+      "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/arianecoriat/.nuget/NuGet/NuGet.Config"
-=======
-<<<<<<< HEAD
-=======
->>>>>>> dev
-      "projectUniqueName": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
-      "projectName": "matAppBackEnd",
-      "projectPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\matAppBackEnd.csproj",
-      "packagesPath": "C:\\Users\\UltraGamer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\UltraGamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 7148758598a454424e701e3e636bef3d858e066e
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6750,11 +6729,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
->>>>>>> 7148758598a454424e701e3e636bef3d858e066e
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -6763,15 +6738,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-<<<<<<< HEAD
       "message": "Problem reading the cache file C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-=======
-<<<<<<< HEAD
-      "message": "Problem reading the cache file /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-=======
-      "message": "Problem reading the cache file C:\\Users\\UltraGamer\\Desktop\\DENEME\\Matapp\\matappbackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
->>>>>>> dev
->>>>>>> origin/dev
     },
     {
       "code": "NU1701",
