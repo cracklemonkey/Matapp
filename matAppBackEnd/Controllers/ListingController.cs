@@ -81,7 +81,20 @@ namespace ListingsApi.Controllers
             return List;
         }
         
-        
+
+  [HttpGet("getallcolumns", Name = "GetAllColumns")]
+        public async Task<ActionResult<List<AllColumns>>> GetAllColumns(){
+            var List = await _listingService.GetAllColumns();
+
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
 
         [HttpPost]
         public async Task <ActionResult<Listing>> Create(Listing listing)
@@ -90,6 +103,7 @@ namespace ListingsApi.Controllers
 
             return CreatedAtRoute("GetListing", new { listingid = listing.ListingId.ToString() }, listing);
         }
+
 
         [HttpPost("{listingid}")]
         public async Task <ActionResult<Listing>> CreateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)

@@ -205,7 +205,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync($"api/foodtypess/notafoodtype");
+            var httpResponse = await client.GetAsync($"api/foodtypes/notafoodtype");
 
             // assert
             httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
