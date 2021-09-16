@@ -126,7 +126,7 @@ namespace matAppBackEnd.Services
             return entity;
 
         }
-
+    
         public void Delete(Listing listingIn) {
               
             var entity = _listings.Listings.FirstOrDefault(x => x.ListingId == listingIn.ListingId);

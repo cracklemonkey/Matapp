@@ -49,11 +49,16 @@ namespace matAppBackEnd.Services
 
         public async Task<string> CreateBlobAsync(IFormFile file)
         {
+        
+        if (!Guid.TryParse(file.FileName, out var blobName))
+        {
+        blobName = Guid.NewGuid();
+        }
       
         var containerClient = _blobServiceClient.GetBlobContainerClient("foodimages");
-        var blobClient = containerClient.GetBlobClient(file.FileName.ToString());
+        var blobClient = containerClient.GetBlobClient(blobName.ToString());
         await blobClient.UploadAsync(file.OpenReadStream());
-        return file.FileName.ToString();
+        return blobName.ToString();
 
  
 }

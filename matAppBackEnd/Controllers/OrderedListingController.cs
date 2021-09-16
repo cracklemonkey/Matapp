@@ -39,7 +39,7 @@ namespace OrderedListingsApi.Controllers
             return orderedlisting;
         }
 
-    
+    /*
           [HttpPost]
         public async Task <ActionResult<OrderedListing>> Create(OrderedListing orderedlisting)
         {
@@ -48,9 +48,31 @@ namespace OrderedListingsApi.Controllers
             return CreatedAtRoute("GetOrderedListing", new { listingid = orderedlisting.ListingId.ToString() }, orderedlisting);
         }
 
+<<<<<<< HEAD
   
   [HttpPut("{listingid}")]
         public async Task <ActionResult<OrderedListing>> UpdateOrderedListing(int orderid, [FromBody] OrderedListing listingIn)
+=======
+    */
+
+        [HttpPost("{listingid}")]
+        public async Task <ActionResult<OrderedListing>> CreateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)
+        {
+            var listing = await _orderedlistingService.Get(listingid);
+
+            if (listing == null)
+            {
+                return NotFound();
+            }
+
+            var orderedlisting = await _orderedlistingService.CreateOrderedListing(listingid, listingIn);
+
+            return orderedlisting;
+        }
+
+    [HttpPut("{listingid}")]
+        public async Task <ActionResult<OrderedListing>> UpdateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)
+>>>>>>> 9d1f67bb051b2005a8273cf5bd15d5d8aac040df
         {
             var listing = await _orderedlistingService.Get(orderid);
 
