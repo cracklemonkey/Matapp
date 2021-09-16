@@ -25,6 +25,38 @@
           v-model="posts.description"
         />
       </div>
+      <div class="foodtype-boxes">
+        <p>What kind of food is it?</p>
+        <div
+          class="foodtypes"
+          v-for="(foodType, i) in allFoodTypes"
+          :key="foodType + i"
+        >
+          <label for="foodtype">{{ foodType.name }}</label>
+          <input
+            id="foodtype"
+            type="checkbox"
+            :value="foodType.foodTypeId"
+            v-model="checked"
+          />
+        </div>
+      </div>
+      <div class="allergies-boxes">
+        <p>Which allergies does it contain?</p>
+        <div
+          class="allergies"
+          v-for="(allergie, i) in allAllergies"
+          :key="allergie + i"
+        >
+          <label for="allergie">{{ allergie.name }}</label>
+          <input
+            id="allergie"
+            type="checkbox"
+            :value="allergie.allergieId"
+            v-model="checkedAllergies"
+          />
+        </div>
+      </div>
       <div>
         <input
           type="file"
@@ -43,6 +75,10 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "AddListings",
+  created() {
+    this.getFoodTypes();
+    this.getAllergies();
+  },
   data() {
     return {
       posts: {
@@ -53,39 +89,78 @@ export default {
         userOwner: null,
         creationDate: new Date(),
       },
+      postType: {
+        foodTypeId: null,
+        listingId: null,
+      },
+      postAllergies: {
+        allergieId: null,
+        listingId: null,
+      },
+      checked: [],
+      checkedAllergies: [],
     };
   },
-  computed: mapGetters(["oneImage"]),
+  computed: mapGetters(["oneImage", "allFoodTypes", "allAllergies"]),
   methods: {
-    ...mapActions(["addListing", "addImage"]),
+    ...mapActions([
+      "addListing",
+      "addImage",
+      "getFoodTypes",
+      "addFoodType",
+      "getAllergies",
+      "addAllergies",
+    ]),
     onImageSelected(e) {
       this.posts.image = e.target.files[0];
     },
     async postListing(event) {
       if (this.$auth.authenticated) {
-
         console.log(this.posts);
 
         if (this.posts.image != null) {
           this.posts.userOwner = this.$auth.user.preferred_username;
           const fd = new FormData();
           fd.append("file", this.posts.image);
-          console.log(fd.values().name)
-          this.posts.image = await this.addImage(fd); 
-          console.log('AAA', this.posts.image)
-        
-          console.log(this.posts);
-          this.addListing(this.posts);
+
+          this.posts.image = await this.addImage(fd);
+
+          const data = await this.addListing(this.posts);
+          console.log("here is the data", data);
+          this.postType.listingId = data.listingId;
+          console.log(this.postType.listingId);
+          for (let i = 0; i < this.checked.length; i++) {
+            this.postType.foodTypeId = this.checked[i];
+            await this.addFoodType(this.postType);
+            console.log(this.postType);
+          }
+          this.postAllergies.listingId = data.listingId;
+          for (let i = 0; i < this.checkedAllergies.length; i++) {
+            this.postAllergies.allergieId = this.checkedAllergies[i];
+            await this.addAllergies(this.postAllergies);
+            console.log(this.postAllergies);
+          }
         } else {
           this.posts.userOwner = this.$auth.user.preferred_username;
-          this.addListing(this.posts);
+          const data = await this.addListing(this.posts);
+          console.log("here is the data", data);
+          this.postType.listingId = data.listingId;
+          console.log(this.postType.listingId);
+          for (let i = 0; i < this.checked.length; i++) {
+            this.postType.foodTypeId = this.checked[i];
+            await this.addFoodType(this.postType);
+            console.log(this.postType);
+          }
+          this.postAllergies.listingId = data.listingId;
+          for (let i = 0; i < this.checkedAllergies.length; i++) {
+            this.postAllergies.allergieId = this.checkedAllergies[i];
+            await this.addAllergies(this.postAllergies);
+            console.log(this.postAllergies);
+          }
         }
-
         event.target.reset();
       }
-      
     },
-    
   },
 };
 </script>
@@ -115,5 +190,16 @@ export default {
 .add-btn:hover {
   font-size: 18px;
   color: #42b983;
+}
+.foodtype-boxes div {
+}
+.foodtypes {
+  text-align: start;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.foodtype {
 }
 </style>
