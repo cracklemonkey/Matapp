@@ -48,7 +48,7 @@ namespace OrderListingsApi.Controllers
         }
 
 
- [HttpPut("{listingid}")]
+        [HttpPut("{listingid}")]
         public async Task <ActionResult<OrderListing>> UpdateOrderListing(int orderid, [FromBody] OrderListing listingIn)
         {
             var listing = await _orderlistingService.Get(orderid);
