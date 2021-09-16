@@ -10,6 +10,7 @@ import MyPosts from '../views/profile/MyPosts.vue'
 import Historik from '../views/profile/Historik.vue'
 import ListingByUser from '../views/listings/ListingByUser.vue'
 import EditListing from '../views/listings/EditListing.vue'
+import About from '../views/About.vue'
 
 
 const routes = [
@@ -77,10 +78,10 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About,
+    meta: { adaptColor: 'nav--about', onScroll: 'nav--about-bis' },
+
+
   }
 ]
 

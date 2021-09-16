@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="space">
     <h1>
       All listings from user: <br />
       {{ routeId }}

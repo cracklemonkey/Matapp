@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.SpaServices.Extensions;
 using matAppBackEnd.Models;
 using matAppBackEnd.Services;
 using Azure.Storage.Blobs;
@@ -92,9 +93,9 @@ namespace matAppBackEnd
             app.UseSpa(config=>
             {
                 config.Options.SourcePath="../matapp";
-                if(env.isDevelopment())
+                if(env.IsDevelopment())
                 {
-                    config.UseProxyToSpaDevelopmentServer("http://localhost:8080/")
+                    config.UseProxyToSpaDevelopmentServer("http://localhost:8080/");
                 }
             });
         }

@@ -88,6 +88,14 @@ const actions = {
         await axios.delete(`https://localhost:5001/api/listings/${id}`);
         context.commit('removeListing', id);
     },
+    async deleteFoodType(context, id) {
+        await axios.delete(`https://localhost:5001/api/listingfoodtypes/${id}`);
+        context.commit('removeFoodType', id);
+    },
+    async deleteAllergie(context, id) {
+        await axios.delete(`https://localhost:5001/api/listingallergies/${id}`);
+        context.commit('removeAllergie', id);
+    },
     async updateListing(context, oneListing) {
         const response = await axios.put(`https://localhost:5001/api/listings/${oneListing.id}`, oneListing);
         context.commit('updateListing', response.data);
@@ -123,6 +131,8 @@ const mutations = {
     newAllergies: (state, oneAllergie) => state.allergies.push(oneAllergie),
     newImage: (state, oneImage) => state.images.push(oneImage),
     removeListing: (state, id) => state.listings = state.listings.filter(listing => listing.id !== id),
+    removeFoodtype: (state, id) => state.foodTypes = state.foodTypes.filter(foodtype => foodtype.id !== id),
+    removeAllergie: (state, id) => state.allergies = state.allergies.filter(allergie => allergie.id !== id),
     updateListing: (state, oneListing) => state.listings.forEach(upd => {
         if (upd.updListingId == oneListing.updListingId) {
             upd = oneListing

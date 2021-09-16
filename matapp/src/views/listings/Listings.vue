@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background-listing space">
     <h1 class="title-page">All Listings</h1>
 
     <div>
@@ -17,18 +17,18 @@
     </div>
 
     <div
-      class="listing-div"
+      class="listing-div nav-change"
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
       <div>
-        <h3>{{ listing.title }}</h3>
         <img
           v-if="listing.image != null"
           class="listing-img"
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
         />
+        <h3>{{ listing.title }}</h3>
 
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>
         <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
@@ -50,7 +50,7 @@
         </button>
         <order-listing :listing="listing" />
 
-        <button
+        <!-- <button
           v-if="
             $auth.authenticated &&
             $auth.user.preferred_username != listing.userOwner &&
@@ -62,7 +62,7 @@
         </button>
         <div v-if="showConfirm">
           <ConfirmOrder :listing="listing" @close="toggleConfirm" />
-        </div>
+        </div> -->
         <!-- @click="orderListing(listing.listingId)" -->
       </div>
     </div>
@@ -72,12 +72,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
-import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
-import dayjs from "dayjs";
-import OrderListing from '../../components/OrderListing.vue';
+/* import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
+ */ import dayjs from "dayjs";
+import OrderListing from "../../components/OrderListing.vue";
 export default {
   name: "Listings",
-  components: { AddListings, ConfirmOrder, OrderListing },
+  components: { AddListings, /*  ConfirmOrder, */ OrderListing },
   data() {
     return {
       plusButton: false,
@@ -141,6 +141,7 @@ export default {
   width: 50%;
   margin: 10px auto;
   border: 3px solid black;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
   border-radius: 20px;
 }
@@ -148,6 +149,7 @@ export default {
 .listing-div p {
   padding: 5px;
   font-size: 18px;
+  text-align: center;
 }
 
 .listing-div button {
@@ -165,7 +167,9 @@ export default {
 
 .listing-img {
   padding: 20px;
-  height: 100px;
+  max-width: 200px;
+  max-height: 200px;
+  float: left;
 }
 
 .plus-button {

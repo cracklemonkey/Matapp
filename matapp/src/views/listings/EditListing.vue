@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="space">
     <h1>Edit</h1>
     <form class="form-listing" @submit.prevent="editListing" method="PUT">
       <div>
