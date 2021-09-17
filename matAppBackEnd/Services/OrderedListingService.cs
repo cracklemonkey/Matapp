@@ -42,29 +42,7 @@ namespace matAppBackEnd.Services
             
         }
 
-          public async Task<OrderedListing> CreateOrderedListing(int id, OrderedListing listingIn){
-
-             var entity = _orderedlistings.Listings.FirstOrDefault(x => x.ListingId == id);
-
-            listingIn.ListingId = entity.ListingId;
-            listingIn.Title = entity.Title;
-            listingIn.Description = entity.Description;
-            listingIn.CreationDate = entity.CreationDate;
-            listingIn.Deadline = entity.Deadline;
-            listingIn.IsOpened = entity.IsOpened ;
-            listingIn.UserOwner = entity.UserOwner;
-            listingIn.Image = entity.Image;
-
-            _orderedlistings.OrderedListings.Add(listingIn);
-            await _orderedlistings.SaveChangesAsync();
-
-            _orderedlistings.Listings.Remove(entity);
-            _orderedlistings.SaveChanges();
-            
-            return listingIn;
-
-        }
-
+         
 
     public async Task<OrderedListing> UpdateOrderedListing(int id, OrderedListing listingIn){
 

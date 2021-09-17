@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about space-about">
     <div class="text-about">
       <h3>A little bit about us</h3>
       <p>

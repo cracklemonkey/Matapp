@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="space">
     <ProfileBanner />
     <div>
       <button class="btn-settings">

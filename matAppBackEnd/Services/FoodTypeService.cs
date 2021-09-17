@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace matAppBackEnd.Services
 {
@@ -25,9 +26,16 @@ namespace matAppBackEnd.Services
             var foodtype = _foodtypes.FoodType.FirstOrDefault(x => x.Name == name);
             return foodtype;
         }
-       
+    
+
+        public async Task <List<FoodType>> GetFoodTypesByListingId(int id){
            
-       
+            var foodtypes =  _foodtypes.FoodType.FromSqlRaw($"select f.FoodTypeId, f.Name FROM [dbo].[FoodType] AS f JOIN [dbo].[ListingFoodType] AS lf ON f.FoodTypeId = lf.FoodTypeId JOIN [dbo].[Listings] AS l ON lf.ListingId = l.ListingId WHERE l.ListingId ={id}").ToList();
+            
+            return foodtypes;
+       }
+      
+
         public async Task <FoodType> Create(FoodType foodtype)
         {   
             _foodtypes.FoodType.Add(foodtype);

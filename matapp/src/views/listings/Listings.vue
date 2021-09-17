@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background-listing space">
     <h1 class="title-page">All Listings</h1>
 
     <div>
@@ -17,18 +17,18 @@
     </div>
 
     <div
-      class="listing-div"
+      class="listing-div nav-change"
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
       <div>
-        <h3>{{ listing.title }}</h3>
         <img
           v-if="listing.image != null"
           class="listing-img"
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
         />
+        <h3>{{ listing.title }}</h3>
 
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>
         <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
@@ -48,22 +48,7 @@
         >
           Delete
         </button>
-        <order-listing :listing="listing" />
-
-        <button
-          v-if="
-            $auth.authenticated &&
-            $auth.user.preferred_username != listing.userOwner &&
-            !showConfirm
-          "
-          @click="toggleConfirm()"
-        >
-          Order
-        </button>
-        <div v-if="showConfirm">
-          <ConfirmOrder :listing="listing" @close="toggleConfirm" />
-        </div>
-        <!-- @click="orderListing(listing.listingId)" -->
+        <order-listing :listing="listing" @update="orderupdate()" />
       </div>
     </div>
   </div>
@@ -72,16 +57,15 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
-import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
 import dayjs from "dayjs";
-import OrderListing from '../../components/OrderListing.vue';
+import OrderListing from "../../components/OrderListing.vue";
 export default {
   name: "Listings",
-  components: { AddListings, ConfirmOrder, OrderListing },
+  components: { AddListings, OrderListing },
   data() {
     return {
       plusButton: false,
-      showConfirm: false,
+      orderkey: 0,
       postOrder: {
         userName: null,
         orderDate: new Date(),
@@ -100,15 +84,12 @@ export default {
       "updateListing",
       "getListingById",
       "getImage",
-      "updateOrder",
+      "deleteImage",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
         this.plusButton = !this.plusButton;
       }
-    },
-    toggleConfirm() {
-      this.showConfirm = !this.showConfirm;
     },
 
     formatDate(dateString) {
@@ -116,12 +97,15 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
-    orderListing(id) {
-      this.postOrder.listingId = id;
-      this.postOrder.username = this.$auth.user.preferred_username;
-      /* this.updateOrder(this.postOrder); */
-      /* this.moveListing(id); */
-      console.log(this.postOrder);
+
+    orderupdate() {
+      console.log("test");
+      window.location.reload();
+    },
+    remove(listingId, imageName) {
+      this.deleteListing(listingId),
+        this.deleteImage(imageName),
+        window.location.reload();
     },
   },
   computed: mapGetters(["allListings", "oneImage", "oneListing"]),
@@ -141,6 +125,7 @@ export default {
   width: 50%;
   margin: 10px auto;
   border: 3px solid black;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
   border-radius: 20px;
 }
@@ -148,6 +133,7 @@ export default {
 .listing-div p {
   padding: 5px;
   font-size: 18px;
+  text-align: center;
 }
 
 .listing-div button {
@@ -165,7 +151,9 @@ export default {
 
 .listing-img {
   padding: 20px;
-  height: 100px;
+  max-width: 200px;
+  max-height: 200px;
+  float: left;
 }
 
 .plus-button {
