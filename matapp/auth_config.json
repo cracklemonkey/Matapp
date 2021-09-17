@@ -1,5 +1,5 @@
 {
-    "domain": "dev-a428mis1.eu.auth0.com",
-    "client_id": "yyDpPRdeeaonL5nW7XNcTsIcrXqJ1zKn",
+    "domain": "dev-v46fv9d2.eu.auth0.com",
+    "client_id": "VvzZUhsrev48KcsISWHaz3thmfcvboCg",
     "redirect_uri": "http://localhost:8080/listing"
 }
