@@ -1,5 +1,5 @@
 <template>
-  <div class="background-landing">
+  <div class="background-landing space">
     <button v-if="!$auth.loading" class="landing-bubble">
       <h3 v-if="!$auth.authenticated" @click="login">
         New to MatApp? <br />
