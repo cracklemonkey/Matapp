@@ -25,7 +25,7 @@ namespace AllergiesApi.Controllers
 
           
 
-         [HttpGet("name/{name}", Name = "GetAllergiebyname")]
+         [HttpGet("{name}", Name = "GetAllergiebyname")]
         public async Task <ActionResult<Allergie>> Get(string name)
         {   
             var allergie = await _allergieService.Get(name);
