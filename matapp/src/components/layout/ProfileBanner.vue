@@ -2,12 +2,12 @@
   <div class="profile-banner">
     <img
       class="banner-img"
-      src="../../assets/images/david-fartek-8xxW3z31k8A-unsplash2.jpeg"
+      src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
       alt=""
     />
     <img
-      class="banner-img"
-      src="../../assets/images/david-fartek-8xxW3z31k8A-unsplash2.jpeg"
+      class="banner-img second-image"
+      src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
       alt=""
     />
     <img class="profile-img" :src="$auth.user.picture" alt="" />
@@ -42,21 +42,14 @@ export default {
   text-align: center;
   bottom: 40px;
 }
+.second-image {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
 .profile-banner p {
   font-size: 40px;
   position: relative;
   bottom: 40px;
-}
-
-.rating i {
-  color: gold;
-  font-size: 1.5em;
-}
-.rating {
-  margin: 10px;
-}
-.rating span {
-  margin-left: 10px;
 }
 </style>

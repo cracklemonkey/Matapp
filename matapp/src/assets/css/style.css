@@ -1,8 +1,81 @@
+/* NAV */
+.nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+.nav a {
+  font-weight: bold;
+  color: white;
+  padding: 20px;
+}
+
+.nav a.router-link-exact-active {
+  color: #070b0f;
+  /* color: #2c3e50; */
+  
+}
+
+.nav a:hover{
+  color: #070b0f;
+}
+.nav--show{
+  animation: fadeIn 0.4s;
+  -webkit-animation: fadeIn 0.4s;
+  -moz-animation: fadeIn 0.4s;
+  -o-animation: fadeIn 0.4s;
+  -ms-animation: fadeIn 0.4s;
+  background-color: white;
+  
+}
+
+.nav--show a{
+  color: black;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* space between nav and rest of body */
+.space{
+  padding-top: 100px;
+}
+
+/* Landing Page */
+
 .background-landing {
-    background-image: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg");
-    height: 100vh;
+    background: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg") no-repeat center fixed;
+    min-height: 90vh;
     background-size:cover;
     position: relative;
+    
     
   }
 
@@ -39,19 +112,44 @@
       color: black;
   }
 
+/* Listing Page */
+
+.background-listing{
+  background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,/*  url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"), */ url("../images/okeykat-lfubXm-MW0U-unsplash.jpeg") no-repeat center fixed;
+  min-height: 100vh;
+  background-size:100vmax;
+  background-blend-mode:multiply;
+/*  position: relative; */
+  
+}
+
+  /* About Page */
+.space-about{
+  padding-top: 160px;
+}
+.nav--about{
+  background-color: transparent;
+}
+.nav--about-bis{
+  background-color: white;
+}
+.nav--about a{
+  color: black;
+}
   .about{
-    background-image: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg");
-    height: 100vh;
-    background-size:cover;
+    background: url("../images/markus-winkler-RQxYIQMsS5M-unsplash.jpeg") no-repeat center fixed;
+    min-height: 100vh;
+    background-size:100vmax;
+    background-blend-mode: multiply;
     position: relative;
   }
 
   .text-about{
-      position: absolute;
-      background-color: rgba(150, 146, 146, .8);
-      font-size: 20px;
+      
+/*       background-color: rgba(150, 146, 146, .8);
+ */      font-size: 20px;
       width: 80%;
-      margin: 5%
+      margin: auto;
   }
 
   
