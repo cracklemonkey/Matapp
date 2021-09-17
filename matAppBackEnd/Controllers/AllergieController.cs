@@ -25,7 +25,7 @@ namespace AllergiesApi.Controllers
 
           
 
-         [HttpGet("name/{name}", Name = "GetAllergiebyname")]
+         [HttpGet("{name}", Name = "GetAllergiebyname")]
         public async Task <ActionResult<Allergie>> Get(string name)
         {   
             var allergie = await _allergieService.Get(name);
@@ -51,7 +51,7 @@ namespace AllergiesApi.Controllers
             return allergie;
         }
         
-        [HttpGet("{id}", Name = "GetAllergiesByListingId")]
+        [HttpGet("allergiesbylistingid/{id}", Name = "GetAllergiesByListingId")]
         public async Task<ActionResult<List<Allergie>>> GetAllergiesByListingId(int id){
             var List = await _allergieService.GetAllergiesByListingId(id);
 

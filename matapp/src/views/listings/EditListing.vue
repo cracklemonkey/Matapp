@@ -32,6 +32,9 @@
           @change="onImageSelected"
         />
       </div>
+      <div v-for="(allergie, index) in oneAllergie" :key="allergie + index">
+        <p>{{ allergie.name }}</p>
+      </div>
 
       <button type="submit">Update</button>
     </form>
@@ -61,6 +64,8 @@ export default {
   created() {
     console.log(this.$route.params.id);
     this.getListingById(this.$route.params.id);
+    this.getFTByListingId(this.$route.params.id);
+    this.getAllergiesByListingId(this.$route.params.id);
   },
   methods: {
     ...mapActions([
@@ -68,6 +73,10 @@ export default {
       "getListingById",
       "deleteImage",
       "addImage",
+      "updateFoodType",
+      "updateAllergie",
+      "getFTByListingId",
+      "getAllergiesByListingId",
     ]),
 
     onImageSelected(e) {
@@ -97,7 +106,12 @@ export default {
       this.$router.push({ name: "ListingDetails" });
     },
   },
-  computed: mapGetters(["oneListing"]),
+  computed: mapGetters([
+    "oneListing",
+    "oneFoodType",
+    "oneAllergie",
+    "allAllergies",
+  ]),
 };
 </script>
 
