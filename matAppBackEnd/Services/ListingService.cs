@@ -71,6 +71,34 @@ namespace matAppBackEnd.Services
        }
 
 
+  public async Task <List<AllColumns>> GetAllColumnsByFoodTypeId(int id){
+           
+            var list =  _listings.AllColumns.FromSqlRaw($"select  l.ListingId, l.Title, l.Description, l.CreationDate, l.Deadline, l.IsOpened, l.Image, l.UserOwner, lf.ListingFoodTypeId, lf.FoodTypeId, la.ListingAllergieId, la.AllergieId, a.Name as AllergieName, ft.Name as FoodTypeName FROM dbo.Listings AS l JOIN dbo.ListingFoodType AS lf ON l.ListingId = lf.ListingId JOIN dbo.ListingAllergie AS la ON l.ListingId = la.ListingId JOIN dbo.Allergies AS a ON la.AllergieId = a.AllergieId JOIN dbo.FoodType AS ft ON lf.FoodTypeId = ft.FoodTypeId WHERE ft.FoodTypeId = {id}").ToList();
+            
+            return list;
+       }
+
+  public async Task <List<AllColumns>> GetAllColumnsByAllergieId (int id){
+           
+            var list =  _listings.AllColumns.FromSqlRaw($"select  l.ListingId, l.Title, l.Description, l.CreationDate, l.Deadline, l.IsOpened, l.Image, l.UserOwner, lf.ListingFoodTypeId, lf.FoodTypeId, la.ListingAllergieId, la.AllergieId, a.Name as AllergieName, ft.Name as FoodTypeName FROM dbo.Listings AS l JOIN dbo.ListingFoodType AS lf ON l.ListingId = lf.ListingId JOIN dbo.ListingAllergie AS la ON l.ListingId = la.ListingId JOIN dbo.Allergies AS a ON la.AllergieId = a.AllergieId JOIN dbo.FoodType AS ft ON lf.FoodTypeId = ft.FoodTypeId WHERE a.AllergieId = {id}").ToList();
+            
+            return list;
+       }
+
+    public async Task <List<AllColumns>> GetAllColumnsByFoodTypeName(string foodname){
+            
+           var list =  _listings.AllColumns.FromSqlRaw($"select  l.ListingId, l.Title, l.Description, l.CreationDate, l.Deadline, l.IsOpened, l.Image, l.UserOwner, lf.ListingFoodTypeId, lf.FoodTypeId, la.ListingAllergieId, la.AllergieId, a.Name as AllergieName, ft.Name as FoodTypeName FROM dbo.Listings AS l JOIN dbo.ListingFoodType AS lf ON l.ListingId = lf.ListingId JOIN dbo.ListingAllergie AS la ON l.ListingId = la.ListingId JOIN dbo.Allergies AS a ON la.AllergieId = a.AllergieId JOIN dbo.FoodType AS ft ON lf.FoodTypeId = ft.FoodTypeId WHERE ft.Name = {foodname}").ToList();
+           
+           return list;
+       } 
+
+ public async Task <List<AllColumns>> GetAllColumnsByAllergieName(string allergiename){
+            
+           var list =  _listings.AllColumns.FromSqlRaw($"select  l.ListingId, l.Title, l.Description, l.CreationDate, l.Deadline, l.IsOpened, l.Image, l.UserOwner, lf.ListingFoodTypeId, lf.FoodTypeId, la.ListingAllergieId, la.AllergieId, a.Name as AllergieName, ft.Name as FoodTypeName FROM dbo.Listings AS l JOIN dbo.ListingFoodType AS lf ON l.ListingId = lf.ListingId JOIN dbo.ListingAllergie AS la ON l.ListingId = la.ListingId JOIN dbo.Allergies AS a ON la.AllergieId = a.AllergieId JOIN dbo.FoodType AS ft ON lf.FoodTypeId = ft.FoodTypeId WHERE a.Name = {allergiename}").ToList();
+           
+           return list;
+       } 
+
 
         public async Task <Listing> Create(Listing listing)
         {   

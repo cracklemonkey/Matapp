@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace matAppBackEnd.Services
 {
@@ -21,13 +22,26 @@ namespace matAppBackEnd.Services
         public async Task <List<Allergie>> Get(){
             return _allergies.Allergies.ToList();
         }
+
+
         public async Task <Allergie> Get(string name){
-            var allergie = _allergies.Allergies.FirstOrDefault(x => x.Name == name);
+            var allergie = _allergies.Allergies.FirstOrDefault(x => x.Name.Equals(name));
             return allergie;
         }
        
-           
-       
+       public async Task <Allergie> Get(int id){
+            var allergie = _allergies.Allergies.Find(id);
+            return allergie;
+        }
+
+
+         public async Task <List<Allergie>> GetAllergiesByListingId(int id) {
+          
+           var list =  _allergies.Allergies.FromSqlRaw($"select a.AllergieId, a.Name from dbo.Allergies as a JOIN dbo.ListingAllergie AS la ON a.AllergieId = la.AllergieId WHERE la.ListingId = {id}").ToList();
+            
+            return list;
+         }
+
         public async Task <Allergie> Create(Allergie allergie)
         {   
             _allergies.Allergies.Add(allergie);
@@ -49,6 +63,7 @@ namespace matAppBackEnd.Services
   
         }
 
+   
         public void Delete(Allergie allergieIn) {
               
             var entity = _allergies.Allergies.FirstOrDefault(x => x.AllergieId == allergieIn.AllergieId);
