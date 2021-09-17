@@ -104,6 +104,18 @@ const actions = {
         console.log(response.data)
 
     },
+    async updateAllergie(context, oneAllergie) {
+        const response = await axios.put(`https://localhost:5001/api/listingallergies/${oneAllergie.id}`, oneAllergie);
+        context.commit('updateAllergie', response.data);
+        console.log(response.data)
+
+    },
+    async updateFoodType(context, oneFoodType) {
+        const response = await axios.put(`https://localhost:5001/api/listingfoodtypes/${oneFoodType.id}`, oneFoodType);
+        context.commit('updateFoodType', response.data);
+        console.log(response.data)
+
+    },
 
     async getListingById(context, listingid) {
         const response = await axios.get(`https://localhost:5001/api/listings/${listingid}`);
@@ -139,6 +151,16 @@ const mutations = {
     updateListing: (state, oneListing) => state.listings.forEach(upd => {
         if (upd.updListingId == oneListing.updListingId) {
             upd = oneListing
+        }
+    }),
+    updateAllergie: (state, oneAllergie) => state.allergies.forEach(upd => {
+        if (upd.updAllergieId == oneAllergie.updAllergieId) {
+            upd = oneAllergie
+        }
+    }),
+    updateFoodType: (state, oneFoodType) => state.foodTypes.forEach(upd => {
+        if (upd.updFoodTypeId == oneFoodType.updFoodTypeId) {
+            upd = oneFoodType
         }
     }),
     setImage: (state, oneImage) => (state.oneImage = oneImage),
