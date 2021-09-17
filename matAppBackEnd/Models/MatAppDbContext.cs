@@ -15,6 +15,7 @@ namespace matAppBackEnd.Models
         public DbSet<ListingFoodType> ListingFoodType { get; set; }
         public DbSet<OrderListing> OrderListings { get; set; }
         public DbSet<OrderedListing> OrderedListings { get; set; }
+        public DbSet<AllColumns> AllColumns { get; set; }
     }
    
 }

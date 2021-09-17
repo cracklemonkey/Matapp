@@ -39,6 +39,19 @@ namespace FoodTypesApi.Controllers
         }
         
 
+   [HttpGet("foodtypesbylistingid/{id}", Name = "GetFoodTypesByListingId")]
+        public async Task<ActionResult<List<FoodType>>> GetFoodTypesByListingId(int id){
+            var List = await _foodtypeService.GetFoodTypesByListingId(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
 
         [HttpPost]
         public async Task <ActionResult<FoodType>> Create(FoodType foodtype)

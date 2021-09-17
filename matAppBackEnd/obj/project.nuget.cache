@@ -149,7 +149,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< HEAD
       "message": "Problem reading the cache file /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problem reading the cache file C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> 964fae70db608db4674fcb8829eea95f44da8666
     },
     {
       "code": "NU1701",
