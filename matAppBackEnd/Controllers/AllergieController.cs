@@ -51,7 +51,7 @@ namespace AllergiesApi.Controllers
             return allergie;
         }
         
-        [HttpGet("{id}", Name = "GetAllergiesByListingId")]
+        [HttpGet("allergiesbylistingid/{id}", Name = "GetAllergiesByListingId")]
         public async Task<ActionResult<List<Allergie>>> GetAllergiesByListingId(int id){
             var List = await _allergieService.GetAllergiesByListingId(id);
 

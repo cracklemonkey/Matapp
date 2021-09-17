@@ -32,6 +32,9 @@
           @change="onImageSelected"
         />
       </div>
+      <div v-for="(allergie, index) in oneAllergie" :key="allergie + index">
+        <p>{{ allergie.name }}</p>
+      </div>
 
       <button type="submit">Update</button>
     </form>
@@ -61,6 +64,8 @@ export default {
   created() {
     console.log(this.$route.params.id);
     this.getListingById(this.$route.params.id);
+    this.getFTByListingId(this.$route.params.id);
+    this.getAllergiesByListingId(this.$route.params.id);
   },
   methods: {
     ...mapActions([
@@ -68,10 +73,15 @@ export default {
       "getListingById",
       "deleteImage",
       "addImage",
+      "updateFoodType",
+      "updateAllergie",
+      "getFTByListingId",
+      "getAllergiesByListingId",
     ]),
 
     onImageSelected(e) {
       this.updListing.image = e.target.files[0];
+      console.log(this.updListing.image);
     },
 
     async editListing() {
@@ -83,25 +93,25 @@ export default {
       this.updListing.creationDate = this.oneListing.creationDate;
       console.log(this.oneListing.image);
       if (this.updListing.image != null) {
-        const dataimage = await this.deleteImage(this.oneListing.image);
-        console.log(dataimage);
-
+        /*  const dataimage = await this.deleteImage(this.oneListing.image);
+        console.log(dataimage); */
         const fd = new FormData();
         fd.append("file", this.updListing.image);
-        const updateImage = await this.addImage(fd);
-        this.updListing.image = updateImage;
-        const updata = await this.updateListing(this.updListing);
-        console.log(updata);
-        this.$router.push({ name: "ListingDetails" });
+        this.updListing.image = await this.addImage(fd);
       } else {
         this.updListing.image = this.oneListing.image;
-        const updata = await this.updateListing(this.updListing);
-        console.log(updata);
-        this.$router.push({ name: "ListingDetails" });
       }
+      const updata = await this.updateListing(this.updListing);
+      console.log(updata);
+      this.$router.push({ name: "ListingDetails" });
     },
   },
-  computed: mapGetters(["oneListing"]),
+  computed: mapGetters([
+    "oneListing",
+    "oneFoodType",
+    "oneAllergie",
+    "allAllergies",
+  ]),
 };
 </script>
 

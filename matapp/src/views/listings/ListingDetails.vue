@@ -1,6 +1,11 @@
 <template>
   <div class="space">
     <div class="listing-div">
+      <img
+        class="details-image"
+        :src="`https://localhost:5001/api/image/${oneListing.image}`"
+        alt=""
+      />
       <h1>{{ oneListing.title }}</h1>
       <p>
         Description: <br />
@@ -82,4 +87,7 @@ export default {
 </script>
 
 <style>
+.details-image {
+  width: 300px;
+}
 </style>
