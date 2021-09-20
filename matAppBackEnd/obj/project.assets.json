@@ -7374,11 +7374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "projectName": "matAppBackEnd",
-      "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
+      "projectPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
       "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\obj\\",
+      "outputPath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -7465,12 +7465,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
