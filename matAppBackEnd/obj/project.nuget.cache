@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G8JKoS6ZxzqoKrUAUhKOlCw343wUQ17glIU8UP5E96bIE6VyZMI/SZPbNHEXLCL74i/FU3MHBje6M9Bcgk4Fnw==",
+  "dgSpecHash": "i0dALpKlRPenpVTdjjkJ5148180dAQSn6mZLwQH1TK/qjVj3vcPbdFLXjtC5b0i49MsTsiy1GIejkjwJXaA1Qg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend\\matAppBackEnd.csproj",
+  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\matAppBackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\azure.core\\1.15.0\\azure.core.1.15.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\azure.storage.blobs\\12.9.1\\azure.storage.blobs.12.9.1.nupkg.sha512",
@@ -145,6 +145,12 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

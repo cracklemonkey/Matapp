@@ -125,6 +125,7 @@ C:\Users\UltraGamer\Desktop\MAT\Matapp\matappbackend\obj\Debug\net5.0\matAppBack
 >>>>>>> 9d1893db4385ed45362007cfd8d540309cdd93d6
 >>>>>>> origin/dev
 >>>>>>> 7148758598a454424e701e3e636bef3d858e066e
+>>>>>>> dev
 C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/appsettings.Development.json
 C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/appsettings.json
 C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/matAppBackEnd.exe
@@ -207,7 +208,6 @@ C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBack
 C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/ref/matAppBackEnd.dll
 C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBackEnd.pdb
 C:/Users/UltraGamer/Desktop/MAT/Matapp/matappbackend/obj/Debug/net5.0/matAppBackEnd.genruntimeconfig.cache
->>>>>>> dev
 >>>>>>> 3688d2afe7da901b3404d7f967c525cbd0213bcb
 >>>>>>> mustafa
 /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/bin/Debug/net5.0/EntityFramework.dll
@@ -286,6 +286,7 @@ C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/Microso
 C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/System.Memory.Data.dll
 >>>>>>> 9d1f67bb051b2005a8273cf5bd15d5d8aac040df
 /Volumes/Mac/GlassPaper/Groupproject/matAppBackEnd/bin/Debug/net5.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:/Users/UltraGamer/Desktop/DENEME/Matapp/matappbackend/bin/Debug/net5.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\EntityFramework.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\UltraGamer\Desktop\DENEME\Matapp\matappbackend\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
