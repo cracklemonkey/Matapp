@@ -50,20 +50,7 @@ namespace OrderedListingsApi.Controllers
 
     
 
-        [HttpPost("{listingid}")]
-        public async Task <ActionResult<OrderedListing>> CreateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)
-        {
-            var listing = await _orderedlistingService.Get(listingid);
-
-            if (listing == null)
-            {
-                return NotFound();
-            }
-
-            var orderedlisting = await _orderedlistingService.CreateOrderedListing(listingid, listingIn);
-
-            return orderedlisting;
-        }
+        
 
         [HttpPut("{listingid}")]
         public async Task <ActionResult<OrderedListing>> UpdateOrderedListing(int listingid, [FromBody] OrderedListing listingIn)

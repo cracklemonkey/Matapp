@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace matAppBackEnd.Services
 {
@@ -23,6 +24,11 @@ namespace matAppBackEnd.Services
         }
         public async Task <ListingFoodType> Get(int id){
             var listingfoodtype = _listingfoodtypes.ListingFoodType.Find(id);
+            return listingfoodtype;
+        }
+
+        public async Task <List<ListingFoodType>> GetListingFoodTypeId(int listingid, int foodtypeid){
+            var listingfoodtype =  _listingfoodtypes.ListingFoodType.FromSqlRaw($"SELECT lf.ListingFoodTyprId, lf.ListingId, lf.FoodTypeId FROM dbo.ListingFoodType AS lf JOIN dbo.Listings AS l ON lf.ListingId = l.ListingId JOIN dbo.FoodType AS f ON lf.FoodTypeId = f.FoodTypeId WHERE lf.ListingId = {listingid} AND lf.FoodTypeId = {foodtypeid}").ToList();
             return listingfoodtype;
         }
        

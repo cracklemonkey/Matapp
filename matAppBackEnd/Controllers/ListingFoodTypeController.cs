@@ -37,6 +37,20 @@ namespace ListingFoodTypesApi.Controllers
 
             return listingfoodtype;
         }
+
+         [HttpGet("test/{listingid}", Name = "GetListingFoodTypeId")]
+
+         public async Task <ActionResult<List<ListingFoodType>>> GetListingFoodTypeId(int listingid, [FromBody] int foodtypeId){
+             
+              var listingfoodtype = await _listingfoodtypeService.GetListingFoodTypeId(listingid, foodtypeId);
+
+              if (listingfoodtype == null)
+            {
+                return NotFound();
+            }
+
+            return listingfoodtype;
+         }
         
 
 
