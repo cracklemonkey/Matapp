@@ -52,7 +52,7 @@ namespace AllergiesApi.Controllers
         }
         
         [HttpGet("allergiesbylistingid/{id}", Name = "GetAllergiesByListingId")]
-        public async Task<ActionResult<List<Allergie>>> GetAllergiesByListingId(int id){
+        public async Task<ActionResult<List<FullAllergie>>> GetAllergiesByListingId(int id){
             var List = await _allergieService.GetAllergiesByListingId(id);
 
             bool isEmpty = !List.Any();
