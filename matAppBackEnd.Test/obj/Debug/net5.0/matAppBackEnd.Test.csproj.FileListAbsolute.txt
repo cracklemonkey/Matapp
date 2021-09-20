@@ -451,3 +451,4 @@ C:\Users\danie\Documents\Matapp\matappbackend.test\bin\Debug\net5.0\Azure.Storag
 C:\Users\danie\Documents\Matapp\matappbackend.test\bin\Debug\net5.0\Azure.Storage.Common.dll
 C:\Users\danie\Documents\Matapp\matappbackend.test\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\danie\Documents\Matapp\matappbackend.test\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\danie\Documents\Matapp\matAppBackEnd.Test\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll

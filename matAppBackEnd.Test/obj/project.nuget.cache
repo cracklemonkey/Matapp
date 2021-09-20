@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SV0EsQnOayrTK1OpYoEEVHg2SnvSRS+t77BBdtpXrQYcTsNhi1qiCbZiv1grmZykroEGXC3SFbzqdHj259VWaQ==",
+  "dgSpecHash": "CuA6zAYEitNCszp8tBzcBbqxp3nRxhgcyqvhIiTlZT1iAxFkh0q5hMhsn/PlpSV+dhBz3ZOp/y7sg9KBOoJeMw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend.test\\matAppBackEnd.Test.csproj",
+  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd.Test\\matAppBackEnd.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\azure.core\\1.15.0\\azure.core.1.15.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\azure.storage.blobs\\12.9.1\\azure.storage.blobs.12.9.1.nupkg.sha512",
@@ -19,6 +19,7 @@
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\5.0.9\\microsoft.aspnetcore.mvc.testing.5.0.9.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\5.0.10\\microsoft.aspnetcore.spaservices.extensions.5.0.10.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.aspnetcore.testhost\\5.0.9\\microsoft.aspnetcore.testhost.5.0.9.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
