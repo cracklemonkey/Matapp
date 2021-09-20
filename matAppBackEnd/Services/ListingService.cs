@@ -147,6 +147,7 @@ namespace matAppBackEnd.Services
             entity.Deadline= listingIn.Deadline;
             entity.IsOpened = listingIn.IsOpened;
             entity.UserOwner = listingIn.UserOwner;
+            entity.Image = listingIn.Image;
             
             _listings.Listings.Update(entity);
             await _listings.SaveChangesAsync();

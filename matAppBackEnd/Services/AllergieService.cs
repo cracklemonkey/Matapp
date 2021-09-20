@@ -35,9 +35,9 @@ namespace matAppBackEnd.Services
         }
 
 
-         public async Task <List<Allergie>> GetAllergiesByListingId(int id) {
+         public async Task <List<FullAllergie>> GetAllergiesByListingId(int id) {
           
-           var list =  _allergies.Allergies.FromSqlRaw($"select a.AllergieId, a.Name from dbo.Allergies as a JOIN dbo.ListingAllergie AS la ON a.AllergieId = la.AllergieId WHERE la.ListingId = {id}").ToList();
+           var list =  _allergies.FullAllergie.FromSqlRaw($"select a.AllergieId, a.Name, la.ListingAllergieId from dbo.Allergies as a JOIN dbo.ListingAllergie AS la ON a.AllergieId = la.AllergieId WHERE la.ListingId = {id}").ToList();
             
             return list;
          }

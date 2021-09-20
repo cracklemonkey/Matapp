@@ -9,7 +9,11 @@ const state = {
     foodTypes: [],
     oneFoodType: "",
     allergies: [],
-    oneAllergie: ""
+    oneAllergie: "",
+    fullListing: [],
+    oneFullListing: "",
+    setOfAllergies: [],
+    setOfFoodTypes: []
 };
 
 const getters = {
@@ -20,7 +24,12 @@ const getters = {
     oneAllergie: (state) => state.oneAllergie,
     oneFoodType: (state) => state.oneFoodType,
     userListing: (state) => state.userListing,
-    oneImage: (state) => state.oneImage
+    oneImage: (state) => state.oneImage,
+/*     allFullListings: (state) => state.fullListing,
+ */    oneFullListing: (state) => state.oneFullListing,
+
+    setOfAllergies: (state) => state.setOfAllergies,
+    setOfFoodTypes: (state) => state.setOfFoodTypes
 
 };
 
@@ -51,16 +60,30 @@ const actions = {
 
         context.commit('setAllergies', response.data);
     },
+    async getListingAllergies(context) {
+        const response = await axios.get("https://localhost:5001/api/listingallergies");
 
+        context.commit('setAllergies', response.data);
+    },
+    async getListingFT(context) {
+        const response = await axios.get("https://localhost:5001/api/listinfoodtypes");
+
+        context.commit('setFoodTypes', response.data);
+    },
     async getFTByListingId(context, id) {
         const response = await axios.get(`https://localhost:5001/api/foodtypes/foodtypesbylistingid/${id}`);
 
-        context.commit('setFoodType', response.data);
+        context.commit('setOfFoodTypes', response.data);
     },
     async getAllergiesByListingId(context, id) {
         const response = await axios.get(`https://localhost:5001/api/allergies/allergiesbylistingid/${id}`);
 
-        context.commit('setAllergie', response.data);
+        context.commit('setOfAllergies', response.data);
+    },
+    async getAllColumns(context) {
+        const response = await axios.get(`https://localhost:5001/api/getallcolumns`);
+
+        context.commit('setAllColumns', response.data);
     },
 
 
@@ -152,6 +175,9 @@ const mutations = {
     setListings: (state, listings) => (state.listings = listings),
     setFoodTypes: (state, foodTypes) => (state.foodTypes = foodTypes),
     setAllergies: (state, allergies) => (state.allergies = allergies),
+    setOfAllergies: (state, setOfAllergies) => (state.setOfAllergies = setOfAllergies),
+    setOfFoodTypes: (state, setOfFoodTypes) => (state.setOfFoodTypes = setOfFoodTypes),
+    setAllColumns: (state, oneFullListing) => (state.oneFullListing = oneFullListing),
     setImages: (state, images) => (state.images = images),
     newListing: (state, oneListing) => state.listings.unshift(oneListing),
     newFoodType: (state, oneFoodType) => state.foodTypes.push(oneFoodType),

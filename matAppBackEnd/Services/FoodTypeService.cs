@@ -28,9 +28,9 @@ namespace matAppBackEnd.Services
         }
     
 
-        public async Task <List<FoodType>> GetFoodTypesByListingId(int id){
+        public async Task <List<FullFoodType>> GetFoodTypesByListingId(int id){
            
-            var foodtypes =  _foodtypes.FoodType.FromSqlRaw($"select f.FoodTypeId, f.Name FROM [dbo].[FoodType] AS f JOIN [dbo].[ListingFoodType] AS lf ON f.FoodTypeId = lf.FoodTypeId JOIN [dbo].[Listings] AS l ON lf.ListingId = l.ListingId WHERE l.ListingId ={id}").ToList();
+            var foodtypes =  _foodtypes.FullFoodType.FromSqlRaw($"select f.FoodTypeId, f.Name, lf.ListingFoodTypeId FROM [dbo].[FoodType] AS f JOIN [dbo].[ListingFoodType] AS lf ON f.FoodTypeId = lf.FoodTypeId JOIN [dbo].[Listings] AS l ON lf.ListingId = l.ListingId WHERE l.ListingId ={id}").ToList();
             
             return foodtypes;
        }

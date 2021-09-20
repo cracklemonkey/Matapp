@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p class="add-title">Add a new listing</p>
+    <!--  <p class="add-title">Add a new listing</p> -->
     <form class="form-listing" @submit.prevent="postListing" method="POST">
-      <div>
+      <div class="form-div">
         <label for="title">Title</label>
         <input
           id="title"
@@ -11,12 +11,12 @@
           placeholder="name your listing"
         />
       </div>
-      <div>
+      <div class="form-div">
         <label for="deadline">Deadline</label>
         <input id="deadline" type="date" v-model="posts.deadline" />
       </div>
 
-      <div>
+      <div class="form-div">
         <label for="description">Description</label>
         <textarea
           id="description"
@@ -25,39 +25,43 @@
           v-model="posts.description"
         />
       </div>
-      <div class="foodtype-boxes">
-        <p>What kind of food is it?</p>
-        <div
-          class="foodtypes"
-          v-for="(foodType, i) in allFoodTypes"
-          :key="foodType + i"
-        >
-          <label for="foodtype">{{ foodType.name }}</label>
-          <input
-            id="foodtype"
-            type="checkbox"
-            :value="foodType.foodTypeId"
-            v-model="checked"
-          />
-        </div>
-      </div>
-      <div class="allergies-boxes">
-        <p>Which allergies does it contain?</p>
-        <div
-          class="allergies"
-          v-for="(allergie, i) in allAllergies"
-          :key="allergie + i"
-        >
-          <label for="allergie">{{ allergie.name }}</label>
-          <input
-            id="allergie"
-            type="checkbox"
-            :value="allergie.allergieId"
-            v-model="checkedAllergies"
-          />
+      <div>
+        <p class="title-label">What kind of food is it?</p>
+        <div class="checked-boxes">
+          <div
+            class="check-inputs"
+            v-for="(foodType, i) in allFoodTypes"
+            :key="foodType + i"
+          >
+            <label for="foodtype">{{ foodType.name }}</label>
+            <input
+              id="foodtype"
+              type="checkbox"
+              :value="foodType.foodTypeId"
+              v-model="checked"
+            />
+          </div>
         </div>
       </div>
       <div>
+        <p class="title-label">Which allergies does it contain?</p>
+        <div class="checked-boxes">
+          <div
+            class="check-inputs"
+            v-for="(allergie, i) in allAllergies"
+            :key="allergie + i"
+          >
+            <label for="allergie">{{ allergie.name }}</label>
+            <input
+              id="allergie"
+              type="checkbox"
+              :value="allergie.allergieId"
+              v-model="checkedAllergies"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-div">
         <input
           type="file"
           accept="image/jpg, image/png, image/jpeg"
@@ -66,7 +70,7 @@
         />
       </div>
 
-      <button class="add-btn" type="submit">Add</button>
+      <button class="form-btn" type="submit">Add</button>
     </form>
   </div>
 </template>
@@ -172,14 +176,52 @@ export default {
 }
 .form-listing {
   font-size: 18px;
-  width: 30%;
+  width: 40%;
   margin: auto;
 }
-.form-listing div {
+.form-listing .form-div {
   display: flex;
   flex-direction: column;
+  padding: 5px;
 }
-.add-btn {
+
+.form-listing .form-div label {
+  font-weight: bold;
+}
+
+.form-listing .form-div input {
+  border-radius: 10px;
+  padding: 5px;
+  font-family: inherit;
+}
+.form-listing .form-div textarea {
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.title-label {
+  font-weight: bold;
+  padding: 5px;
+}
+
+.checked-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.check-inputs {
+  align-items: center;
+  padding: 5px;
+  flex-direction: row;
+}
+.check-inputs label {
+  text-transform: capitalize;
+  padding-right: 5px;
+}
+.check-inputs input {
+  accent-color: black;
+}
+.form-btn {
   font-family: inherit;
   font-size: 15px;
   padding: 5px;
@@ -187,19 +229,8 @@ export default {
   border-radius: 30px;
   border: black 1px solid;
 }
-.add-btn:hover {
+.form-btn:hover {
   font-size: 18px;
-  color: #42b983;
-}
-.foodtype-boxes div {
-}
-.foodtypes {
-  text-align: start;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.foodtype {
+  color: black;
 }
 </style>

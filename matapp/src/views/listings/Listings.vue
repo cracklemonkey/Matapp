@@ -33,6 +33,12 @@
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>
         <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
         <p>{{ listing.foodType }}</p>
+        <div
+          v-for="(allergie, index) in setOfAllergies"
+          :key="allergie + index"
+        >
+          <p>allergies:{{ allergie.name }}</p>
+        </div>
         <p>Posted by : {{ listing.userOwner }}</p>
         <button>
           <router-link :to="`/listing/${listing.listingId}`">
@@ -65,6 +71,7 @@ export default {
   data() {
     return {
       plusButton: false,
+
       orderkey: 0,
       postOrder: {
         userName: null,
@@ -75,6 +82,7 @@ export default {
   },
   created() {
     this.getListings();
+    this.getAllergiesByListingId();
   },
   methods: {
     ...mapActions([
@@ -85,6 +93,8 @@ export default {
       "getListingById",
       "getImage",
       "deleteImage",
+      "getAllergiesByListingId",
+      "getFTByListingId",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
@@ -108,7 +118,14 @@ export default {
         window.location.reload();
     },
   },
-  computed: mapGetters(["allListings", "oneImage", "oneListing"]),
+  computed: mapGetters([
+    "allListings",
+    "oneImage",
+    "oneListing",
+    "oneAllergie",
+    "oneFoodType",
+    "setOfAllergies",
+  ]),
 };
 </script>
 
@@ -162,6 +179,6 @@ export default {
   font-size: 30px;
 }
 .plus-button:hover {
-  color: #42b983;
+  color: white;
 }
 </style>

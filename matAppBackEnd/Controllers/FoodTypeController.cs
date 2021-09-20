@@ -40,7 +40,7 @@ namespace FoodTypesApi.Controllers
         
 
    [HttpGet("foodtypesbylistingid/{id}", Name = "GetFoodTypesByListingId")]
-        public async Task<ActionResult<List<FoodType>>> GetFoodTypesByListingId(int id){
+        public async Task<ActionResult<List<FullFoodType>>> GetFoodTypesByListingId(int id){
             var List = await _foodtypeService.GetFoodTypesByListingId(id);
 
               
