@@ -39,6 +39,21 @@ namespace OrderListingsApi.Controllers
             return orderlisting;
         }
 
+         [HttpGet("userorders/{username}", Name = "GetOrderByUserName")]
+        public async Task <ActionResult<List<OrderListing>>> Get(string username)
+        {   
+            var userNameOrderListing = await _orderlistingService.GetOrderByUserName(username);
+
+              
+            bool isEmpty = !userNameOrderListing.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return userNameOrderListing;
+        }
+
           [HttpPost]
         public async Task <ActionResult<OrderListing>> Create(OrderListing orderlisting)
         {

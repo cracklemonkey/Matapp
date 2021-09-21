@@ -82,8 +82,8 @@ export default {
   },
   created() {
     this.getListings();
-    this.getAllergiesByListingId();
   },
+
   methods: {
     ...mapActions([
       "getListings",
@@ -137,14 +137,19 @@ export default {
   margin-bottom: 20px;
 }
 .listing-div {
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
   width: 50%;
   margin: 10px auto;
-  border: 3px solid black;
+  /*   border: 3px solid black;
+ */
   background-color: rgba(255, 255, 255, 0.7);
   padding: 10px;
   border-radius: 20px;
+}
+
+.listing-div h3 {
+  font-family: "Bad Script", cursive;
 }
 
 .listing-div p {
@@ -168,8 +173,9 @@ export default {
 
 .listing-img {
   padding: 20px;
-  max-width: 200px;
-  max-height: 200px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
   float: left;
 }
 

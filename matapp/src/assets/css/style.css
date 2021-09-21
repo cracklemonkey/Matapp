@@ -115,8 +115,9 @@
 /* Listing Page */
 
 .background-listing{
-  background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,/*  url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"), */ url("../images/okeykat-lfubXm-MW0U-unsplash.jpeg") no-repeat center fixed;
-  min-height: 100vh;
+/*   background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"), url("../images/okeykat-lfubXm-MW0U-unsplash.jpeg") no-repeat center fixed; */
+  background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/gabriel-gurrola-fcgPRZmTM5w-unsplash.jpeg") no-repeat center fixed;
+  min-height: 110vh;
   background-size:100vmax;
   background-blend-mode:multiply;
 /*  position: relative; */

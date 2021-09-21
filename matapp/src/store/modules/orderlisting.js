@@ -8,8 +8,10 @@ const state = {
 
     orderedlistings: [],
     oneOrderedlisting: "",
-    
-    
+
+    userOrder: []
+
+
 };
 
 const getters = {
@@ -18,7 +20,8 @@ const getters = {
 
     allOrderedListings: (state) => state.orderedlistings,
     oneOrderedListing: (state) => state.oneOrderedListing,
-    
+    orderByUser: (state) => state.userOrder
+
 
 };
 
@@ -27,6 +30,11 @@ const actions = {
         const response = await axios.get("https://localhost:5001/api/orderlistings");
 
         context.commit('setOrderListings', response.data);
+    },
+    async getOrdersByUser(context, username) {
+        const response = await axios.get(`https://localhost:5001/api/orderlistings/userorders/${username}`);
+        console.log(response.data)
+        context.commit('orderUser', response.data)
     },
 
     async addOrderListing(context, posts) {
@@ -40,7 +48,7 @@ const actions = {
     async updateOrderListing(context, oneOrderListing) {
         const response = await axios.put(`https://localhost:5001/api/orderlistings/${oneOrderListing.orderid}`, oneOrderListing);
         context.commit('updateOrderListing', response.data);
-        
+
 
     },
     async getOrderListingById(context, orderid) {
@@ -69,7 +77,7 @@ const actions = {
     async updateOrderedListing(context, oneOrderedListing) {
         const response = await axios.put(`https://localhost:5001/api/orderedlistings/${oneOrderedListing.ListingId}`, oneOrderedListing);
         context.commit('updateOrderedListing', response.data);
-        
+
 
     },
     async getOrderedListingById(context, listingid) {
@@ -83,34 +91,35 @@ const actions = {
 };
 
 
-    const mutations = {
-        setOrderListings: (state, orderlistings) => (state.orderlistings = orderlistings),
-        newOrderListing: (state, oneOrderListing) => state.orderlistings.unshift(oneOrderListing),
-        removeOrderListing: (state, orderid) => state.orderlistings = state.orderlistings.filter(orderlisting => orderlisting.orderid !== orderid),
-        updateOrderListing: (state, oneOrderListing) => state.orderlistings.forEach(upd => {
-            if (upd.updOrderListingId == oneOrderListing.updOrderListingId) {
-                upd = oneOrderListing
-            }
-        }),
-        setOrderListing: (state, oneOrderListing) => (state.oneOrderListing = oneOrderListing),
+const mutations = {
+    setOrderListings: (state, orderlistings) => (state.orderlistings = orderlistings),
+    newOrderListing: (state, oneOrderListing) => state.orderlistings.unshift(oneOrderListing),
+    removeOrderListing: (state, orderid) => state.orderlistings = state.orderlistings.filter(orderlisting => orderlisting.orderid !== orderid),
+    updateOrderListing: (state, oneOrderListing) => state.orderlistings.forEach(upd => {
+        if (upd.updOrderListingId == oneOrderListing.updOrderListingId) {
+            upd = oneOrderListing
+        }
+    }),
+    setOrderListing: (state, oneOrderListing) => (state.oneOrderListing = oneOrderListing),
 
-        setOrderedListings: (state, orderedlistings) => (state.orderedlistings = orderedlistings),
-        newOrderedListing: (state, oneOrderedListing) => state.orderedlistings.unshift(oneOrderedListing),
-        removeOrderedListing: (state, listingid) => state.orderedlistings = state.orderedlistings.filter(orderedlisting => orderedlisting.listingid !== listingid),
-        updateOrderedListing: (state, oneOrderedListing) => state.orderedlistings.forEach(upd => {
-            if (upd.updListingId == oneOrderedListing.updListingId) {
-                upd = oneOrderedListing
-            }
-        }),
-        setOrderedListing: (state, oneOrderedListing) => (state.oneOrderedListing = oneOrderedListing),
+    setOrderedListings: (state, orderedlistings) => (state.orderedlistings = orderedlistings),
+    newOrderedListing: (state, oneOrderedListing) => state.orderedlistings.unshift(oneOrderedListing),
+    removeOrderedListing: (state, listingid) => state.orderedlistings = state.orderedlistings.filter(orderedlisting => orderedlisting.listingid !== listingid),
+    updateOrderedListing: (state, oneOrderedListing) => state.orderedlistings.forEach(upd => {
+        if (upd.updListingId == oneOrderedListing.updListingId) {
+            upd = oneOrderedListing
+        }
+    }),
+    setOrderedListing: (state, oneOrderedListing) => (state.oneOrderedListing = oneOrderedListing),
+    orderUser: (state, userOrder) => (state.userOrder = userOrder),
 
-        
-        
-    };
 
-    export default {
-        state,
-        getters,
-        actions,
-        mutations
-    };
+
+};
+
+export default {
+    state,
+    getters,
+    actions,
+    mutations
+};

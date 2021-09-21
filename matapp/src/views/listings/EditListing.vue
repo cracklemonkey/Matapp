@@ -26,11 +26,12 @@
         <div
           v-for="(foodType, index) in setOfFoodTypes"
           :key="foodType + index"
+          :listId="foodType.listingFoodTypeId"
         >
           <p class="info-name">
             {{ foodType.name }}
           </p>
-          <p class="hidden">{{ foodType.listingFoodTypeId }}</p>
+          <p class="hidden"></p>
         </div>
         <div class="checked-boxes">
           <div
@@ -53,10 +54,12 @@
         <div
           v-for="(allergie, index) in setOfAllergies"
           :key="allergie + index"
+          :listAId="allergie.listingAllergieId"
         >
           <p class="info-name">
-            {{ allergie.name }} {{ allergie.listingAllergieId }}
+            {{ allergie.name }}
           </p>
+          <p>{{ allergie.listingAllergieId }}</p>
         </div>
         <div class="checked-boxes">
           <div
@@ -115,8 +118,11 @@ export default {
       },
       checked: [],
       checkedAllergies: [],
+      listingFoodTypeId: this.listFTId,
+      listingAllergieId: this.listAId,
     };
   },
+  props: ["listFTId", "listAId"],
   created() {
     console.log(this.$route.params.id);
     this.getListingById(this.$route.params.id);
@@ -166,9 +172,9 @@ export default {
       } else {
         this.updListing.image = this.oneListing.image;
       }
+      console.log(this.listingFoodTypeId);
       if (this.checked != null) {
-        console.log(this.foodType);
-        await this.deleteFoodType(this.foodType.foodType);
+        await this.deleteFoodType(this.listingFoodTypeId);
         for (let i = 0; i < this.checked.length; i++) {
           this.updateType.foodTypeId = this.checked[i];
           await this.updateFoodType(this.updateType);
@@ -176,7 +182,7 @@ export default {
         }
       }
       if (this.checkedAllergies != null) {
-        await this.deleteAllergie(this.allergie.listingAllergieId);
+        await this.deleteAllergie(this.listingAllergieId);
         for (let i = 0; i < this.checkedAllergies.length; i++) {
           this.updateAllergies.allergieId = this.checkedAllergies[i];
           await this.updateAllergie(this.updateAllergies);

@@ -1,12 +1,14 @@
 <template>
   <NavBar />
-  <router-view />
+  <router-view class="body" />
+  <Footer />
 </template>
 
 <script>
 import NavBar from "./components/layout/NavBar.vue";
+import Footer from "./components/layout/Footer.vue";
 export default {
-  components: { NavBar },
+  components: { NavBar, Footer },
 };
 </script>
 
@@ -23,5 +25,9 @@ export default {
   text-align: center;
   /* color: #2c3e50; */
   color: #070b0f;
+}
+
+.body {
+  padding-bottom: 40px;
 }
 </style>
