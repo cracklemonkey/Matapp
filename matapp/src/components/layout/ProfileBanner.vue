@@ -1,18 +1,19 @@
 <template>
   <div class="profile-banner">
-    <img
-      class="banner-img"
+    <!--  <img
+      class="banner-img repeating-radial"
       src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
       alt=""
     />
     <img
-      class="banner-img second-image"
+      class="banner-img second-image repeating-radial"
       src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
       alt=""
-    />
+    /> -->
+    <div class="banner-bg"></div>
     <img class="profile-img" :src="$auth.user.picture" alt="" />
 
-    <p>{{ $auth.user.preferred_username }}</p>
+    <p class="cap-user">{{ $auth.user.preferred_username }}</p>
   </div>
 </template>
 
@@ -47,6 +48,15 @@ export default {
   transform: scaleX(-1);
 }
 
+.repeating-radial {
+  background: repeating-radial-gradient(
+    black,
+    black 5px,
+    white 5px,
+    white 10px
+  );
+  z-index: 99999;
+}
 .profile-banner p {
   font-size: 40px;
   position: relative;

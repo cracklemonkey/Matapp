@@ -40,6 +40,8 @@ const actions = {
     async addOrderListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/orderlistings`, posts)
         context.commit('newOrderListing', response.data);
+        context.dispatch('listings/getListings', null, { root: true })
+
     },
     async deleteOrderListing(context, orderid) {
         await axios.delete(`https://localhost:5001/api/orderlistings/${orderid}`);

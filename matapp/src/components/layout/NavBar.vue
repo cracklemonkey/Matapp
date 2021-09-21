@@ -9,7 +9,7 @@
   >
     <div>
       <router-link class="link brand" to="/"
-        >MatApp <i class="fas fa-cookie-bite"></i
+        >Kastikke <i class="fas fa-cookie-bite"></i
       ></router-link>
     </div>
     <div>
@@ -59,7 +59,7 @@ export default {
       }
       // Stop executing this function if the difference between
       // current scroll position and last scroll position is less than some offset
-      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 30) {
         return;
       }
 
@@ -97,6 +97,7 @@ export default {
   background: transparent;
   border: 2px solid white;
   border-radius: 10px;
+  font-size: 18px;
 }
 
 .log-btn:hover {

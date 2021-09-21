@@ -7,6 +7,9 @@
   position: fixed;
   z-index: 999;
   width: 100%;
+  font-family: "Poiret One", cursive;
+  font-size: 20px;
+
 }
 
 .nav a {
@@ -75,42 +78,9 @@
     min-height: 90vh;
     background-size:cover;
     position: relative;
-    
-    
-  }
-
-  .landing-textarea {
-    left: 30%;
-    position:absolute;
-    text-align:center;
-    width:40%;
-    top:40%;
-    color:#fff;
   }
   
-  .landing-bubble {
-    font-size: 32px;
-  padding: 1px;
-    background: transparent;
-  margin: 20px;
-    border-radius: 45px;
-    color: white;
-    border: none;
-    
-  }
   
-  .landing-bubble:hover {
-    color: rgba(143, 34, 34, 0.9);
-  }
-  
-  .landing-bubble a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .landing-bubble a:hover {
-      color: black;
-  }
 
 /* Listing Page */
 
@@ -155,4 +125,14 @@
       margin: auto;
   }
 
-  
+  /* profile */
+  .banner-bg{
+/*     background: linear-gradient(transparent, rgb(131, 64, 57)), url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg") left no-repeat, url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg") right no-repeat;
+ */    
+ background: url("../images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg") no-repeat center fixed;
+ 
+ background-size: cover;
+
+   
+height: 30vh;
+  }

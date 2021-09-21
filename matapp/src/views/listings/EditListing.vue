@@ -118,8 +118,6 @@ export default {
       },
       checked: [],
       checkedAllergies: [],
-      listingFoodTypeId: this.listFTId,
-      listingAllergieId: this.listAId,
     };
   },
   props: ["listFTId", "listAId"],
@@ -174,7 +172,7 @@ export default {
       }
       console.log(this.listingFoodTypeId);
       if (this.checked != null) {
-        await this.deleteFoodType(this.listingFoodTypeId);
+        await this.deleteFoodType(this.oneListing.foodType.listingFoodTypeId);
         for (let i = 0; i < this.checked.length; i++) {
           this.updateType.foodTypeId = this.checked[i];
           await this.updateFoodType(this.updateType);
@@ -182,7 +180,7 @@ export default {
         }
       }
       if (this.checkedAllergies != null) {
-        await this.deleteAllergie(this.listingAllergieId);
+        await this.deleteAllergie(this.oneListing.allergie.listingAllergieId);
         for (let i = 0; i < this.checkedAllergies.length; i++) {
           this.updateAllergies.allergieId = this.checkedAllergies[i];
           await this.updateAllergie(this.updateAllergies);

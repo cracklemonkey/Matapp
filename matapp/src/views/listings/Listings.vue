@@ -21,40 +21,46 @@
       v-for="(listing, index) in allListings"
       :key="listing + index"
     >
-      <div>
+      <div class="listing-img">
         <img
           v-if="listing.image != null"
-          class="listing-img"
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
         />
+      </div>
+      <div class="listing-info">
         <h3>{{ listing.title }}</h3>
 
         <p>Posted : {{ formatDate(listing.creationDate) }}</p>
         <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
         <p>{{ listing.foodType }}</p>
-        <div
-          v-for="(allergie, index) in setOfAllergies"
-          :key="allergie + index"
-        >
-          <p>allergies:{{ allergie.name }}</p>
+        <div>
+          <p>allergies:</p>
+          <p
+            v-for="(allergie, index) in setOfAllergies"
+            :key="allergie + index"
+          >
+            {{ allergie.name }}
+          </p>
         </div>
-        <p>Posted by : {{ listing.userOwner }}</p>
-        <button>
-          <router-link :to="`/listing/${listing.listingId}`">
-            View more details
-          </router-link>
-        </button>
-        <button
-          v-if="
-            $auth.authenticated &&
-            $auth.user.preferred_username === listing.userOwner
-          "
-          @click="remove(listing.listingId, listing.image)"
-        >
-          Delete
-        </button>
-        <order-listing :listing="listing" @update="orderupdate()" />
+        <p class="cap-user">Posted by : {{ listing.userOwner }}</p>
+        <div class="buttons-div">
+          <button>
+            <router-link :to="`/listing/${listing.listingId}`">
+              View more details
+            </router-link>
+          </button>
+          <button
+            v-if="
+              $auth.authenticated &&
+              $auth.user.preferred_username === listing.userOwner
+            "
+            @click="remove(listing.listingId, listing.image)"
+          >
+            Delete
+          </button>
+          <order-listing :listing="listing" @update="orderupdate()" />
+        </div>
       </div>
     </div>
   </div>
@@ -107,15 +113,19 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
+    formatDateTwo(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
+    },
 
     orderupdate() {
       console.log("test");
-      window.location.reload();
+      /*  window.location.reload(); */
     },
     remove(listingId, imageName) {
-      this.deleteListing(listingId),
-        this.deleteImage(imageName),
-        window.location.reload();
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
     },
   },
   computed: mapGetters([
@@ -132,51 +142,70 @@ export default {
 
 <style>
 .title-page {
-  font-family: "Oswald", sans-serif;
+  font-family: "Poiret One", cursive;
   padding: 10px;
   margin-bottom: 20px;
+  color: white;
 }
 .listing-div {
   font-family: "Poiret One", cursive;
   font-weight: bold;
   width: 50%;
   margin: 10px auto;
-  /*   border: 3px solid black;
- */
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 10px;
   border-radius: 20px;
+  display: flex;
 }
 
-.listing-div h3 {
+.listing-info {
+  margin: auto;
+}
+
+.listing-info h3 {
   font-family: "Bad Script", cursive;
+  font-size: 25px;
 }
 
-.listing-div p {
+.listing-info p {
   padding: 5px;
-  font-size: 18px;
-  text-align: center;
+  font-size: 20px;
+  text-align: left;
 }
 
-.listing-div button {
+.listing-info button {
   font-family: inherit;
-  font-size: 15px;
+  font-size: 18px;
   padding: 5px;
   margin: 10px;
   border-radius: 30px;
   border: black 1px solid;
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
 }
-.listing-div button a {
+
+.listing-info button:hover {
+  color: white;
+  background-color: black;
+}
+.listing-info button a {
   text-decoration: none;
   color: black;
 }
+.listing-info button a:hover {
+  color: white;
+}
 
 .listing-img {
+  align-self: center;
+}
+
+.listing-img img {
   padding: 20px;
   width: 150px;
   height: 150px;
   object-fit: cover;
-  float: left;
+  border-radius: 0px 30px;
 }
 
 .plus-button {
@@ -184,7 +213,15 @@ export default {
   border: none;
   font-size: 30px;
 }
-.plus-button:hover {
+.plus-button {
   color: white;
+}
+.plus-button:hover {
+  color: black;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
 }
 </style>

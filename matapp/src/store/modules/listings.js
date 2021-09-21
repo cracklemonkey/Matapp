@@ -38,6 +38,7 @@ const actions = {
         const response = await axios.get("https://localhost:5001/api/listings");
 
         context.commit('setListings', response.data);
+        console.log("getListings", response)
     },
 
     async getImages(context) {
@@ -118,6 +119,7 @@ const actions = {
     async deleteListing(context, id) {
         await axios.delete(`https://localhost:5001/api/listings/${id}`);
         context.commit('removeListing', id);
+        context.dispatch("getListings");
     },
 
     async deleteImage(context, name) {

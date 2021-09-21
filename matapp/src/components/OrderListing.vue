@@ -62,8 +62,9 @@ export default {
 
 <style>
 .modal {
-  background: #42b983;
+  background: #7c9b7d;
   width: 100%;
   font-size: 30px;
+  border-radius: 10px;
 }
 </style>
