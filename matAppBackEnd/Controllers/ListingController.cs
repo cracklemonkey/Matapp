@@ -83,6 +83,7 @@ namespace ListingsApi.Controllers
         }
         
 
+
   [HttpGet("getallcolumns", Name = "GetAllColumns")]
         public async Task<ActionResult<List<AllColumns>>> GetAllColumns(){
             var List = await _listingService.GetAllColumns();
