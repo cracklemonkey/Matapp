@@ -35,6 +35,31 @@
         </button>
       </div>
     </div>
+    <div class="my-listings">
+      <div class="title-section">
+        <router-link :to="`/profile/historik`"
+          ><h2>My previous orders</h2>
+        </router-link>
+      </div>
+
+      <div class="oneListing">
+        <div
+          class="listing-card"
+          v-for="(listing, index) in orderByUser.slice(0, 4)"
+          :key="listing + index"
+        >
+          <router-link :to="`/listing/${listing.listingId}`">
+            <h3>{{ listing.orderId }}</h3>
+          </router-link>
+
+          <p>Ordered : {{ formatDate(listing.orderDate) }}</p>
+        </div>
+
+        <button class="" v-if="orderByUser.length > 4">
+          <router-link :to="`/profile/historik`"> View more </router-link>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,6 +75,7 @@ export default {
   },
   created() {
     this.getListingsByUser(this.$auth.user.preferred_username);
+    this.getOrdersByUser(this.$auth.user.preferred_username);
   },
 
   methods: {
@@ -60,6 +86,8 @@ export default {
       "deleteListing",
       "updateListing",
       "getListingsByUser",
+      "getOrderListings",
+      "getOrdersByUser",
     ]),
     formatDate(dateString) {
       const date = dayjs(dateString);
@@ -67,7 +95,7 @@ export default {
       return date.format("D/MM/YY");
     },
   },
-  computed: mapGetters(["allListings", "userListing"]),
+  computed: mapGetters(["allListings", "userListing", "orderByUser"]),
 };
 </script>
 

@@ -59,7 +59,7 @@ export default {
       }
       // Stop executing this function if the difference between
       // current scroll position and last scroll position is less than some offset
-      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 75) {
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
         return;
       }
 
@@ -72,7 +72,7 @@ export default {
     // Log the user in
     login() {
       this.$auth.loginWithRedirect({
-        redirect_uri: "http://localhost:8080/listing",
+        redirect_uri: "http://localhost:8080",
       });
     },
     // Log the user out

@@ -29,7 +29,11 @@ namespace matAppBackEnd.Services
             var orderlisting = _orderlistings.OrderListings.Find(id);
             return orderlisting;
         }
-       
+       public async Task <List<OrderListing>> GetOrderByUserName(string username){
+            
+            return _orderlistings.OrderListings.Where(x => x.UserName.Equals(username)).ToList();
+           
+       }
      
         public async Task <OrderListing> Create(OrderListing orderlisting)
         {   
