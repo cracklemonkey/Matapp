@@ -43,6 +43,25 @@ namespace matAppBackEnd.Services
             return list;
 
         }
+
+          public async Task <List<FullOrderListing>> GetFullOrdersByUserName(string username){
+
+              var list =  _orderlistings.FullOrderListings.FromSqlRaw($"select  odl.ListingId, odl.Title, odl.Description, odl.CreationDate, odl.Deadline, odl.Image, odl.UserOwner, ol.OrderId, ol.OrderDate,ol.UserName FROM dbo.OrderedListings AS odl JOIN dbo.OrderListings AS ol ON odl.ListingId = ol.ListingId;").ToList();
+            
+            return list.Where(x => x.UserName.Equals(username)).ToList();
+
+       } 
+
+            public async Task <List<FullOrderListing>> GetFullOrdersByUserOwner(string userowner){
+
+              var list =  _orderlistings.FullOrderListings.FromSqlRaw($"select  odl.ListingId, odl.Title, odl.Description, odl.CreationDate, odl.Deadline, odl.Image, odl.UserOwner, ol.OrderId, ol.OrderDate,ol.UserName FROM dbo.OrderedListings AS odl JOIN dbo.OrderListings AS ol ON odl.ListingId = ol.ListingId;").ToList();
+            
+            return list.Where(x => x.UserOwner.Equals(userowner)).ToList();
+
+            
+       } 
+
+
      
         public async Task <OrderListing> Create(OrderListing orderlisting)
         {   
