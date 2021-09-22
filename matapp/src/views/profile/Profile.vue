@@ -1,17 +1,17 @@
 <template>
-  <div class="">
+  <div class="background-profile">
     <ProfileBanner />
-    <div>
+    <!-- <div>
       <button class="btn-settings">
         <router-link :to="`/profile/settings`">
           <i class="fas fa-user-cog"></i>
         </router-link>
       </button>
-    </div>
+    </div> -->
     <div class="my-listings">
       <div class="title-section">
         <router-link :to="`/profile/myposts`"
-          ><h2>My Listings</h2>
+          ><h2>My Current Listings</h2>
         </router-link>
       </div>
 
@@ -56,7 +56,7 @@
         </div>
 
         <button class="" v-if="orderByUser.length > 4">
-          <router-link :to="`/profile/historik`"> View more </router-link>
+          <router-link :to="`/profile/historik`"> View more</router-link>
         </button>
       </div>
     </div>
@@ -103,6 +103,7 @@ export default {
 .my-listings {
   width: 80%;
   margin: 1% auto;
+  font-family: "Poiret One", cursive;
 }
 
 .my-listings h2 {
@@ -117,7 +118,7 @@ export default {
 }
 
 .title-section h2:hover {
-  color: #42b983;
+  text-decoration: underline;
 }
 
 .oneListing {
@@ -129,38 +130,39 @@ export default {
   width: 20%;
   margin: 10px;
   text-align: left;
+  font-weight: bold;
 }
-.listing-card img {
-  width: 100%;
-  max-height: 300px;
-}
-
-.listing-card-text {
-  display: flex;
-  justify-content: space-between;
-  color: black;
+.listing-card h3 {
+  font-family: "Bad Script", cursive;
 }
 
-.listing-card-text a {
-  text-decoration: none;
+.listing-card a {
   color: black;
 }
+.listing-card a:hover {
+  color: #2999ac;
+}
+
 .oneListing button {
+  font-family: inherit;
   height: 40px;
   align-self: center;
-  width: 10%;
+  width: 20%;
   margin: 15px;
-  border-radius: 50px;
+  border: none;
+
+  background-color: transparent;
 }
 
 .oneListing button a {
   text-decoration: none;
   color: black;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .oneListing button a:hover {
-  color: #42b983;
+  color: #2999ac;
 }
 
 .btn-settings {
@@ -169,8 +171,22 @@ export default {
   position: relative;
   bottom: 20px;
 }
-.btn-settings a {
+/* .btn-settings a {
   text-decoration: none;
   color: black;
+} */
+@media (max-width: 768px) {
+  .oneListing {
+    display: block;
+  }
+  .listing-card {
+    width: 80%;
+    margin: 10px;
+    text-align: left;
+  }
+  .oneListing button {
+    align-self: center;
+    width: 60%;
+  }
 }
 </style>

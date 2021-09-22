@@ -26,7 +26,7 @@ const getters = {
     userListing: (state) => state.userListing,
     oneImage: (state) => state.oneImage,
 /*     allFullListings: (state) => state.fullListing,
- */    oneFullListing: (state) => state.oneFullListing,
+ */   fullListing: (state) => state.fullListing,
 
     setOfAllergies: (state) => state.setOfAllergies,
     setOfFoodTypes: (state) => state.setOfFoodTypes
@@ -82,7 +82,7 @@ const actions = {
         context.commit('setOfAllergies', response.data);
     },
     async getAllColumns(context) {
-        const response = await axios.get(`https://localhost:5001/api/getallcolumns`);
+        const response = await axios.get(`https://localhost:5001/api/listings/getallcolumns`);
 
         context.commit('setAllColumns', response.data);
     },
@@ -179,7 +179,7 @@ const mutations = {
     setAllergies: (state, allergies) => (state.allergies = allergies),
     setOfAllergies: (state, setOfAllergies) => (state.setOfAllergies = setOfAllergies),
     setOfFoodTypes: (state, setOfFoodTypes) => (state.setOfFoodTypes = setOfFoodTypes),
-    setAllColumns: (state, oneFullListing) => (state.oneFullListing = oneFullListing),
+    setAllColumns: (state, fullListing) => (state.fullListing = fullListing),
     setImages: (state, images) => (state.images = images),
     newListing: (state, oneListing) => state.listings.unshift(oneListing),
     newFoodType: (state, oneFoodType) => state.foodTypes.push(oneFoodType),

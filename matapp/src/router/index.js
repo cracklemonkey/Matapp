@@ -10,6 +10,7 @@ import MyPosts from '../views/profile/MyPosts.vue'
 import Historik from '../views/profile/Historik.vue'
 import ListingByUser from '../views/listings/ListingByUser.vue'
 import EditListing from '../views/listings/EditListing.vue'
+import ConfirmedOrder from '../views/listings/ConfirmedOrder.vue'
 import About from '../views/About.vue'
 
 
@@ -37,6 +38,12 @@ const routes = [
     path: '/listing/:id/edit',
     name: 'EditListing',
     component: EditListing,
+    beforeEnter: AuthenticationGuard
+  },
+  {
+    path: '/orderconfirmed',
+    name: 'Order Confirmed',
+    component: ConfirmedOrder,
     beforeEnter: AuthenticationGuard
   },
 

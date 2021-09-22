@@ -39,7 +39,9 @@
               Edit
             </router-link>
           </button>
-          <button @click="deleteListing(listing.listingId)">Delete</button>
+          <button @click="remove(listing.listingId, listing.image)">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -71,6 +73,11 @@ export default {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
       return date.format("D/MM/YY");
+    },
+    remove(listingId, imageName) {
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.getListingsByUser(this.$auth.user.preferred_username);
     },
   },
   computed: mapGetters(["allListings", "userListing"]),

@@ -7,12 +7,12 @@
       'nav--about-bis': !showNavbar,
     }"
   >
-    <div>
+    <div class="logo-part">
       <router-link class="link brand" to="/"
         >Kastikke <i class="fas fa-cookie-bite"></i
       ></router-link>
     </div>
-    <div>
+    <div class="nav-part">
       <router-link class="link" to="/listing">Listing</router-link>
       <router-link class="link" to="/about">About</router-link>
 
@@ -112,6 +112,14 @@ export default {
   color: black;
   border: 2px solid black;
 }
+.nav--show .log-btn:hover {
+  color: white;
+  border: 2px solid white;
+}
+.nav--about .log-btn:hover {
+  color: white;
+  border: 2px solid white;
+}
 
 .profile-icon {
   font-size: 1.5em;
@@ -132,5 +140,19 @@ export default {
 }
 .brand {
   font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .profile-icon {
+    font-size: 1.2em;
+  }
+
+  .nav--about .profile-icon {
+    font-size: 1.2em;
+  }
+  .log-btn {
+    margin-right: 10px;
+    font-size: 15px;
+  }
 }
 </style>

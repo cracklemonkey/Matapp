@@ -27,7 +27,7 @@ const getters = {
 
 const actions = {
     async getOrderListings(context) {
-        const response = await axios.get("https://localhost:5001/api/orderlistings");
+        const response = await axios.get("https://localhost:5001/api/orderlistings/fullorderlistings");
 
         context.commit('setOrderListings', response.data);
     },

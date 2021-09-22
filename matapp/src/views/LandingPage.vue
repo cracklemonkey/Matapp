@@ -16,7 +16,8 @@
     </div>
     <div class="welcome" v-if="$auth.authenticated">
       <h3>Welcome Back</h3>
-      <h3 class="cap-user">{{ $auth.user.preferred_username }}</h3>
+      <h2 class="cap-user">{{ $auth.user.preferred_username }}</h2>
+
       <h3><i class="far fa-heart"></i></h3>
     </div>
   </div>
@@ -52,9 +53,12 @@ export default {
  */
   font-family: "Poiret One", cursive;
 }
+.welcome h2 {
+  font-family: "Bad Script", cursive;
+}
 .landing-bubble {
   display: flex;
-
+  font-family: "Poiret One", cursive;
   background-color: transparent;
   font-size: 35px;
   border: none;

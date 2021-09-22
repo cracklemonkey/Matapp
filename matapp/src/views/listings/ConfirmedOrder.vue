@@ -1,6 +1,6 @@
 <template>
-  <div class="background-historik">
-    <h3>My Previous Orders</h3>
+  <div class="background-historik space">
+    <h3>Your order is confirmed!</h3>
   </div>
 </template>
 

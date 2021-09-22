@@ -1,4 +1,10 @@
+
+*{
+  box-sizing: border-box
+}
+
 /* NAV */
+
 .nav {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -75,7 +81,7 @@
 
 .background-landing {
     background: url("../images/artur-rutkowski-GdTLaWamFHw-unsplash.jpeg") no-repeat center fixed;
-    min-height: 90vh;
+    min-height: 95vh;
     background-size:cover;
     position: relative;
   }
@@ -87,9 +93,12 @@
 .background-listing{
 /*   background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"), url("../images/okeykat-lfubXm-MW0U-unsplash.jpeg") no-repeat center fixed; */
   background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/gabriel-gurrola-fcgPRZmTM5w-unsplash.jpeg") no-repeat center fixed;
-  min-height: 110vh;
   background-size:100vmax;
   background-blend-mode:multiply;
+  min-height: 100vh;
+  background-size:cover;
+  
+  
 /*  position: relative; */
   
 }
@@ -112,27 +121,42 @@
   .about{
     background: url("../images/markus-winkler-RQxYIQMsS5M-unsplash.jpeg") no-repeat center fixed;
     min-height: 100vh;
-    background-size:100vmax;
-    background-blend-mode: multiply;
-    position: relative;
+    background-size:80vmax;
+    background-size:cover;
+    
+  
   }
 
   .text-about{
-      
-/*       background-color: rgba(150, 146, 146, .8);
- */      font-size: 20px;
+     font-size: 20px;
       width: 80%;
       margin: auto;
   }
 
   /* profile */
   .banner-bg{
-/*     background: linear-gradient(transparent, rgb(131, 64, 57)), url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg") left no-repeat, url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg") right no-repeat;
- */    
  background: url("../images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg") no-repeat center fixed;
- 
  background-size: cover;
-
-   
 height: 30vh;
+  }
+  .background-profile{
+    background-color: rgba(231, 224, 224, 0.7);
+  }
+
+  .background-historik{
+    background: url("../images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg") no-repeat center fixed;
+    min-height: 100vh;
+    background-size:80vmax;
+    background-size:cover;
+     }
+
+  @media (max-width: 768px){
+    .nav {
+      font-size: 18px;
+    }
+    
+    .nav a {
+      padding: 20px 6px;
+    }
+  
   }

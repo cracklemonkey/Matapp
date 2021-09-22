@@ -3,6 +3,7 @@
     <div class="listing-details">
       <div class="listing-image">
         <img
+          v-if="oneListing.image != null"
           class="details-image"
           :src="`https://localhost:5001/api/image/${oneListing.image}`"
           alt=""
@@ -10,16 +11,19 @@
       </div>
       <div class="listing-info">
         <h1>{{ oneListing.title }}</h1>
+        <hr />
         <div class="listing-description">
-          <p>Description:</p>
+          <p class="list-label">Description:</p>
           <p>{{ oneListing.description }}</p>
         </div>
+
         <div>
-          <p>Pick-up before:</p>
+          <p class="list-label">Pick-up before:</p>
           <p>{{ formatDate(oneListing.deadline) }}</p>
         </div>
+
         <div>
-          <p>Category :</p>
+          <p class="list-label">Category :</p>
           <span
             v-for="(foodtype, index) in setOfFoodTypes"
             :key="foodtype + index"
@@ -29,7 +33,7 @@
         </div>
         <div>
           <div>
-            <p>Allergies :</p>
+            <p class="list-label">Allergies :</p>
             <span
               v-for="(allergie, index) in setOfAllergies"
               :key="allergie + index"
@@ -37,13 +41,15 @@
               {{ allergie.name }} <span> </span>
             </span>
           </div>
+
           <div>
-            <p>Posted by:</p>
-            <p class="cap-user">{{ oneListing.userOwner }}</p>
+            <p class="list-label">Posted by:</p>
+            <p class="cap-user">
+              {{ oneListing.userOwner }},
+              {{ formatDateTwo(oneListing.creationDate) }}
+            </p>
           </div>
-          <div>
-            <p>Posted on: {{ formatDateTwo(oneListing.creationDate) }}</p>
-          </div>
+
           <div class="buttons-details">
             <button
               v-if="
@@ -55,6 +61,16 @@
                 Edit
               </router-link>
             </button>
+            <button
+              v-if="
+                $auth.authenticated &&
+                $auth.user.preferred_username === oneListing.userOwner
+              "
+              @click="remove(oneListing.listingId, oneListing.image)"
+            >
+              Delete
+            </button>
+
             <order-listing :listing="oneListing" @update="orderupdate()" />
 
             <button>
@@ -123,6 +139,16 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("D/MM/YY");
     },
+    orderupdate() {
+      console.log("done");
+      /*  window.location.reload(); */
+      this.$router.push({ name: "Listings" });
+    },
+    remove(listingId, imageName) {
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.$router.push({ name: "Listings" });
+    },
   },
   computed: mapGetters(["oneListing", "setOfAllergies", "setOfFoodTypes"]),
 };
@@ -175,5 +201,25 @@ export default {
 .buttons-details button a {
   text-decoration: none;
   color: black;
+}
+.listing-description {
+  width: 75%;
+  margin: auto;
+}
+
+hr {
+  border: solid 2px white;
+  border-radius: 40%;
+  margin: 2% 30%;
+}
+.list-label {
+  font-family: "Bad Script", cursive;
+}
+
+@media (max-width: 768px) {
+  .listing-details {
+    width: 85%;
+    display: block;
+  }
 }
 </style>
