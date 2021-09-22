@@ -1,6 +1,6 @@
 <template>
   <div class="space background-listing">
-    <h1>Edit</h1>
+    <h1 class="title-page">Edit</h1>
     <form class="form-listing" @submit.prevent="editListing" method="PUT">
       <div class="form-div">
         <label for="title">Title</label>
@@ -129,5 +129,6 @@ export default {
 .router-link {
   color: white;
   font-weight: bold;
+  font-size: 20px;
 }
 </style>

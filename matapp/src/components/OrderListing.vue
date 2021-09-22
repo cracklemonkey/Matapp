@@ -50,9 +50,6 @@ export default {
       await this.addOrderedListing(listing);
       /* alert(`You have orderd: ${listing.title}`); */
       this.$router.push({ name: "Order Confirmed" });
-
-      this.toggleConfirm();
-      this.$emit("update");
     },
 
     toggleConfirm() {

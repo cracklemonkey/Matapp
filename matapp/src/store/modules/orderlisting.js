@@ -27,12 +27,12 @@ const getters = {
 
 const actions = {
     async getOrderListings(context) {
-        const response = await axios.get("https://localhost:5001/api/orderlistings/fullorderlistings");
+        const response = await axios.get("https://localhost:5001/api/orderlistings/fullorders");
 
         context.commit('setOrderListings', response.data);
     },
     async getOrdersByUser(context, username) {
-        const response = await axios.get(`https://localhost:5001/api/orderlistings/userorders/${username}`);
+        const response = await axios.get(`https://localhost:5001/api/orderlistings/fullordersbyusername/${username}`);
         console.log(response.data)
         context.commit('orderUser', response.data)
     },

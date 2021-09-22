@@ -71,7 +71,7 @@
               Delete
             </button>
 
-            <order-listing :listing="oneListing" @update="orderupdate()" />
+            <order-listing :listing="oneListing" />
 
             <button>
               <router-link :to="`/listing`"> Back to Listing </router-link>
@@ -95,9 +95,7 @@
                 $auth.user.preferred_username === oneListing.userOwner
               "
             >
-              <router-link :to="`/profile/myposts`">
-                see all my listings
-              </router-link>
+              <router-link :to="`/profile/myposts`"> My Listings </router-link>
             </button>
           </div>
         </div>
@@ -138,11 +136,6 @@ export default {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
       return date.format("D/MM/YY");
-    },
-    orderupdate() {
-      console.log("done");
-      /*  window.location.reload(); */
-      this.$router.push({ name: "Listings" });
     },
     remove(listingId, imageName) {
       this.deleteListing(listingId);

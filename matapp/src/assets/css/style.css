@@ -72,6 +72,66 @@
   100% {opacity:1;}
 }
 
+/* Nav Phone */
+.navphone{
+  padding-top: 30px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+ 
+  z-index: 999;
+  width: 100%;
+  font-family: "Poiret One", cursive;
+  font-size: 20px;
+}
+
+.navphone  a{
+  color: white;
+  font-weight: bold;
+}
+.phone-nav--about a{
+  color: black;
+}
+
+
+.navphone-two{
+  
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content:space-between;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+  font-family: "Poiret One", cursive;
+  font-size: 25px;
+  background-color: white;
+}
+.navphone-two a.router-link-exact-active {
+  color: #dc9614;
+  /* color: #2c3e50; */
+  
+}
+
+.navphone-two a{
+  color: black;
+  text-decoration: none;
+}
+.phone-log-btn {
+  font-family: inherit;
+  color: black;
+  font-weight: bold;
+  padding: 0 4px;
+  margin-right: 20px;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+
 /* space between nav and rest of body */
 .space{
   padding-top: 100px;
@@ -91,19 +151,12 @@
 /* Listing Page */
 
 .background-listing{
-/*   background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"), url("../images/okeykat-lfubXm-MW0U-unsplash.jpeg") no-repeat center fixed; */
   background: url("../images/markus-winkler-5qrrqfSsIfg-unsplash.jpeg") no-repeat center fixed,  url("../images/gabriel-gurrola-fcgPRZmTM5w-unsplash.jpeg") no-repeat center fixed;
   background-size:100vmax;
   background-blend-mode:multiply;
   min-height: 100vh;
   background-size:cover;
-  
-  
-/*  position: relative; */
-  
 }
-
-
 
   /* About Page */
 .space-about{
@@ -123,8 +176,6 @@
     min-height: 100vh;
     background-size:80vmax;
     background-size:cover;
-    
-  
   }
 
   .text-about{
@@ -134,12 +185,13 @@
   }
 
   /* profile */
+
   .banner-bg{
  background: url("../images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg") no-repeat center fixed;
  background-size: cover;
 height: 30vh;
   }
-  .background-profile{
+.background-profile{
     background-color: rgba(231, 224, 224, 0.7);
   }
 

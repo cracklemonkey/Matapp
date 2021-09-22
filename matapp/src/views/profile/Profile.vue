@@ -1,17 +1,13 @@
 <template>
   <div class="background-profile">
     <ProfileBanner />
-    <!-- <div>
-      <button class="btn-settings">
-        <router-link :to="`/profile/settings`">
-          <i class="fas fa-user-cog"></i>
-        </router-link>
-      </button>
-    </div> -->
+
     <div class="my-listings">
       <div class="title-section">
         <router-link :to="`/profile/myposts`"
-          ><h2>My Current Listings</h2>
+          ><h2>
+            My Current Listings <i class="fas fa-chevron-circle-right"></i>
+          </h2>
         </router-link>
       </div>
 
@@ -27,37 +23,42 @@
 
           <p>Posted : {{ formatDate(listing.creationDate) }}</p>
           <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-          <p>Posted by : {{ listing.userOwner }}</p>
         </div>
 
-        <button class="" v-if="userListing.length > 4">
-          <router-link :to="`/profile/myposts`"> View more </router-link>
+        <button class="view-more" v-if="userListing.length > 4">
+          <router-link :to="`/profile/myposts`">
+            View more <i class="fas fa-chevron-circle-right"></i>
+          </router-link>
         </button>
       </div>
     </div>
     <div class="my-listings">
       <div class="title-section">
-        <router-link :to="`/profile/historik`"
-          ><h2>My previous orders</h2>
+        <router-link :to="`/profile/previousorders`">
+          <h2>
+            My previous orders <i class="fas fa-chevron-circle-right"></i>
+          </h2>
         </router-link>
-      </div>
 
-      <div class="oneListing">
-        <div
-          class="listing-card"
-          v-for="(listing, index) in orderByUser.slice(0, 4)"
-          :key="listing + index"
-        >
-          <router-link :to="`/listing/${listing.listingId}`">
-            <h3>{{ listing.orderId }}</h3>
-          </router-link>
+        <div class="oneListing">
+          <div
+            class="listing-card"
+            v-for="(orderListing, index) in orderByUser.slice(0, 4)"
+            :key="orderListing + index"
+          >
+            <router-link :to="`/listing/${orderListing.title}`">
+              <h3>{{ orderListing.title }}</h3>
+            </router-link>
 
-          <p>Ordered : {{ formatDate(listing.orderDate) }}</p>
+            <p>Ordered : {{ formatDate(orderListing.orderDate) }}</p>
+          </div>
+
+          <button class="" v-if="orderByUser.length > 4">
+            <router-link :to="`/profile/previousorders`">
+              View more <i class="fas fa-chevron-circle-right"></i
+            ></router-link>
+          </button>
         </div>
-
-        <button class="" v-if="orderByUser.length > 4">
-          <router-link :to="`/profile/historik`"> View more</router-link>
-        </button>
       </div>
     </div>
   </div>
@@ -161,10 +162,9 @@ export default {
   font-weight: bold;
 }
 
-.oneListing button a:hover {
+.view-more:hover {
   color: #2999ac;
 }
-
 .btn-settings {
   font-size: 25px;
   border: none;
@@ -187,6 +187,10 @@ export default {
   .oneListing button {
     align-self: center;
     width: 60%;
+  }
+
+  .title-section {
+    font-size: 13px;
   }
 }
 </style>

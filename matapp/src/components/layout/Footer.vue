@@ -1,6 +1,6 @@
 <template>
   <div id="footer">
-    <p>Kastikke Group Project at GlassPaper</p>
+    <p>Kasti Ké Group Project at GlassPaper</p>
 
     <p>
       photos:

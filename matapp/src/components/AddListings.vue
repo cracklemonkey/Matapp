@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--  <p class="add-title">Add a new listing</p> -->
     <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div class="form-div">
         <label for="title">Title</label>
@@ -27,9 +26,10 @@
         <label for="description">Description</label>
         <textarea
           id="description"
-          rows="5"
-          cols="20"
+          rows="3"
+          cols="10"
           v-model="posts.description"
+          placeholder="describe your listing"
           required
         />
       </div>
@@ -71,7 +71,9 @@
         </div>
       </div>
       <div class="form-div">
+        <label for="image">Upload an image</label>
         <input
+          id="image"
           type="file"
           accept="image/jpg, image/png, image/jpeg"
           ref="file"
@@ -214,6 +216,10 @@ export default {
   font-weight: bold;
 }
 
+.form-div input {
+  align-self: center;
+}
+
 .title-label {
   font-weight: bold;
   padding: 5px;
@@ -242,14 +248,15 @@ export default {
 .form-btn {
   font-family: inherit;
   font-size: 15px;
-  padding: 5px;
+  padding: 5px 10px;
   margin: 10px;
   border-radius: 30px;
   border: black 1px solid;
+  font-weight: bold;
 }
 .form-btn:hover {
-  font-size: 18px;
-  color: black;
+  font-size: 20px;
+  background-color: rgba(231, 224, 224, 0.7);
 }
 #deadline input {
   background: black;

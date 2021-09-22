@@ -32,8 +32,16 @@
         <div class="listing-info">
           <h3>{{ listing.title }}</h3>
 
-          <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-          <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
+          <p class="desktop">Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p class="desktop">
+            Pick-up before : {{ formatDate(listing.deadline) }}
+          </p>
+          <p class="phone">
+            Posted : {{ formatDateTwo(listing.creationDate) }}
+          </p>
+          <p class="phone">
+            Pick-up before : {{ formatDateTwo(listing.deadline) }}
+          </p>
           <p class="cap-user">Posted by : {{ listing.userOwner }}</p>
           <div class="buttons-div">
             <button>
@@ -50,9 +58,17 @@
             >
               Delete
             </button>
-            <order-listing :listing="listing" @update="orderupdate()" />
+            <order-listing :listing="listing" />
           </div>
         </div>
+      </div>
+      <div class="up-top">
+        <a class="phone" href="#topphone"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
+        <a class="desktop" href="#topdesk"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
       </div>
     </div>
   </div>
@@ -91,8 +107,6 @@ export default {
       "getListingById",
       "getImage",
       "deleteImage",
-      "getAllergiesByListingId",
-      "getFTByListingId",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
@@ -111,10 +125,6 @@ export default {
       return date.format("D/MM/YY");
     },
 
-    orderupdate() {
-      console.log("test");
-      /*  window.location.reload(); */
-    },
     remove(listingId, imageName) {
       this.deleteListing(listingId);
       this.deleteImage(imageName);
@@ -216,6 +226,16 @@ export default {
 .buttons-div {
   display: flex;
   justify-content: center;
+}
+
+.up-top a {
+  font-size: 30px;
+  padding: 15px;
+  color: white;
+}
+
+.up-top a:hover {
+  color: black;
 }
 @media (max-width: 768px) {
   .listing-div {

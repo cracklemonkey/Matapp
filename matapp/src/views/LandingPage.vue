@@ -3,7 +3,10 @@
     <div v-if="!$auth.authenticated">
       <button class="landing-bubble">
         <h3 @click="login">
-          <p>Want to join the Kastikke Family?</p>
+          <p>
+            Want to join <br />
+            the Kasti Ké Family?
+          </p>
           <p>Sign up here!</p>
         </h3>
       </button>

@@ -1,31 +1,34 @@
+
 <template>
-  <div
-    class="nav"
-    :class="{
-      'nav--show': !showNavbar,
-      'nav--about': adaptColor,
-      'nav--about-bis': !showNavbar,
-    }"
-  >
-    <div class="logo-part">
-      <router-link class="link brand" to="/"
-        >Kastikke <i class="fas fa-cookie-bite"></i
-      ></router-link>
-    </div>
-    <div class="nav-part">
-      <router-link class="link" to="/listing">Listing</router-link>
-      <router-link class="link" to="/about">About</router-link>
+  <div>
+    <div
+      class="nav"
+      :class="{
+        'nav--show': !showNavbar,
+        'nav--about': adaptColor,
+        'nav--about-bis': !showNavbar,
+      }"
+    >
+      <div class="logo-part">
+        <router-link class="link brand" to="/"
+          >Kasti Ké <i class="fas fa-cookie-bite"></i
+        ></router-link>
+      </div>
+      <div class="nav-part">
+        <router-link class="link" to="/listing">Listing</router-link>
+        <router-link class="link" to="/about">About</router-link>
 
-      <router-link class="link" v-if="$auth.authenticated" to="/profile"
-        ><i class="far fa-user-circle profile-icon"></i
-      ></router-link>
+        <router-link class="link" v-if="$auth.authenticated" to="/profile"
+          ><i class="far fa-user-circle profile-icon"></i
+        ></router-link>
 
-      <button v-if="!$auth.authenticated" @click="login" class="log-btn">
-        Log In
-      </button>
-      <button v-if="$auth.authenticated" @click="logout" class="log-btn">
-        Log Out
-      </button>
+        <button v-if="!$auth.authenticated" @click="login" class="log-btn">
+          Log In
+        </button>
+        <button v-if="$auth.authenticated" @click="logout" class="log-btn">
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
 </template>

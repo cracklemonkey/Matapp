@@ -1,5 +1,5 @@
 <template>
-  <div class="space background-listing">
+  <div class="space background-historik">
     <div class="my-listings-page">
       <h1 class="title-page">All My Listings</h1>
       <div>
@@ -138,5 +138,10 @@ export default {
 .btn-settings a {
   text-decoration: none;
   color: black;
+}
+.router-link {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 </style>

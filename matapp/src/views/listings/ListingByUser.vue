@@ -1,8 +1,8 @@
 <template>
   <div class="background-listing space">
     <h1 class="title-page">
-      All listings from
-      <p class="cap-user">{{ username }}</p>
+      <p class="cap-user">{{ username }}'s</p>
+      <p>listings</p>
     </h1>
 
     <div>
@@ -34,18 +34,15 @@
       <div class="listing-info">
         <h3>{{ listing.title }}</h3>
 
-        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-        <p>{{ listing.foodType }}</p>
-        <div>
-          <p>allergies:</p>
-          <p
-            v-for="(allergie, index) in setOfAllergies"
-            :key="allergie + index"
-          >
-            {{ allergie.name }}
-          </p>
-        </div>
+        <p class="desktop">Posted : {{ formatDate(listing.creationDate) }}</p>
+        <p class="desktop">
+          Pick-up before : {{ formatDate(listing.deadline) }}
+        </p>
+        <p class="phone">Posted : {{ formatDateTwo(listing.creationDate) }}</p>
+        <p class="phone">
+          Pick-up before : {{ formatDateTwo(listing.deadline) }}
+        </p>
+
         <p class="cap-user">Posted by : {{ listing.userOwner }}</p>
         <div class="buttons-div">
           <button>
@@ -62,7 +59,7 @@
           >
             Delete
           </button>
-          <order-listing :listing="listing" @update="orderupdate()" />
+          <order-listing :listing="listing" />
           <button>
             <router-link :to="`/listing`"> Back to Listing </router-link>
           </button>
@@ -76,10 +73,11 @@
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
 import dayjs from "dayjs";
+import OrderListing from "../../components/OrderListing.vue";
 
 export default {
   name: "ListingByUser",
-  components: { AddListings },
+  components: { AddListings, OrderListing },
   data() {
     return {
       plusButton: false,
@@ -106,9 +104,10 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
-    orderupdate() {
-      console.log("test");
-      window.location.reload();
+    formatDateTwo(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
     },
   },
   computed: mapGetters(["oneListing", "allListings", "userListing"]),
