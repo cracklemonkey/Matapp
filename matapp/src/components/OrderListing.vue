@@ -48,9 +48,8 @@ export default {
 
       await this.addOrderListing(this.posts);
       await this.addOrderedListing(listing);
-      alert(`You have orderd: ${listing.title}`);
-      this.toggleConfirm();
-      this.$emit("update");
+      /* alert(`You have orderd: ${listing.title}`); */
+      this.$router.push({ name: "Order Confirmed" });
     },
 
     toggleConfirm() {
@@ -62,8 +61,9 @@ export default {
 
 <style>
 .modal {
-  background: #42b983;
+  background: #7c9b7d;
   width: 100%;
   font-size: 30px;
+  border-radius: 10px;
 }
 </style>

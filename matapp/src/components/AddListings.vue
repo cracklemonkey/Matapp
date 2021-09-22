@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--  <p class="add-title">Add a new listing</p> -->
     <form class="form-listing" @submit.prevent="postListing" method="POST">
       <div class="form-div">
         <label for="title">Title</label>
@@ -9,20 +8,29 @@
           type="text"
           v-model="posts.title"
           placeholder="name your listing"
+          required
         />
       </div>
       <div class="form-div">
         <label for="deadline">Deadline</label>
-        <input id="deadline" type="date" v-model="posts.deadline" />
+        <input
+          id="deadline"
+          type="date"
+          :min="new Date().toISOString().substr(0, 10)"
+          v-model="posts.deadline"
+          required
+        />
       </div>
 
       <div class="form-div">
         <label for="description">Description</label>
         <textarea
           id="description"
-          rows="5"
-          cols="20"
+          rows="3"
+          cols="10"
           v-model="posts.description"
+          placeholder="describe your listing"
+          required
         />
       </div>
       <div>
@@ -32,6 +40,7 @@
             class="check-inputs"
             v-for="(foodType, i) in allFoodTypes"
             :key="foodType + i"
+            required
           >
             <label for="foodtype">{{ foodType.name }}</label>
             <input
@@ -62,10 +71,13 @@
         </div>
       </div>
       <div class="form-div">
+        <label for="image">Upload an image</label>
         <input
+          id="image"
           type="file"
           accept="image/jpg, image/png, image/jpeg"
           ref="file"
+          capture="camera"
           @change="onImageSelected"
         />
       </div>
@@ -163,6 +175,7 @@ export default {
           }
         }
         event.target.reset();
+        this.$emit("toggle");
       }
     },
   },
@@ -187,21 +200,30 @@ export default {
 
 .form-listing .form-div label {
   font-weight: bold;
+  color: white;
 }
 
 .form-listing .form-div input {
   border-radius: 10px;
   padding: 5px;
   font-family: inherit;
+  font-weight: bold;
 }
 .form-listing .form-div textarea {
   border-radius: 20px;
   padding: 10px;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.form-div input {
+  align-self: center;
 }
 
 .title-label {
   font-weight: bold;
   padding: 5px;
+  color: white;
 }
 
 .checked-boxes {
@@ -217,6 +239,8 @@ export default {
 .check-inputs label {
   text-transform: capitalize;
   padding-right: 5px;
+  color: black;
+  font-weight: bold;
 }
 .check-inputs input {
   accent-color: black;
@@ -224,13 +248,24 @@ export default {
 .form-btn {
   font-family: inherit;
   font-size: 15px;
-  padding: 5px;
+  padding: 5px 10px;
   margin: 10px;
   border-radius: 30px;
   border: black 1px solid;
+  font-weight: bold;
 }
 .form-btn:hover {
-  font-size: 18px;
-  color: black;
+  font-size: 20px;
+  background-color: rgba(231, 224, 224, 0.7);
+}
+#deadline input {
+  background: black;
+}
+@media (max-width: 768px) {
+  .form-listing {
+    font-size: 18px;
+    width: 80%;
+    margin: auto;
+  }
 }
 </style>

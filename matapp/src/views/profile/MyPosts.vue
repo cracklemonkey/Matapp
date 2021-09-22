@@ -1,31 +1,48 @@
 <template>
-  <div>
+  <div class="space background-historik">
     <div class="my-listings-page">
-      <h2>All My Listings</h2>
-      <router-link :to="`/listing`"><p>Back to Listing</p></router-link>
-      <router-link :to="`/profile`"><p>Back to Profile</p></router-link>
+      <h1 class="title-page">All My Listings</h1>
+      <div>
+        <router-link class="router-link" :to="`/listing`"
+          ><p>Back to Listing</p></router-link
+        >
+        <router-link class="router-link" :to="`/profile`"
+          ><p>Back to Profile</p></router-link
+        >
+      </div>
       <div
         class="listing-div"
         v-for="(listing, index) in userListing"
         :key="listing + index"
       >
-        <h3>{{ listing.title }}</h3>
+        <div class="listing-img">
+          <img
+            v-if="listing.image != null"
+            :src="`https://localhost:5001/api/image/${listing.image}`"
+            alt=""
+          />
+        </div>
+        <div class="listing-info">
+          <h3>{{ listing.title }}</h3>
 
-        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-        <p>{{ listing.foodType }}</p>
-        <p>Posted by : {{ listing.userOwner }}</p>
-        <button>
-          <router-link :to="`/listing/${listing.listingId}`">
-            View details
-          </router-link>
-        </button>
-        <button>
-          <router-link :to="`/listing/${listing.listingId}/edit`">
-            Edit
-          </router-link>
-        </button>
-        <button @click="deleteListing(listing.listingId)">Delete</button>
+          <p>Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
+          <p>{{ listing.foodType }}</p>
+          <p>Posted by : {{ listing.userOwner }}</p>
+          <button>
+            <router-link :to="`/listing/${listing.listingId}`">
+              View details
+            </router-link>
+          </button>
+          <button>
+            <router-link :to="`/listing/${listing.listingId}/edit`">
+              Edit
+            </router-link>
+          </button>
+          <button @click="remove(listing.listingId, listing.image)">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -57,6 +74,11 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("D/MM/YY");
     },
+    remove(listingId, imageName) {
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.getListingsByUser(this.$auth.user.preferred_username);
+    },
   },
   computed: mapGetters(["allListings", "userListing"]),
 };
@@ -68,12 +90,6 @@ export default {
   margin: 1% auto;
 }
 
-.my-listings-page h2 {
-  text-align: center;
-  font-size: 2.5em;
-  padding-left: 20px;
-  color: black;
-}
 .oneListing {
   display: flex;
   flex-direction: column;
@@ -122,5 +138,10 @@ export default {
 .btn-settings a {
   text-decoration: none;
   color: black;
+}
+.router-link {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 </style>

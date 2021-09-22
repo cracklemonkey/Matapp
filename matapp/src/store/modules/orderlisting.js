@@ -27,12 +27,12 @@ const getters = {
 
 const actions = {
     async getOrderListings(context) {
-        const response = await axios.get("https://localhost:5001/api/orderlistings");
+        const response = await axios.get("https://localhost:5001/api/orderlistings/fullorders");
 
         context.commit('setOrderListings', response.data);
     },
     async getOrdersByUser(context, username) {
-        const response = await axios.get(`https://localhost:5001/api/orderlistings/userorders/${username}`);
+        const response = await axios.get(`https://localhost:5001/api/orderlistings/fullordersbyusername/${username}`);
         console.log(response.data)
         context.commit('orderUser', response.data)
     },
@@ -40,6 +40,8 @@ const actions = {
     async addOrderListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/orderlistings`, posts)
         context.commit('newOrderListing', response.data);
+        context.dispatch('listings/getListings', null, { root: true })
+
     },
     async deleteOrderListing(context, orderid) {
         await axios.delete(`https://localhost:5001/api/orderlistings/${orderid}`);

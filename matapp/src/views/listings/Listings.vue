@@ -1,60 +1,74 @@
 <template>
-  <div class="background-listing space">
-    <h1 class="title-page">All Listings</h1>
+  <div class="background-listing">
+    <div class="space">
+      <h1 class="title-page">All Listings</h1>
 
-    <div>
-      <button
-        v-if="$auth.authenticated"
-        @click="togglePlus"
-        class="plus-button"
-      >
-        <i class="far fa-plus-square"></i>
-      </button>
-    </div>
-
-    <div v-if="plusButton">
-      <AddListings />
-    </div>
-
-    <div
-      class="listing-div nav-change"
-      v-for="(listing, index) in allListings"
-      :key="listing + index"
-    >
       <div>
-        <img
-          v-if="listing.image != null"
-          class="listing-img"
-          :src="`https://localhost:5001/api/image/${listing.image}`"
-          alt=""
-        />
-        <h3>{{ listing.title }}</h3>
-
-        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-        <p>{{ listing.foodType }}</p>
-        <div
-          v-for="(allergie, index) in setOfAllergies"
-          :key="allergie + index"
-        >
-          <p>allergies:{{ allergie.name }}</p>
-        </div>
-        <p>Posted by : {{ listing.userOwner }}</p>
-        <button>
-          <router-link :to="`/listing/${listing.listingId}`">
-            View more details
-          </router-link>
-        </button>
         <button
-          v-if="
-            $auth.authenticated &&
-            $auth.user.preferred_username === listing.userOwner
-          "
-          @click="remove(listing.listingId, listing.image)"
+          v-if="$auth.authenticated"
+          @click="togglePlus"
+          class="plus-button"
         >
-          Delete
+          <i class="far fa-plus-square"></i>
         </button>
-        <order-listing :listing="listing" @update="orderupdate()" />
+      </div>
+
+      <div v-if="plusButton">
+        <AddListings @toggle="togglePlus()" />
+      </div>
+
+      <div
+        class="listing-div nav-change"
+        v-for="(listing, index) in allListings"
+        :key="listing + index"
+      >
+        <div class="listing-img">
+          <img
+            v-if="listing.image != null"
+            :src="`https://localhost:5001/api/image/${listing.image}`"
+            alt=""
+          />
+        </div>
+        <div class="listing-info">
+          <h3>{{ listing.title }}</h3>
+
+          <p class="desktop">Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p class="desktop">
+            Pick-up before : {{ formatDate(listing.deadline) }}
+          </p>
+          <p class="phone">
+            Posted : {{ formatDateTwo(listing.creationDate) }}
+          </p>
+          <p class="phone">
+            Pick-up before : {{ formatDateTwo(listing.deadline) }}
+          </p>
+          <p class="cap-user">Posted by : {{ listing.userOwner }}</p>
+          <div class="buttons-div">
+            <button>
+              <router-link :to="`/listing/${listing.listingId}`">
+                View more details
+              </router-link>
+            </button>
+            <button
+              v-if="
+                $auth.authenticated &&
+                $auth.user.preferred_username === listing.userOwner
+              "
+              @click="remove(listing.listingId, listing.image)"
+            >
+              Delete
+            </button>
+            <order-listing :listing="listing" />
+          </div>
+        </div>
+      </div>
+      <div class="up-top">
+        <a class="phone" href="#topphone"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
+        <a class="desktop" href="#topdesk"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
       </div>
     </div>
   </div>
@@ -93,8 +107,6 @@ export default {
       "getListingById",
       "getImage",
       "deleteImage",
-      "getAllergiesByListingId",
-      "getFTByListingId",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
@@ -107,15 +119,16 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
-
-    orderupdate() {
-      console.log("test");
-      window.location.reload();
+    formatDateTwo(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
     },
+
     remove(listingId, imageName) {
-      this.deleteListing(listingId),
-        this.deleteImage(imageName),
-        window.location.reload();
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.getListings();
     },
   },
   computed: mapGetters([
@@ -132,51 +145,70 @@ export default {
 
 <style>
 .title-page {
-  font-family: "Oswald", sans-serif;
+  font-family: "Poiret One", cursive;
   padding: 10px;
   margin-bottom: 20px;
+  color: white;
 }
 .listing-div {
   font-family: "Poiret One", cursive;
   font-weight: bold;
   width: 50%;
   margin: 10px auto;
-  /*   border: 3px solid black;
- */
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 10px;
   border-radius: 20px;
+  display: flex;
 }
 
-.listing-div h3 {
+.listing-info {
+  margin: auto;
+}
+
+.listing-info h3 {
   font-family: "Bad Script", cursive;
+  font-size: 25px;
 }
 
-.listing-div p {
+.listing-info p {
   padding: 5px;
-  font-size: 18px;
-  text-align: center;
+  font-size: 20px;
+  text-align: left;
 }
 
-.listing-div button {
+.listing-info button {
   font-family: inherit;
-  font-size: 15px;
+  font-size: 18px;
   padding: 5px;
   margin: 10px;
   border-radius: 30px;
   border: black 1px solid;
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
 }
-.listing-div button a {
+
+.listing-info button:hover {
+  color: white;
+  background-color: black;
+}
+.listing-info button a {
   text-decoration: none;
   color: black;
 }
+.listing-info button a:hover {
+  color: white;
+}
 
 .listing-img {
+  align-self: center;
+}
+
+.listing-img img {
   padding: 20px;
   width: 150px;
   height: 150px;
   object-fit: cover;
-  float: left;
+  border-radius: 0px 30px;
 }
 
 .plus-button {
@@ -184,7 +216,51 @@ export default {
   border: none;
   font-size: 30px;
 }
-.plus-button:hover {
+.plus-button {
   color: white;
+}
+.plus-button:hover {
+  color: black;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+.up-top a {
+  font-size: 30px;
+  padding: 15px;
+  color: white;
+}
+
+.up-top a:hover {
+  color: black;
+}
+@media (max-width: 768px) {
+  .listing-div {
+    display: block;
+    width: 90%;
+  }
+  .listing-info h3 {
+    font-size: 20px;
+  }
+
+  .listing-info p {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .listing-info button {
+    font-size: 15px;
+  }
+
+  .listing-img img {
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0px 30px;
+  }
 }
 </style>

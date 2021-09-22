@@ -1,25 +1,27 @@
 <template>
   <div class="background-landing space">
-    <button v-if="!$auth.loading" class="landing-bubble">
-      <h3 v-if="!$auth.authenticated" @click="login">
-        New to MatApp? <br />
-        Sign up here! <br />
-      </h3>
-    </button>
-    <button v-if="!$auth.loading" class="landing-bubble">
-      <h3 v-if="!$auth.authenticated" @click="login">
-        Already a member? <br />
-        Just log in!
-      </h3>
-    </button>
+    <div v-if="!$auth.authenticated">
+      <button class="landing-bubble">
+        <h3 @click="login">
+          <p>
+            Want to join <br />
+            the Kasti Ké Family?
+          </p>
+          <p>Sign up here!</p>
+        </h3>
+      </button>
+      <button class="landing-bubble">
+        <h3 @click="login">
+          <p>Already a member?</p>
+          <p>Just log in!</p>
+        </h3>
+      </button>
+    </div>
+    <div class="welcome" v-if="$auth.authenticated">
+      <h3>Welcome Back</h3>
+      <h2 class="cap-user">{{ $auth.user.preferred_username }}</h2>
 
-    <div v-if="$auth.authenticated">
-      <h3 class="welcome">
-        Welcome Back <br />
-        {{ $auth.user.preferred_username }}
-        <br />
-        <i class="far fa-heart"></i>
-      </h3>
+      <h3><i class="far fa-heart"></i></h3>
     </div>
   </div>
 </template>
@@ -33,7 +35,7 @@ export default {
     // Log the user in
     login() {
       this.$auth.loginWithRedirect({
-        redirect_uri: "http://localhost:8080/listing",
+        redirect_uri: "http://localhost:8080",
       });
     },
     // Log the user out
@@ -49,6 +51,29 @@ export default {
 <style>
 .welcome {
   color: white;
-  font-size: 2em;
+  font-size: 3em;
+  /*   font-family: "Bad Script", cursive;
+ */
+  font-family: "Poiret One", cursive;
+}
+.welcome h2 {
+  font-family: "Bad Script", cursive;
+}
+.landing-bubble {
+  display: flex;
+  font-family: "Poiret One", cursive;
+  background-color: transparent;
+  font-size: 35px;
+  border: none;
+  color: white;
+  margin: 10% auto;
+}
+
+.landing-bubble:hover {
+  color: black;
+}
+
+.cap-user {
+  text-transform: capitalize;
 }
 </style>

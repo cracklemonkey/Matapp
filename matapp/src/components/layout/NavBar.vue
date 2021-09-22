@@ -1,31 +1,34 @@
+
 <template>
-  <div
-    class="nav"
-    :class="{
-      'nav--show': !showNavbar,
-      'nav--about': adaptColor,
-      'nav--about-bis': !showNavbar,
-    }"
-  >
-    <div>
-      <router-link class="link brand" to="/"
-        >MatApp <i class="fas fa-cookie-bite"></i
-      ></router-link>
-    </div>
-    <div>
-      <router-link class="link" to="/listing">Listing</router-link>
-      <router-link class="link" to="/about">About</router-link>
+  <div>
+    <div
+      class="nav"
+      :class="{
+        'nav--show': !showNavbar,
+        'nav--about': adaptColor,
+        'nav--about-bis': !showNavbar,
+      }"
+    >
+      <div class="logo-part">
+        <router-link class="link brand" to="/"
+          >Kasti Ké <i class="fas fa-cookie-bite"></i
+        ></router-link>
+      </div>
+      <div class="nav-part">
+        <router-link class="link" to="/listing">Listing</router-link>
+        <router-link class="link" to="/about">About</router-link>
 
-      <router-link class="link" v-if="$auth.authenticated" to="/profile"
-        ><i class="far fa-user-circle profile-icon"></i
-      ></router-link>
+        <router-link class="link" v-if="$auth.authenticated" to="/profile"
+          ><i class="far fa-user-circle profile-icon"></i
+        ></router-link>
 
-      <button v-if="!$auth.authenticated" @click="login" class="log-btn">
-        Log In
-      </button>
-      <button v-if="$auth.authenticated" @click="logout" class="log-btn">
-        Log Out
-      </button>
+        <button v-if="!$auth.authenticated" @click="login" class="log-btn">
+          Log In
+        </button>
+        <button v-if="$auth.authenticated" @click="logout" class="log-btn">
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +62,7 @@ export default {
       }
       // Stop executing this function if the difference between
       // current scroll position and last scroll position is less than some offset
-      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+      if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 30) {
         return;
       }
 
@@ -97,6 +100,7 @@ export default {
   background: transparent;
   border: 2px solid white;
   border-radius: 10px;
+  font-size: 18px;
 }
 
 .log-btn:hover {
@@ -110,6 +114,14 @@ export default {
 .nav--about .log-btn {
   color: black;
   border: 2px solid black;
+}
+.nav--show .log-btn:hover {
+  color: white;
+  border: 2px solid white;
+}
+.nav--about .log-btn:hover {
+  color: white;
+  border: 2px solid white;
 }
 
 .profile-icon {
@@ -131,5 +143,19 @@ export default {
 }
 .brand {
   font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .profile-icon {
+    font-size: 1.2em;
+  }
+
+  .nav--about .profile-icon {
+    font-size: 1.2em;
+  }
+  .log-btn {
+    margin-right: 10px;
+    font-size: 15px;
+  }
 }
 </style>

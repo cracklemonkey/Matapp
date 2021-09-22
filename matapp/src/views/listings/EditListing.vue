@@ -1,14 +1,23 @@
 <template>
   <div class="space background-listing">
-    <h1>Edit</h1>
+    <h1 class="title-page">Edit</h1>
     <form class="form-listing" @submit.prevent="editListing" method="PUT">
       <div class="form-div">
         <label for="title">Title</label>
         <input id="title" type="text" v-model="oneListing.title" />
       </div>
       <div class="form-div">
-        <label for="deadline">Deadline</label>
-        <input id="deadline" type="date" v-model="oneListing.deadline" />
+        <label for="deadline"
+          >Deadline <br />
+          {{ formatDateTwo(oneListing.deadline) }}</label
+        >
+
+        <input
+          id="deadline"
+          type="date"
+          :min="new Date().toISOString().substr(0, 10)"
+          v-model="oneListing.deadline"
+        />
       </div>
 
       <div class="form-div">
@@ -19,63 +28,6 @@
           cols="20"
           v-model="oneListing.description"
         />
-      </div>
-
-      <div>
-        <p class="title-label">What kind of food is it?</p>
-        <div
-          v-for="(foodType, index) in setOfFoodTypes"
-          :key="foodType + index"
-          :listId="foodType.listingFoodTypeId"
-        >
-          <p class="info-name">
-            {{ foodType.name }}
-          </p>
-          <p class="hidden"></p>
-        </div>
-        <div class="checked-boxes">
-          <div
-            class="check-inputs"
-            v-for="(foodType, i) in allFoodTypes"
-            :key="foodType + i"
-          >
-            <label for="foodtype">{{ foodType.name }}</label>
-            <input
-              id="foodtype"
-              type="checkbox"
-              :value="foodType.foodTypeId"
-              v-model="checked"
-            />
-          </div>
-        </div>
-      </div>
-      <div>
-        <p class="title-label">Which allergies does it contain?</p>
-        <div
-          v-for="(allergie, index) in setOfAllergies"
-          :key="allergie + index"
-          :listAId="allergie.listingAllergieId"
-        >
-          <p class="info-name">
-            {{ allergie.name }}
-          </p>
-          <p>{{ allergie.listingAllergieId }}</p>
-        </div>
-        <div class="checked-boxes">
-          <div
-            class="check-inputs"
-            v-for="(allergies, i) in allAllergies"
-            :key="allergies + i"
-          >
-            <label for="allergie">{{ allergies.name }}</label>
-            <input
-              id="allergie"
-              type="checkbox"
-              :value="allergies.allergieId"
-              v-model="checkedAllergies"
-            />
-          </div>
-        </div>
       </div>
       <div class="form-div">
         <input
@@ -95,6 +47,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import dayjs from "dayjs";
 export default {
   name: "EditListing",
   data() {
@@ -102,34 +55,18 @@ export default {
       updListing: {
         id: this.$route.params.id,
         title: null,
-        deadline: Date.parse(""),
+        deadline: null,
         description: null,
         userOwner: null,
         image: null,
         creationDate: null,
       },
-      updateType: {
-        foodTypeId: null,
-        listingId: this.$route.params.id,
-      },
-      updateAllergies: {
-        allergieId: null,
-        listingId: this.$route.params.id,
-      },
-      checked: [],
-      checkedAllergies: [],
-      listingFoodTypeId: this.listFTId,
-      listingAllergieId: this.listAId,
     };
   },
-  props: ["listFTId", "listAId"],
+
   created() {
     console.log(this.$route.params.id);
     this.getListingById(this.$route.params.id);
-    this.getFTByListingId(this.$route.params.id);
-    this.getAllergiesByListingId(this.$route.params.id);
-    this.getFoodTypes();
-    this.getAllergies();
   },
   methods: {
     ...mapActions([
@@ -137,16 +74,6 @@ export default {
       "getListingById",
       "deleteImage",
       "addImage",
-      "updateFoodType",
-      "updateAllergie",
-      "getFoodTypes",
-      "getAllergies",
-      "getListingFT",
-      "getListingAllergies",
-      "getFTByListingId",
-      "getAllergiesByListingId",
-      "deleteAllergie",
-      "deleteFoodType",
     ]),
 
     onImageSelected(e) {
@@ -172,27 +99,15 @@ export default {
       } else {
         this.updListing.image = this.oneListing.image;
       }
-      console.log(this.listingFoodTypeId);
-      if (this.checked != null) {
-        await this.deleteFoodType(this.listingFoodTypeId);
-        for (let i = 0; i < this.checked.length; i++) {
-          this.updateType.foodTypeId = this.checked[i];
-          await this.updateFoodType(this.updateType);
-          console.log(this.updateType);
-        }
-      }
-      if (this.checkedAllergies != null) {
-        await this.deleteAllergie(this.listingAllergieId);
-        for (let i = 0; i < this.checkedAllergies.length; i++) {
-          this.updateAllergies.allergieId = this.checkedAllergies[i];
-          await this.updateAllergie(this.updateAllergies);
-          console.log(this.updateAllergies);
-        }
-      }
 
       const updata = await this.updateListing(this.updListing);
       console.log(updata);
       this.$router.push({ name: "ListingDetails" });
+    },
+    formatDateTwo(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
     },
   },
   computed: mapGetters([
@@ -214,5 +129,6 @@ export default {
 .router-link {
   color: white;
   font-weight: bold;
+  font-size: 20px;
 }
 </style>
