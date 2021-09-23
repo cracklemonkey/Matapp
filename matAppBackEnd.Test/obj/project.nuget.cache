@@ -1,8 +1,12 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "cVxJnaCSLMB2FQtfvShTGVKLbKFtEXU3/d/283bsV751pma4vnqaqFuE8/QShmnQ0G12JUm/a4oPPSwjspU3YQ==",
+=======
+  "dgSpecHash": "CuA6zAYEitNCszp8tBzcBbqxp3nRxhgcyqvhIiTlZT1iAxFkh0q5hMhsn/PlpSV+dhBz3ZOp/y7sg9KBOoJeMw==",
+>>>>>>> origin/dev
   "success": true,
-  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matappbackend.test\\matAppBackEnd.Test.csproj",
+  "projectFilePath": "C:\\Users\\danie\\Documents\\Matapp\\matAppBackEnd.Test\\matAppBackEnd.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\azure.core\\1.15.0\\azure.core.1.15.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\azure.storage.blobs\\12.9.1\\azure.storage.blobs.12.9.1.nupkg.sha512",

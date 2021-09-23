@@ -1,18 +1,9 @@
 <template>
   <div class="profile-banner">
-    <img
-      class="banner-img"
-      src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
-      alt=""
-    />
-    <img
-      class="banner-img second-image"
-      src="../../assets/images/shumilov-ludmila-j7X_hySaUa4-unsplash.jpeg"
-      alt=""
-    />
+    <div class="banner-bg"></div>
     <img class="profile-img" :src="$auth.user.picture" alt="" />
 
-    <p>{{ $auth.user.preferred_username }}</p>
+    <p class="cap-user">{{ $auth.user.preferred_username }}</p>
   </div>
 </template>
 
@@ -27,11 +18,8 @@ export default {
 </script>
 
 <style>
-.banner-img {
-  max-height: 40vh;
-  width: 50%;
-
-  position: relative;
+.profile-banner {
+  font-family: "Bad Script", cursive;
 }
 
 .profile-img {
@@ -41,10 +29,6 @@ export default {
   z-index: 2;
   text-align: center;
   bottom: 40px;
-}
-.second-image {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
 }
 
 .profile-banner p {

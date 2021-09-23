@@ -37,7 +37,33 @@ namespace AllergiesApi.Controllers
 
             return allergie;
         }
+
+           [HttpGet("id/{id}", Name = "GetAllergiebyid")]
+        public async Task <ActionResult<Allergie>> Get(int id)
+        {   
+            var allergie = await _allergieService.Get(id);
+
+            if (allergie == null)
+            {
+                return NotFound();
+            }
+
+            return allergie;
+        }
         
+        [HttpGet("allergiesbylistingid/{id}", Name = "GetAllergiesByListingId")]
+        public async Task<ActionResult<List<FullAllergie>>> GetAllergiesByListingId(int id){
+            var List = await _allergieService.GetAllergiesByListingId(id);
+
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
 
 
         [HttpPost]

@@ -9,7 +9,11 @@ const state = {
     foodTypes: [],
     oneFoodType: "",
     allergies: [],
-    oneAllergie: ""
+    oneAllergie: "",
+    fullListing: [],
+    oneFullListing: "",
+    setOfAllergies: [],
+    setOfFoodTypes: []
 };
 
 const getters = {
@@ -17,8 +21,15 @@ const getters = {
     allFoodTypes: (state) => state.foodTypes,
     allAllergies: (state) => state.allergies,
     oneListing: (state) => state.oneListing,
+    oneAllergie: (state) => state.oneAllergie,
+    oneFoodType: (state) => state.oneFoodType,
     userListing: (state) => state.userListing,
-    oneImage: (state) => state.oneImage
+    oneImage: (state) => state.oneImage,
+/*     allFullListings: (state) => state.fullListing,
+ */   fullListing: (state) => state.fullListing,
+
+    setOfAllergies: (state) => state.setOfAllergies,
+    setOfFoodTypes: (state) => state.setOfFoodTypes
 
 };
 
@@ -27,6 +38,7 @@ const actions = {
         const response = await axios.get("https://localhost:5001/api/listings");
 
         context.commit('setListings', response.data);
+        console.log("getListings", response)
     },
 
     async getImages(context) {
@@ -48,6 +60,31 @@ const actions = {
         const response = await axios.get("https://localhost:5001/api/allergies");
 
         context.commit('setAllergies', response.data);
+    },
+    async getListingAllergies(context) {
+        const response = await axios.get("https://localhost:5001/api/listingallergies");
+
+        context.commit('setAllergies', response.data);
+    },
+    async getListingFT(context) {
+        const response = await axios.get("https://localhost:5001/api/listinfoodtypes");
+
+        context.commit('setFoodTypes', response.data);
+    },
+    async getFTByListingId(context, id) {
+        const response = await axios.get(`https://localhost:5001/api/foodtypes/foodtypesbylistingid/${id}`);
+
+        context.commit('setOfFoodTypes', response.data);
+    },
+    async getAllergiesByListingId(context, id) {
+        const response = await axios.get(`https://localhost:5001/api/allergies/allergiesbylistingid/${id}`);
+
+        context.commit('setOfAllergies', response.data);
+    },
+    async getAllColumns(context) {
+        const response = await axios.get(`https://localhost:5001/api/listings/getallcolumns`);
+
+        context.commit('setAllColumns', response.data);
     },
 
 
@@ -82,6 +119,7 @@ const actions = {
     async deleteListing(context, id) {
         await axios.delete(`https://localhost:5001/api/listings/${id}`);
         context.commit('removeListing', id);
+        context.dispatch("getListings");
     },
 
     async deleteImage(context, name) {
@@ -101,6 +139,18 @@ const actions = {
     async updateListing(context, oneListing) {
         const response = await axios.put(`https://localhost:5001/api/listings/${oneListing.id}`, oneListing);
         context.commit('updateListing', response.data);
+        console.log(response.data)
+
+    },
+    async updateAllergie(context, oneAllergie) {
+        const response = await axios.put(`https://localhost:5001/api/listingallergies/${oneAllergie.id}`, oneAllergie);
+        context.commit('updateAllergie', response.data);
+        console.log(response.data)
+
+    },
+    async updateFoodType(context, oneFoodType) {
+        const response = await axios.put(`https://localhost:5001/api/listingfoodtypes/${oneFoodType.id}`, oneFoodType);
+        context.commit('updateFoodType', response.data);
         console.log(response.data)
 
     },
@@ -127,6 +177,9 @@ const mutations = {
     setListings: (state, listings) => (state.listings = listings),
     setFoodTypes: (state, foodTypes) => (state.foodTypes = foodTypes),
     setAllergies: (state, allergies) => (state.allergies = allergies),
+    setOfAllergies: (state, setOfAllergies) => (state.setOfAllergies = setOfAllergies),
+    setOfFoodTypes: (state, setOfFoodTypes) => (state.setOfFoodTypes = setOfFoodTypes),
+    setAllColumns: (state, fullListing) => (state.fullListing = fullListing),
     setImages: (state, images) => (state.images = images),
     newListing: (state, oneListing) => state.listings.unshift(oneListing),
     newFoodType: (state, oneFoodType) => state.foodTypes.push(oneFoodType),
@@ -141,8 +194,20 @@ const mutations = {
             upd = oneListing
         }
     }),
+    updateAllergie: (state, oneAllergie) => state.allergies.forEach(upd => {
+        if (upd.updAllergieId == oneAllergie.updAllergieId) {
+            upd = oneAllergie
+        }
+    }),
+    updateFoodType: (state, oneFoodType) => state.foodTypes.forEach(upd => {
+        if (upd.updFoodTypeId == oneFoodType.updFoodTypeId) {
+            upd = oneFoodType
+        }
+    }),
     setImage: (state, oneImage) => (state.oneImage = oneImage),
     setListing: (state, oneListing) => (state.oneListing = oneListing),
+    setFoodType: (state, oneFoodType) => (state.oneFoodType = oneFoodType),
+    setAllergie: (state, oneAllergie) => (state.oneAllergie = oneAllergie),
     listingOwner: (state, userListing) => (state.userListing = userListing),
 };
 
