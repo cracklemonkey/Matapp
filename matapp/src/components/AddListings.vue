@@ -216,10 +216,6 @@ export default {
   font-weight: bold;
 }
 
-.form-div input {
-  align-self: center;
-}
-
 .title-label {
   font-weight: bold;
   padding: 5px;
