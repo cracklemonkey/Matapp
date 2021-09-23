@@ -16,6 +16,10 @@ namespace matAppBackEnd.Models
         public DbSet<OrderListing> OrderListings { get; set; }
         public DbSet<OrderedListing> OrderedListings { get; set; }
         public DbSet<AllColumns> AllColumns { get; set; }
+        public DbSet<FullFoodType> FullFoodType { get; set; }
+        public DbSet<FullAllergie> FullAllergie { get; set; }
+        public DbSet<FullOrderListing> FullOrderListings { get; set; }
+        
     }
    
 }
