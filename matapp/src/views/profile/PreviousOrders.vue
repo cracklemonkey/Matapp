@@ -2,7 +2,7 @@
   <div class="background-historik space">
     <h1 class="title-page">My previous orders</h1>
     <div
-      v-for="(orderListing, index) in OrderByUser"
+      v-for="(orderListing, index) in orderByUser"
       :key="orderListing + index"
     >
       <div class="listing-img">
@@ -39,7 +39,7 @@ export default {
       return date.format("dddd D of MMMM, YYYY");
     },
   },
-  computed: mapGetters(["OrderByUser"]),
+  computed: mapGetters(["orderByUser"]),
 };
 </script>
 
