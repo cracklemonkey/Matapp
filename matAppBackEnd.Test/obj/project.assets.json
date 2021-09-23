@@ -194,6 +194,21 @@
           "build/net5.0/Microsoft.AspNetCore.Mvc.Testing.targets": {}
         }
       },
+      "Microsoft.AspNetCore.SpaServices.Extensions/5.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Physical": "5.0.0"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.SpaServices.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.SpaServices.Extensions.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.TestHost/5.0.9": {
         "type": "package",
         "dependencies": {
@@ -3263,8 +3278,10 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Azure.Storage.Blobs": "12.9.1",
+          "Microsoft.AspNetCore.SpaServices.Extensions": "5.0.10",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.9",
+          "Microsoft.Extensions.Hosting": "5.0.0",
           "MongoDB.Driver": "2.13.1",
           "Swashbuckle.AspNetCore": "5.6.3",
           "System.Configuration.ConfigurationManager": "5.0.0",
@@ -3586,6 +3603,20 @@
         "lib/net5.0/Microsoft.AspNetCore.Mvc.Testing.xml",
         "microsoft.aspnetcore.mvc.testing.5.0.9.nupkg.sha512",
         "microsoft.aspnetcore.mvc.testing.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SpaServices.Extensions/5.0.10": {
+      "sha512": "CIHXYOnEs1P0zJnbh87280waaJ7St3FJqUDG8z4X8MMd/Y77VUog8kHJO/xR/HEf0y60kzpGT9D4NRjTfqIOYQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.spaservices.extensions/5.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net5.0/Microsoft.AspNetCore.SpaServices.Extensions.dll",
+        "microsoft.aspnetcore.spaservices.extensions.5.0.10.nupkg.sha512",
+        "microsoft.aspnetcore.spaservices.extensions.nuspec"
       ]
     },
     "Microsoft.AspNetCore.TestHost/5.0.9": {

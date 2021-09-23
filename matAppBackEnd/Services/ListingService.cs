@@ -22,7 +22,10 @@ namespace matAppBackEnd.Services
 
 
         public async Task <List<Listing>>  Get(){
-            return _listings.Listings.ToList();
+
+            var list = _listings.Listings.FromSqlRaw($"SELECT * FROM dbo.Listings ORDER BY CreationDate DESC").ToList();
+
+            return list;
         }
 
 

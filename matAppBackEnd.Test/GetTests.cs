@@ -61,7 +61,7 @@ namespace BasicWebApi.Test.TestServer
             var client = _factory.CreateClient();
             
             // act
-            var httpResponse = await client.GetAsync("api/listings/userlistings/asdasdasdasdaa");
+            var httpResponse = await client.GetAsync("api/listings/userlistings/dtestas");
 
             // assert
             httpResponse.IsSuccessStatusCode.Should().BeTrue();
