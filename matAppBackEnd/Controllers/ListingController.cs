@@ -53,6 +53,7 @@ namespace ListingsApi.Controllers
             
             return userIdList;
         }
+
         [HttpGet("foodtypelistings/{id}", Name = "GetListingByFoodType")]
         public async Task<ActionResult<List<Listing>>> GetListingByFoodType(int id){
             var List = await _listingService.GetListingByFoodType(id);
@@ -82,6 +83,7 @@ namespace ListingsApi.Controllers
         }
         
 
+
   [HttpGet("getallcolumns", Name = "GetAllColumns")]
         public async Task<ActionResult<List<AllColumns>>> GetAllColumns(){
             var List = await _listingService.GetAllColumns();
@@ -95,6 +97,64 @@ namespace ListingsApi.Controllers
             return List;
         }
 
+     [HttpGet("getallcolumns/foodtypeid/{id}", Name = "GetAllColumnsByFoodTypeId")]
+        public async Task<ActionResult<List<AllColumns>>> GetAllColumnsByFoodTypeId(int id){
+            var List = await _listingService.GetAllColumnsByFoodTypeId(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+    [HttpGet("getallcolumns/allergieid/{id}", Name = "GetAllColumnsByAllergieId")]
+        public async Task<ActionResult<List<AllColumns>>> GetAllColumnsByAllergieId(int id){
+            var List = await _listingService.GetAllColumnsByAllergieId(id);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+
+    [HttpGet("getallcolumns/foodtypename/{foodname}", Name = "GetAllColumnsByFoodTypeName")]
+
+        public async Task <ActionResult<List<AllColumns>>> GetAllColumnsByFoodTypeName(string foodname){
+            var List = await _listingService.GetAllColumnsByFoodTypeName(foodname);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+  [HttpGet("getallcolumns/allergiename/{allergiename}", Name = "GetAllColumnsByAllergieName")]
+
+        public async Task <ActionResult<List<AllColumns>>> GetAllColumnsByAllergieName(string allergiename){
+            var List = await _listingService.GetAllColumnsByAllergieName(allergiename);
+
+              
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
 
         [HttpPost]
         public async Task <ActionResult<Listing>> Create(Listing listing)

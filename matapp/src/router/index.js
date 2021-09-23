@@ -5,11 +5,13 @@ import LandingPage from '../views/LandingPage.vue'
 import Listings from '../views/listings/Listings.vue'
 import ListingDetails from '../views/listings/ListingDetails.vue'
 import Profile from '../views/profile/Profile.vue'
-import Settings from '../views/profile/Settings.vue'
 import MyPosts from '../views/profile/MyPosts.vue'
-import Historik from '../views/profile/Historik.vue'
+import PreviousOrders from '../views/profile/PreviousOrders.vue'
+import PastListings from '../views/profile/PastListings.vue'
 import ListingByUser from '../views/listings/ListingByUser.vue'
 import EditListing from '../views/listings/EditListing.vue'
+import ConfirmedOrder from '../views/listings/ConfirmedOrder.vue'
+import About from '../views/About.vue'
 
 
 const routes = [
@@ -38,17 +40,17 @@ const routes = [
     component: EditListing,
     beforeEnter: AuthenticationGuard
   },
+  {
+    path: '/orderconfirmed',
+    name: 'Order Confirmed',
+    component: ConfirmedOrder,
+    beforeEnter: AuthenticationGuard
+  },
 
   {
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    beforeEnter: AuthenticationGuard
-  },
-  {
-    path: '/profile/settings',
-    name: 'Settings',
-    component: Settings,
     beforeEnter: AuthenticationGuard
   },
   {
@@ -63,11 +65,18 @@ const routes = [
     component: ListingByUser
   },
   {
-    path: '/profile/historik',
-    name: 'Historik',
-    component: Historik,
+    path: '/profile/previousorders',
+    name: 'Previous Orders',
+    component: PreviousOrders,
     beforeEnter: AuthenticationGuard
   },
+  {
+    path: '/profile/pastlistings',
+    name: 'Past Listings',
+    component: PastListings,
+    beforeEnter: AuthenticationGuard
+  },
+
   {
     path: `/listing/user/:id`,
     name: 'ListingByUser',
@@ -77,10 +86,10 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About,
+    meta: { adaptColor: 'nav--about phone-nav--about', onScroll: 'nav--about-bis' },
+
+
   }
 ]
 

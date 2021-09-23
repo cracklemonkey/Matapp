@@ -1,69 +1,79 @@
 <template>
-  <div>
-    <h1 class="title-page">All Listings</h1>
+  <div class="background-listing">
+    <div class="space">
+      <h1 class="title-page">All Listings</h1>
 
-    <div>
-      <button
-        v-if="$auth.authenticated"
-        @click="togglePlus"
-        class="plus-button"
-      >
-        <i class="far fa-plus-square"></i>
-      </button>
-    </div>
-
-    <div v-if="plusButton">
-      <AddListings />
-    </div>
-
-    <div
-      class="listing-div"
-      v-for="(listing, index) in allListings"
-      :key="listing + index"
-    >
       <div>
-        <h3>{{ listing.title }}</h3>
-        <img
-          v-if="listing.image != null"
-          class="listing-img"
-          :src="`https://localhost:5001/api/image/${listing.image}`"
-          alt=""
-        />
-
-        <p>Posted : {{ formatDate(listing.creationDate) }}</p>
-        <p>Pick-up before : {{ formatDate(listing.deadline) }}</p>
-        <p>{{ listing.foodType }}</p>
-        <p>Posted by : {{ listing.userOwner }}</p>
-        <button>
-          <router-link :to="`/listing/${listing.listingId}`">
-            View more details
-          </router-link>
-        </button>
         <button
-          v-if="
-            $auth.authenticated &&
-            $auth.user.preferred_username === listing.userOwner
-          "
-          @click="remove(listing.listingId, listing.image)"
+          v-if="$auth.authenticated"
+          @click="togglePlus"
+          class="plus-button"
         >
-          Delete
+          <i class="far fa-plus-square"></i>
         </button>
-        <order-listing :listing="listing" />
+      </div>
 
-        <button
-          v-if="
-            $auth.authenticated &&
-            $auth.user.preferred_username != listing.userOwner &&
-            !showConfirm
-          "
-          @click="toggleConfirm()"
-        >
-          Order
-        </button>
-        <div v-if="showConfirm">
-          <ConfirmOrder :listing="listing" @close="toggleConfirm" />
+      <div v-if="plusButton">
+        <AddListings @toggle="togglePlus()" />
+      </div>
+
+      <div
+        class="listing-div nav-change"
+        v-for="(listing, index) in allListings"
+        :key="listing + index"
+      >
+        <div class="listing-img">
+          <img
+            v-if="listing.image != null"
+            :src="`https://localhost:5001/api/image/${listing.image}`"
+            alt=""
+          />
+          <img
+            v-if="listing.image == null"
+            src="../../assets/images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg"
+            alt=""
+          />
         </div>
-        <!-- @click="orderListing(listing.listingId)" -->
+        <div class="listing-info">
+          <h3>{{ listing.title }}</h3>
+
+          <p class="desktop">Posted : {{ formatDate(listing.creationDate) }}</p>
+          <p class="desktop">
+            Pick-up before : {{ formatDate(listing.deadline) }}
+          </p>
+          <p class="phone">
+            Posted : {{ formatDateTwo(listing.creationDate) }}
+          </p>
+          <p class="phone">
+            Pick-up before : {{ formatDateTwo(listing.deadline) }}
+          </p>
+          <p class="cap-user">Posted by : {{ listing.userOwner }}</p>
+          <div class="buttons-div">
+            <button>
+              <router-link :to="`/listing/${listing.listingId}`">
+                View more details
+              </router-link>
+            </button>
+            <button
+              v-if="
+                $auth.authenticated &&
+                $auth.user.preferred_username === listing.userOwner
+              "
+              @click="remove(listing.listingId, listing.image)"
+            >
+              Delete
+            </button>
+            <order-listing :listing="listing" />
+          </div>
+        </div>
+      </div>
+      <div class="up-top">
+        <a class="phone" href="#topphone"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
+        <a class="desktop" href="#topdesk"
+          ><i class="fas fa-angle-double-up"></i
+        ></a>
       </div>
     </div>
   </div>
@@ -72,16 +82,16 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddListings from "../../components/AddListings.vue";
-import ConfirmOrder from "../../components/modals/confirmOrderlModal.vue";
 import dayjs from "dayjs";
-import OrderListing from '../../components/OrderListing.vue';
+import OrderListing from "../../components/OrderListing.vue";
 export default {
   name: "Listings",
-  components: { AddListings, ConfirmOrder, OrderListing },
+  components: { AddListings, OrderListing },
   data() {
     return {
       plusButton: false,
-      showConfirm: false,
+
+      orderkey: 0,
       postOrder: {
         userName: null,
         orderDate: new Date(),
@@ -92,6 +102,7 @@ export default {
   created() {
     this.getListings();
   },
+
   methods: {
     ...mapActions([
       "getListings",
@@ -100,15 +111,12 @@ export default {
       "updateListing",
       "getListingById",
       "getImage",
-      "updateOrder",
+      "deleteImage",
     ]),
     togglePlus() {
       if (this.$auth.authenticated) {
         this.plusButton = !this.plusButton;
       }
-    },
-    toggleConfirm() {
-      this.showConfirm = !this.showConfirm;
     },
 
     formatDate(dateString) {
@@ -116,56 +124,96 @@ export default {
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
-    orderListing(id) {
-      this.postOrder.listingId = id;
-      this.postOrder.username = this.$auth.user.preferred_username;
-      /* this.updateOrder(this.postOrder); */
-      /* this.moveListing(id); */
-      console.log(this.postOrder);
+    formatDateTwo(dateString) {
+      const date = dayjs(dateString);
+      // Then specify how you want your dates to be formatted
+      return date.format("D/MM/YY");
+    },
+
+    remove(listingId, imageName) {
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.getListings();
     },
   },
-  computed: mapGetters(["allListings", "oneImage", "oneListing"]),
+  computed: mapGetters([
+    "allListings",
+    "oneImage",
+    "oneListing",
+    "oneAllergie",
+    "oneFoodType",
+    "setOfAllergies",
+  ]),
 };
 </script>
 
 
 <style>
 .title-page {
-  font-family: "Oswald", sans-serif;
+  font-family: "Poiret One", cursive;
   padding: 10px;
   margin-bottom: 20px;
+  color: white;
 }
 .listing-div {
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
   width: 50%;
   margin: 10px auto;
-  border: 3px solid black;
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 10px;
   border-radius: 20px;
+  display: flex;
 }
 
-.listing-div p {
+.listing-info {
+  margin: auto;
+}
+
+.listing-info h3 {
+  font-family: "Bad Script", cursive;
+  font-size: 25px;
+}
+
+.listing-info p {
   padding: 5px;
-  font-size: 18px;
+  font-size: 20px;
+  text-align: left;
 }
 
-.listing-div button {
+.listing-info button {
   font-family: inherit;
-  font-size: 15px;
+  font-size: 18px;
   padding: 5px;
   margin: 10px;
   border-radius: 30px;
   border: black 1px solid;
+  font-family: "Poiret One", cursive;
+  font-weight: bold;
 }
-.listing-div button a {
+
+.listing-info button:hover {
+  color: white;
+  background-color: black;
+}
+.listing-info button a {
   text-decoration: none;
   color: black;
 }
+.listing-info button a:hover {
+  color: white;
+}
 
 .listing-img {
+  align-self: center;
+}
+
+.listing-img img {
   padding: 20px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0px 30px;
 }
 
 .plus-button {
@@ -173,7 +221,51 @@ export default {
   border: none;
   font-size: 30px;
 }
+.plus-button {
+  color: white;
+}
 .plus-button:hover {
-  color: #42b983;
+  color: black;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
+}
+
+.up-top a {
+  font-size: 30px;
+  padding: 15px;
+  color: white;
+}
+
+.up-top a:hover {
+  color: black;
+}
+@media (max-width: 768px) {
+  .listing-div {
+    display: block;
+    width: 90%;
+  }
+  .listing-info h3 {
+    font-size: 20px;
+  }
+
+  .listing-info p {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .listing-info button {
+    font-size: 15px;
+  }
+
+  .listing-img img {
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0px 30px;
+  }
 }
 </style>

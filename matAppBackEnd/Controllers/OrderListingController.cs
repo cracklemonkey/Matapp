@@ -39,6 +39,62 @@ namespace OrderListingsApi.Controllers
             return orderlisting;
         }
 
+         [HttpGet("userorders/{username}", Name = "GetOrderByUserName")]
+        public async Task <ActionResult<List<OrderListing>>> Get(string username)
+        {   
+            var userNameOrderListing = await _orderlistingService.GetOrderByUserName(username);
+
+              
+            bool isEmpty = !userNameOrderListing.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return userNameOrderListing;
+        }
+
+ [HttpGet("fullorders", Name = "GetFullOrderListings")]
+        public async Task<ActionResult<List<FullOrderListing>>> GetFullOrderListings(){
+            var List = await _orderlistingService.GetFullOrderListings();
+
+            bool isEmpty = !List.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return List;
+        }
+
+ [HttpGet("fullordersbyusername/{username}", Name = "GetFullOrdersByUserName")]
+        public async Task <ActionResult<List<FullOrderListing>>> GetFullOrdersByUserName(string username)
+        {   
+            var list = await _orderlistingService.GetFullOrdersByUserName(username);
+
+              
+            bool isEmpty = !list.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            
+            return list;
+        }
+
+[HttpGet("fullordersbyuserowner/{userowner}", Name = "GetFullOrdersByUserOwner")]
+        public async Task <ActionResult<List<FullOrderListing>>> GetFullOrdersByUserOwner(string userowner)
+        {   
+            var list = await _orderlistingService.GetFullOrdersByUserOwner(userowner);
+
+            bool isEmpty = !list.Any();
+            if(isEmpty){
+
+                return NotFound();
+            }
+            return list;
+        }
+
           [HttpPost]
         public async Task <ActionResult<OrderListing>> Create(OrderListing orderlisting)
         {
