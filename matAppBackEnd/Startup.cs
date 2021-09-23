@@ -106,6 +106,7 @@ services.AddSwaggerGen(c =>
 
             app.UseSpaStaticFiles();
             app.UseHttpsRedirection();
+            app.UseCors("CorsPolicy");
             app.UseSwagger();
 
     // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -121,8 +122,6 @@ services.AddSwaggerGen(c =>
         endpoints.MapControllers();
     });
             app.UseRouting();
-
-            app.UseCors("CorsPolicy");
             
             app.UseAuthorization();
 
