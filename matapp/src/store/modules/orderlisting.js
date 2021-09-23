@@ -9,7 +9,8 @@ const state = {
     orderedlistings: [],
     oneOrderedlisting: "",
 
-    userOrder: []
+    userOrder: [],
+    ownerOrder: []
 
 
 };
@@ -20,7 +21,8 @@ const getters = {
 
     allOrderedListings: (state) => state.orderedlistings,
     oneOrderedListing: (state) => state.oneOrderedListing,
-    orderByUser: (state) => state.userOrder
+    orderByUser: (state) => state.userOrder,
+    orderByOwner: (state) => state.ownerOrder
 
 
 };
@@ -36,12 +38,15 @@ const actions = {
         console.log(response.data)
         context.commit('orderUser', response.data)
     },
+    async getOrdersByOwner(context, userowner) {
+        const response = await axios.get(`https://localhost:5001/api/orderlistings/fullordersbyuserowner/${userowner}`);
+        console.log(response.data)
+        context.commit('orderOwner', response.data)
+    },
 
     async addOrderListing(context, posts) {
         const response = await axios.post(`https://localhost:5001/api/orderlistings`, posts)
         context.commit('newOrderListing', response.data);
-        context.dispatch('listings/getListings', null, { root: true })
-
     },
     async deleteOrderListing(context, orderid) {
         await axios.delete(`https://localhost:5001/api/orderlistings/${orderid}`);
@@ -114,6 +119,7 @@ const mutations = {
     }),
     setOrderedListing: (state, oneOrderedListing) => (state.oneOrderedListing = oneOrderedListing),
     orderUser: (state, userOrder) => (state.userOrder = userOrder),
+    orderOwner: (state, ownerUser) => (state.ownerUser = ownerUser),
 
 
 

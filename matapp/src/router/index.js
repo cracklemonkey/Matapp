@@ -7,6 +7,7 @@ import ListingDetails from '../views/listings/ListingDetails.vue'
 import Profile from '../views/profile/Profile.vue'
 import MyPosts from '../views/profile/MyPosts.vue'
 import PreviousOrders from '../views/profile/PreviousOrders.vue'
+import PastListings from '../views/profile/PastListings.vue'
 import ListingByUser from '../views/listings/ListingByUser.vue'
 import EditListing from '../views/listings/EditListing.vue'
 import ConfirmedOrder from '../views/listings/ConfirmedOrder.vue'
@@ -67,6 +68,12 @@ const routes = [
     path: '/profile/previousorders',
     name: 'Previous Orders',
     component: PreviousOrders,
+    beforeEnter: AuthenticationGuard
+  },
+  {
+    path: '/profile/pastlistings',
+    name: 'Past Listings',
+    component: PastListings,
     beforeEnter: AuthenticationGuard
   },
 
