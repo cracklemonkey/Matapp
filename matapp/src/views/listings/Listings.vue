@@ -28,6 +28,11 @@
             :src="`https://localhost:5001/api/image/${listing.image}`"
             alt=""
           />
+          <img
+            v-if="listing.image == null"
+            src="../../assets/images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg"
+            alt=""
+          />
         </div>
         <div class="listing-info">
           <h3>{{ listing.title }}</h3>

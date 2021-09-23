@@ -8,6 +8,12 @@
           :src="`https://localhost:5001/api/image/${oneListing.image}`"
           alt=""
         />
+        <img
+          v-if="oneListing.image == null"
+          class="details-image"
+          src="../../assets/images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg"
+          alt=""
+        />
       </div>
       <div class="listing-info">
         <h1>{{ oneListing.title }}</h1>
@@ -123,6 +129,7 @@ export default {
       "getListings",
       "addListing",
       "deleteListing",
+      "deleteImage",
       "getListingById",
       "getAllergiesByListingId",
       "getFTByListingId",

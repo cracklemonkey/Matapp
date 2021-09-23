@@ -1,9 +1,9 @@
 <template>
   <div class="background-historik space">
-    <h1 class="title-page">My previous orders</h1>
+    <h1 class="title-page">My Past Listings</h1>
     <div
       class="listing-div"
-      v-for="(orderListing, index) in OrderByUser"
+      v-for="(orderListing, index) in orderByOwner"
       :key="orderListing + index"
     >
       <div class="listing-img">
@@ -35,17 +35,17 @@ import dayjs from "dayjs";
 import { mapGetters, mapActions } from "vuex";
 export default {
   created() {
-    this.getOrdersByUser(this.$auth.user.preferred_username);
+    this.getOrdersByOwner(this.$auth.user.preferred_username);
   },
   methods: {
-    ...mapActions(["getOrdersByUser"]),
+    ...mapActions(["getOrdersByOwner"]),
     formatDate(dateString) {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
       return date.format("dddd D of MMMM, YYYY");
     },
   },
-  computed: mapGetters(["OrderByUser"]),
+  computed: mapGetters(["orderByOwner"]),
 };
 </script>
 

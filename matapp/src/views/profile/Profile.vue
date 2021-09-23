@@ -39,7 +39,6 @@
             My previous orders <i class="fas fa-chevron-circle-right"></i>
           </h2>
         </router-link>
-
         <div class="oneListing">
           <div
             class="listing-card"
@@ -49,12 +48,38 @@
             <router-link :to="`/listing/${orderListing.title}`">
               <h3>{{ orderListing.title }}</h3>
             </router-link>
+            <p>Posted: {{ formatDate(orderListing.creationDate) }}</p>
+            <p>Ordered : {{ formatDate(orderListing.orderDate) }}</p>
+          </div>
+          <button class="" v-if="orderByUser.length > 4">
+            <router-link :to="`/profile/previousorders`">
+              View more <i class="fas fa-chevron-circle-right"></i
+            ></router-link>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="my-listings">
+      <div class="title-section">
+        <router-link :to="`/profile/pastlistings`">
+          <h2>My past listings <i class="fas fa-chevron-circle-right"></i></h2>
+        </router-link>
+
+        <div class="oneListing">
+          <div
+            class="listing-card"
+            v-for="(orderListing, index) in orderByOwner.slice(0, 4)"
+            :key="orderListing + index"
+          >
+            <router-link :to="`/listing/${orderListing.title}`">
+              <h3>{{ orderListing.title }}</h3>
+            </router-link>
 
             <p>Ordered : {{ formatDate(orderListing.orderDate) }}</p>
           </div>
 
-          <button class="" v-if="orderByUser.length > 4">
-            <router-link :to="`/profile/previousorders`">
+          <button class="" v-if="orderByOwner.length > 4">
+            <router-link :to="`/profile/pastlistings`">
               View more <i class="fas fa-chevron-circle-right"></i
             ></router-link>
           </button>
@@ -77,6 +102,7 @@ export default {
   created() {
     this.getListingsByUser(this.$auth.user.preferred_username);
     this.getOrdersByUser(this.$auth.user.preferred_username);
+    this.getOrdersByOwner(this.$auth.user.preferred_username);
   },
 
   methods: {
@@ -89,6 +115,7 @@ export default {
       "getListingsByUser",
       "getOrderListings",
       "getOrdersByUser",
+      "getOrdersByOwner",
     ]),
     formatDate(dateString) {
       const date = dayjs(dateString);
@@ -96,7 +123,12 @@ export default {
       return date.format("D/MM/YY");
     },
   },
-  computed: mapGetters(["allListings", "userListing", "orderByUser"]),
+  computed: mapGetters([
+    "allListings",
+    "userListing",
+    "orderByUser",
+    "orderByOwner",
+  ]),
 };
 </script>
 

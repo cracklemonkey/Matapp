@@ -30,6 +30,11 @@
           :src="`https://localhost:5001/api/image/${listing.image}`"
           alt=""
         />
+        <img
+          v-if="listing.image == null"
+          src="../../assets/images/alexander-sergienko-VMMfXKElJdw-unsplash.jpeg"
+          alt=""
+        />
       </div>
       <div class="listing-info">
         <h3>{{ listing.title }}</h3>
@@ -93,6 +98,7 @@ export default {
       "getListings",
       "addListing",
       "deleteListing",
+      "deleteImage",
       "getListingById",
       "getListingsByUser",
     ]),
@@ -108,6 +114,11 @@ export default {
       const date = dayjs(dateString);
       // Then specify how you want your dates to be formatted
       return date.format("D/MM/YY");
+    },
+    remove(listingId, imageName) {
+      this.deleteListing(listingId);
+      this.deleteImage(imageName);
+      this.$router.push({ name: "Listings" });
     },
   },
   computed: mapGetters(["oneListing", "allListings", "userListing"]),
