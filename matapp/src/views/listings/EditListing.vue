@@ -34,6 +34,7 @@
           type="file"
           accept="image/jpg, image/png, image/jpeg"
           ref="file"
+          class="custom-file-input"
           @change="onImageSelected"
         />
       </div>

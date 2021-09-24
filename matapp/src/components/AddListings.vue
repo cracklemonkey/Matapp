@@ -78,6 +78,7 @@
           accept="image/jpg, image/png, image/jpeg"
           ref="file"
           capture="camera"
+          class="custom-file-input"
           @change="onImageSelected"
         />
       </div>
@@ -216,6 +217,31 @@ export default {
   font-weight: bold;
 }
 
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "Select an image";
+  display: inline-block;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 10px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  color: black;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
 .title-label {
   font-weight: bold;
   padding: 5px;
@@ -254,9 +280,7 @@ export default {
   font-size: 20px;
   background-color: rgba(231, 224, 224, 0.7);
 }
-#deadline input {
-  background: black;
-}
+
 @media (max-width: 768px) {
   .form-listing {
     font-size: 18px;
